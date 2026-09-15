@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-parchment: #f7f3ec;
+  --color-parchment-dim: #efe9dd;
+  --color-ink: #2b2440;
+  --color-deepink: #3d3653;
+  --color-lavender: #8b7fb8;
+  --color-lavender-soft: #b8afd9;
+  --color-sage: #7c9473;
+  --color-sage-soft: #a8bc9e;
+  --color-rose: #e8a0a0;
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hand: "Caveat", cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-parchment);
+  background-image:
+    radial-gradient(var(--color-deepink) 0.6px, transparent 0.6px);
+  background-size: 22px 22px;
+  background-position: -8px -8px;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+::selection {
+  background: var(--color-lavender-soft);
+  color: var(--color-ink);
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.font-hand {
+  font-family: var(--font-hand);
+}
+
+.washi-tape {
+  position: relative;
+}
+
+.washi-tape::before {
+  content: "";
+  position: absolute;
+  top: -0.6rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 3.6rem;
+  height: 1.1rem;
+  background: color-mix(in srgb, var(--color-sage) 55%, transparent);
+  opacity: 0.7;
+}
+
+.stitch-divider {
+  border: none;
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--color-deepink) 0,
+    var(--color-deepink) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0.35;
+}
+
+.paper-fold {
+  position: relative;
+}
+
+.paper-fold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 22px 22px 0;
+  border-color: transparent var(--color-parchment-dim) transparent transparent;
+  filter: drop-shadow(-1px 1px 1px rgba(43, 36, 64, 0.15));
+}
