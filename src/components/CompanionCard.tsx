@@ -6,11 +6,11 @@ import { companion, type CompanionMode } from "../data/profile";
 
 const modeOrder: CompanionMode[] = ["research", "strategy", "build", "measure"];
 
-const modeColor: Record<CompanionMode, string> = {
-  research: "var(--color-punch-violet)",
-  strategy: "var(--color-punch-green)",
-  build: "var(--color-punch-gold)",
-  measure: "var(--color-punch-pink)",
+const modeStyle: Record<CompanionMode, { bg: string; ink: string }> = {
+  research: { bg: "var(--color-mint-bg)", ink: "var(--color-mint-ink)" },
+  strategy: { bg: "var(--color-blush-bg)", ink: "var(--color-blush-ink)" },
+  build: { bg: "var(--color-sky-bg)", ink: "var(--color-sky-ink)" },
+  measure: { bg: "var(--color-lilac-bg)", ink: "var(--color-lilac-ink)" },
 };
 
 const modeIcon: Record<CompanionMode, ReactElement> = {
@@ -43,49 +43,46 @@ const modeIcon: Record<CompanionMode, ReactElement> = {
 export default function CompanionCard({ className = "" }: { className?: string }) {
   const [mode, setMode] = useState<CompanionMode>("research");
   const active = companion.modes[mode];
-  const tint = modeColor[mode];
+  const style = modeStyle[mode];
+  const expPct = 94;
 
   return (
-    <div className={`relative ${className}`}>
-      <div
-        aria-hidden="true"
-        className="absolute -inset-8 -z-10 rounded-full opacity-30 blur-3xl transition-colors duration-500"
-        style={{ background: `radial-gradient(circle, ${tint} 0%, transparent 70%)` }}
-      />
-
-      <div className="rotate-1 rounded-2xl border-[3px] border-night-deep bg-parchment-dim p-3 shadow-[0_18px_40px_-14px_rgba(36,28,61,0.5)] sm:p-4">
-        {/* HUD bar */}
-        <div className="flex items-center justify-between px-1 pb-2 text-[0.7rem] text-ink/70">
-          <span className="flex items-center gap-1 font-display">
-            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-punch-pink"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.6 2 5 5.4 5c2 0 3.5 1.1 4.6 2.7C11.1 6.1 12.6 5 14.6 5 18 5 19.6 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg>
-            LVL 4 companion
+    <div className={`quest-card overflow-hidden rounded-lg ${className}`}>
+      {/* HUD bar */}
+      <div className="bg-parchment-dim px-4 py-2.5">
+        <div className="mono-label flex items-center justify-between text-[0.68rem] text-ink/70">
+          <span>
+            LVL 4 APM <span className="text-blush-ink">♥</span> EXP: 940/1000
           </span>
-          <span className="flex items-center gap-1.5">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-punch-green opacity-70" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-punch-green" />
+          <span className="flex items-center gap-2">
+            <span className="rounded-md bg-mint-bg px-2 py-0.5 text-mint-ink">Ready</span>
+            <span className="flex h-2.5 w-4 items-center rounded-[2px] border border-ink/40 p-[1px]">
+              <span className="h-full w-3/4 rounded-[1px] bg-mint-ink" />
             </span>
-            ready
           </span>
         </div>
-
-        {/* Scene */}
-        <div className="night-sky pixel-corners relative h-44 overflow-hidden">
-          <span className="twinkle absolute top-4 left-6 h-1 w-1 rounded-full bg-white" style={{ animationDelay: "0.2s" }} />
-          <span className="twinkle absolute top-8 right-8 h-1.5 w-1.5 rounded-full bg-white" style={{ animationDelay: "1s" }} />
-          <span className="twinkle absolute top-14 left-14 h-1 w-1 rounded-full bg-white" style={{ animationDelay: "1.8s" }} />
-          <span className="twinkle absolute top-6 right-20 h-1 w-1 rounded-full bg-white" style={{ animationDelay: "0.6s" }} />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-10"
-            style={{ background: "linear-gradient(180deg, transparent, color-mix(in srgb, var(--color-night-deep) 70%, transparent))" }}
-          />
-          <PipMascot mode={mode} className="absolute bottom-1 left-1/2 h-32 w-32 -translate-x-1/2" />
+        <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-ink/10">
+          <div className="h-full rounded-full bg-punch-violet" style={{ width: `${expPct}%` }} />
         </div>
-        <p className="mt-1.5 text-center text-[0.65rem] text-ink/40">tap Pip to say hi</p>
+      </div>
 
-        {/* Speech bubble */}
-        <div className="pixel-corners mt-3 min-h-[76px] border-2 border-night-deep bg-parchment p-3">
+      <div className="p-4 sm:p-5">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5">
+            <span
+              className="flex h-9 w-9 items-center justify-center rounded-md border transition-colors duration-500"
+              style={{ borderColor: style.ink, backgroundColor: style.bg }}
+            >
+              <PipMascot mode={mode} className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="mono-label text-xs text-ink">Pip // PM companion</p>
+              <p className="text-[0.68rem] text-ink/50">Status: ready to synthesize</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="quest-card mt-4 min-h-[76px] rounded-md p-3.5">
           <AnimatePresence mode="wait">
             <motion.p
               key={mode}
@@ -93,50 +90,52 @@ export default function CompanionCard({ className = "" }: { className?: string }
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -6 }}
               transition={{ duration: 0.25 }}
-              className="font-display text-[0.9rem] leading-snug text-ink italic"
+              className="font-display text-[0.92rem] leading-snug text-ink italic"
             >
               "{active.quote}"
             </motion.p>
           </AnimatePresence>
         </div>
 
-        {/* Mode nav, arcade-icon style */}
-        <div className="mt-4 grid grid-cols-4 gap-2">
+        <dl className="mono-label mt-4 space-y-2 border-y border-dashed border-ink/15 py-3.5 text-[0.7rem]">
+          <div className="flex justify-between gap-4">
+            <dt className="text-ink/45">Current quest:</dt>
+            <dd className="text-right text-ink/80 normal-case">{companion.quest}</dd>
+          </div>
+          <div className="flex justify-between gap-4">
+            <dt className="text-ink/45">Class / role:</dt>
+            <dd className="text-right text-ink/80 normal-case">{companion.standing}</dd>
+          </div>
+          <div className="flex justify-between gap-4">
+            <dt className="text-ink/45">Core artifacts:</dt>
+            <dd className="text-right text-ink/80 normal-case">{companion.artifacts}</dd>
+          </div>
+        </dl>
+
+        <p className="mono-label mt-4 text-[0.68rem] text-ink/50">Select mode to query Pip:</p>
+        <div className="mt-2 grid grid-cols-4 gap-2">
           {modeOrder.map((m) => (
-            <button key={m} type="button" onClick={() => setMode(m)} className="flex flex-col items-center gap-1">
-              <span
-                className="arcade-btn flex h-11 w-11 items-center justify-center rounded-lg transition-transform"
-                data-active={mode === m}
-                style={{
-                  backgroundColor: modeColor[m],
-                  transform: mode === m ? "scale(1.08)" : undefined,
-                }}
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="white" strokeWidth="2">
-                  {modeIcon[m]}
-                </svg>
+            <button
+              key={m}
+              type="button"
+              onClick={() => setMode(m)}
+              className="flex flex-col items-center gap-1 rounded-md border py-2.5 transition-transform hover:-translate-y-0.5"
+              style={{
+                backgroundColor: modeStyle[m].bg,
+                borderColor: mode === m ? modeStyle[m].ink : "transparent",
+              }}
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke={modeStyle[m].ink} strokeWidth="2">
+                {modeIcon[m]}
+              </svg>
+              <span className="mono-label text-[0.6rem]" style={{ color: modeStyle[m].ink }}>
+                {companion.modes[m].label}
               </span>
-              <span className="text-[0.62rem] text-ink/70">{companion.modes[m].label}</span>
             </button>
           ))}
         </div>
 
-        <dl className="mt-4 space-y-2 border-y border-dashed border-deepink/15 py-3 text-sm">
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink/55">Current quest</dt>
-            <dd className="text-right text-ink/85">{companion.quest}</dd>
-          </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink/55">Standing</dt>
-            <dd className="text-right text-ink/85">{companion.standing}</dd>
-          </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink/55">Artifacts</dt>
-            <dd className="text-right text-ink/85">{companion.artifacts}</dd>
-          </div>
-        </dl>
-
-        <div className="mt-4 space-y-4 px-1 pb-1">
+        <div className="mt-5 space-y-3.5">
           {companion.stats.map((s) => (
             <StatBar key={s.label} label={s.label} value={s.value} />
           ))}

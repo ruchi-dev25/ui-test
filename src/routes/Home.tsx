@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import Doodle from "../components/Doodle";
 import CompanionCard from "../components/CompanionCard";
 import CountUp from "../components/CountUp";
 import StickyNote from "../components/StickyNote";
@@ -29,67 +28,51 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* Hero */}
-      <section className="relative pt-16 pb-20 sm:pt-24 sm:pb-28">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-16 -right-24 -z-10 h-72 w-72 rounded-full opacity-40 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(circle, var(--color-lavender-soft) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute top-40 -left-20 -z-10 h-64 w-64 rounded-full opacity-30 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(circle, var(--color-sage-soft) 0%, transparent 70%)",
-          }}
-        />
-        <Doodle
-          variant="moon"
-          className="absolute -top-2 right-2 h-10 w-10 text-lavender-soft sm:right-8"
-        />
-        <span className="twinkle absolute top-16 right-24 hidden h-1.5 w-1.5 bg-rose sm:block" style={{ animationDelay: "0.4s" }} />
-        <span className="twinkle absolute top-32 right-40 hidden h-1 w-1 bg-amber sm:block" style={{ animationDelay: "1.3s" }} />
-        <span className="twinkle absolute top-6 right-52 hidden h-1 w-1 bg-sage sm:block" style={{ animationDelay: "2s" }} />
+      <section className="hero-wash relative pt-16 pb-20 sm:pt-20 sm:pb-28">
+        <span className="font-hand absolute top-2 left-0 text-lg text-punch-violet/70" aria-hidden="true">
+          ✦ ✧
+        </span>
 
         <motion.div
           initial={reduceMotion ? undefined : "hidden"}
           animate={reduceMotion ? undefined : "show"}
           transition={{ staggerChildren: 0.09 }}
-          className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-start"
+          className="grid gap-14 pt-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start"
         >
           <div>
-            <motion.p
-              variants={fadeUp}
-              transition={{ duration: 0.5 }}
-              className="font-hand text-2xl text-sage sm:text-3xl"
-            >
-              hello, I am —
-            </motion.p>
+            <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="flex flex-wrap items-center gap-3">
+              <span className="mono-label flex items-center gap-1.5 rounded-md border border-ink/15 bg-white px-2.5 py-1 text-[0.68rem] text-ink/70">
+                <span className="h-1.5 w-1.5 rounded-full bg-punch-violet" />
+                Player specification // {profile.standing.split("·")[1]?.trim() ?? "APM candidate"}
+              </span>
+              <span className="font-hand text-xl text-ink/60">hello, I am —</span>
+            </motion.div>
+
             <motion.h1
               variants={fadeUp}
               transition={{ duration: 0.5 }}
-              className="font-display mt-2 text-4xl leading-[1.08] font-medium text-ink sm:text-5xl"
+              className="font-display mt-4 text-4xl leading-[1.05] font-semibold text-ink sm:text-5xl"
             >
               {profile.name}
             </motion.h1>
             <motion.p
               variants={fadeUp}
               transition={{ duration: 0.5 }}
-              className="mt-1 text-lg text-ink/60"
+              className="mono-label mt-2 text-xs text-ink/50"
             >
-              {profile.title} · {profile.standing}
+              {profile.title}
             </motion.p>
 
-            <motion.blockquote
-              variants={fadeUp}
-              transition={{ duration: 0.5 }}
-              className="font-display mt-7 max-w-xl border-l-2 border-lavender pl-5 text-xl leading-snug text-deepink italic"
-            >
-              {profile.compass}
-            </motion.blockquote>
+            <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="relative mt-7 max-w-xl">
+              <span className="font-hand absolute -top-5 right-0 text-lg text-ink/45">
+                ~ my operating compass
+              </span>
+              <blockquote className="quest-card rounded-md px-5 py-4">
+                <p className="font-display text-xl leading-snug text-ink italic">
+                  {profile.compass}
+                </p>
+              </blockquote>
+            </motion.div>
 
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="mt-6 max-w-xl space-y-3">
               {profile.bio.map((line) => (
@@ -102,31 +85,40 @@ export default function Home() {
             <motion.div
               variants={fadeUp}
               transition={{ duration: 0.5 }}
-              className="mt-9 flex flex-wrap items-center gap-4"
+              className="mt-9 flex flex-wrap items-center gap-3"
             >
               <Link
                 to="/work"
-                className="font-display rounded-md bg-ink px-6 py-3 text-parchment transition-all hover:-translate-y-0.5 hover:bg-deepink"
+                className="mono-label rounded-md bg-ink px-5 py-2.5 text-xs text-parchment transition-all hover:-translate-y-0.5 hover:bg-deepink"
               >
-                See the case studies
+                Explore quest log ↓
               </Link>
               <a
                 href="/resume.pdf"
-                className="font-display text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
+                className="mono-label quest-card rounded-md px-5 py-2.5 text-xs text-ink/80 transition-all hover:-translate-y-0.5"
               >
-                Read my dossier
+                Inspect dossier ↗
               </a>
+              <Link
+                to="/about"
+                className="mono-label rounded-md border border-mint-ink/40 bg-mint-bg px-5 py-2.5 text-xs text-mint-ink transition-all hover:-translate-y-0.5"
+              >
+                Wise sage +
+              </Link>
             </motion.div>
 
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="mt-10">
-              <p className="text-sm text-ink/50">tools in the kit</p>
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <p className="mono-label text-xs text-ink/50">Key tooling & stack</p>
+                <span className="font-hand text-lg text-ink/45">data-informed product craft</span>
+              </div>
               <div className="mt-3 flex flex-wrap gap-2">
-                {profile.tools.map((tool, i) => (
+                {profile.tools.map((tool) => (
                   <span
                     key={tool}
-                    style={{ rotate: `${(i % 2 === 0 ? -1 : 1) * 1.5}deg` }}
-                    className="inline-block rounded-md border border-deepink/15 bg-parchment-dim px-3 py-1.5 text-sm text-ink/80 transition-transform hover:-translate-y-0.5 hover:border-sage/50 hover:text-ink"
+                    className="quest-card mono-label inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs text-ink/80 transition-transform hover:-translate-y-0.5"
                   >
+                    <span className="h-1.5 w-1.5 rounded-full bg-punch-green" />
                     {tool}
                   </span>
                 ))}
@@ -144,45 +136,27 @@ export default function Home() {
 
       {/* Featured case studies */}
       <section className="py-16 sm:py-20">
-        <p className="font-hand text-xl text-sage">flagship quest log</p>
-        <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
-          A few pages worth flipping to
+        <p className="mono-label text-xs text-ink/50">flagship quest log ✦ 0-to-1 build & experiments</p>
+        <h2 className="font-display mt-2 text-2xl text-ink sm:text-3xl">
+          Product Case Studies
         </h2>
-        <div className="mt-10 space-y-14">
+        <div className="mt-8 space-y-4">
           {featured.map((p, i) => (
-            <Link
-              to={`/work/${p.slug}`}
-              key={p.slug}
-              className={`group block ${i % 2 === 1 ? "sm:pl-10" : "sm:pr-10"}`}
-            >
-              <div
-                className={`flex flex-col gap-4 border-b border-deepink/10 pb-10 transition-transform group-hover:-translate-y-0.5 sm:flex-row sm:items-start sm:gap-8 ${
-                  i % 2 === 1 ? "sm:flex-row-reverse" : ""
-                }`}
-              >
-                <div className="flex shrink-0 items-center gap-4 sm:w-40 sm:flex-col sm:items-start">
-                  <TopicArt topic={p.topic} className="h-14 w-14" />
-                  <span className="font-hand text-xl text-sage">
-                    {p.timeframe}
+            <Link to={`/work/${p.slug}`} key={p.slug} className="quest-card group flex items-center gap-5 rounded-md p-5 transition-transform hover:-translate-y-0.5">
+              <TopicArt topic={p.topic} className="h-12 w-12 shrink-0" />
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="mono-label rounded-md bg-ink px-2 py-0.5 text-[0.65rem] text-parchment">
+                    Quest {String(i + 1).padStart(2, "0")}
                   </span>
+                  <span className="font-hand text-lg text-mint-ink">✓ deployed & shipping</span>
                 </div>
-                <div>
-                  <h3 className="font-display text-xl text-ink transition-colors group-hover:text-deepink sm:text-2xl">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 max-w-xl text-ink/70">{p.teaser}</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-sage/40 px-3 py-1 text-xs text-sage"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <h3 className="font-display mt-2 text-lg text-ink transition-colors group-hover:text-deepink sm:text-xl">
+                  {p.title}
+                </h3>
+                <p className="mt-1 text-sm text-ink/65">{p.teaser}</p>
               </div>
+              <span className="font-mono hidden shrink-0 text-xs text-ink/40 sm:block">{p.timeframe}</span>
             </Link>
           ))}
         </div>
@@ -194,16 +168,13 @@ export default function Home() {
       <section className="py-16 sm:py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="font-hand text-xl text-sage">side quests</p>
-            <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
+            <p className="mono-label text-xs text-ink/50">side quests</p>
+            <h2 className="font-display mt-2 text-2xl text-ink sm:text-3xl">
               I also tear down other people's products
             </h2>
           </div>
-          <Link
-            to="/teardowns"
-            className="font-display text-sm text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
-          >
-            Read the teardowns
+          <Link to="/teardowns" className="mono-label text-xs text-ink/60 underline decoration-2 underline-offset-4 hover:text-ink">
+            Read the teardowns ↗
           </Link>
         </div>
 
@@ -212,7 +183,7 @@ export default function Home() {
             <Link
               to={`/teardowns/${t.slug}`}
               key={t.slug}
-              className="group flex gap-4 rounded-md border border-deepink/12 bg-parchment-dim p-5 transition-all hover:-translate-y-1 hover:shadow-[0_14px_28px_-16px_rgba(43,36,64,0.3)]"
+              className="quest-card group flex gap-4 rounded-md p-5 transition-all hover:-translate-y-1"
             >
               <TopicArt topic={t.topic} className="h-12 w-12 shrink-0" />
               <div>
@@ -230,7 +201,7 @@ export default function Home() {
 
       {/* Notebook stats, pinned like a corkboard */}
       <section className="py-16 sm:py-24">
-        <p className="font-hand text-xl text-sage">pinned to the corkboard</p>
+        <p className="mono-label text-xs text-ink/50">pinned to the corkboard</p>
         <div className="mt-10 flex flex-wrap items-start justify-center gap-x-6 gap-y-10 sm:gap-x-10">
           {stats.map((s) => (
             <StickyNote

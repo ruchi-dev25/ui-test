@@ -20,9 +20,19 @@
   --color-punch-violet: #8b6bd6;
   --color-punch-gold: #f0b93d;
 
+  --color-mint-bg: #d9f0e1;
+  --color-mint-ink: #2f7a4f;
+  --color-blush-bg: #fbdde7;
+  --color-blush-ink: #b3527a;
+  --color-sky-bg: #dde8fb;
+  --color-sky-ink: #3d5f9e;
+  --color-lilac-bg: #e8e0fa;
+  --color-lilac-ink: #6e4fa6;
+
   --font-display: "Fraunces", "Iowan Old Style", serif;
   --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-hand: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 * {
@@ -73,6 +83,29 @@ button:focus-visible,
 
 .font-hand {
   font-family: var(--font-hand);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.quest-card {
+  background-color: white;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  box-shadow: 0 10px 24px -16px rgba(43, 36, 64, 0.25);
+}
+
+.hero-wash {
+  background:
+    radial-gradient(ellipse 60% 50% at 88% 8%, color-mix(in srgb, var(--color-punch-pink) 20%, transparent) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 45% at 78% 22%, color-mix(in srgb, var(--color-punch-violet) 16%, transparent) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 40% at 95% 30%, color-mix(in srgb, var(--color-punch-green) 14%, transparent) 0%, transparent 60%);
 }
 
 .washi-tape {
