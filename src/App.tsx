@@ -6,6 +6,8 @@ import Work from "./routes/Work";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
 import CaseStudy from "./routes/CaseStudy";
+import Teardowns from "./routes/Teardowns";
+import TeardownDetail from "./routes/TeardownDetail";
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<CaseStudy />} />
+          <Route path="/teardowns" element={<Teardowns />} />
+          <Route path="/teardowns/:slug" element={<TeardownDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

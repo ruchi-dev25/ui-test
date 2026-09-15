@@ -1,24 +1,50 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import Doodle from "../components/Doodle";
-import MarginNote from "../components/MarginNote";
 import CompanionCard from "../components/CompanionCard";
+import CountUp from "../components/CountUp";
+import TopicArt from "../components/TopicArt";
 import { profile } from "../data/profile";
 import { projects } from "../data/projects";
+import { teardowns } from "../data/teardowns";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 14 },
   show: { opacity: 1, y: 0 },
 };
 
+const stats = [
+  { to: 3, suffix: "", label: "quests logged" },
+  { to: 3, suffix: "", label: "teardowns written" },
+  { to: 41, suffix: "%", label: "best funnel lift shipped" },
+  { to: 1, suffix: "", label: "companion, always awake" },
+];
+
 export default function Home() {
   const reduceMotion = useReducedMotion();
   const featured = projects.slice(0, 3);
+  const featuredTeardowns = teardowns.slice(0, 2);
 
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* Hero */}
       <section className="relative pt-16 pb-20 sm:pt-24 sm:pb-28">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-16 -right-24 -z-10 h-72 w-72 rounded-full opacity-40 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, var(--color-lavender-soft) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-40 -left-20 -z-10 h-64 w-64 rounded-full opacity-30 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, var(--color-sage-soft) 0%, transparent 70%)",
+          }}
+        />
         <Doodle
           variant="moon"
           className="absolute -top-2 right-2 h-10 w-10 text-lavender-soft sm:right-8"
@@ -89,7 +115,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="mt-10">
-              <p className="text-xs text-ink/50">tools in the kit</p>
+              <p className="text-sm text-ink/50">tools in the kit</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {profile.tools.map((tool, i) => (
                   <span
@@ -130,7 +156,8 @@ export default function Home() {
                   i % 2 === 1 ? "sm:flex-row-reverse" : ""
                 }`}
               >
-                <div className="shrink-0 sm:w-40">
+                <div className="flex shrink-0 items-center gap-4 sm:w-40 sm:flex-col sm:items-start">
+                  <TopicArt topic={p.topic} className="h-14 w-14" />
                   <span className="font-hand text-xl text-sage">
                     {p.timeframe}
                   </span>
@@ -159,16 +186,59 @@ export default function Home() {
 
       <hr className="stitch-divider" />
 
-      {/* Personal aside */}
+      {/* Teardowns teaser */}
       <section className="py-16 sm:py-20">
-        <div className="flex justify-center">
-          <div className="max-w-[260px] -rotate-2 rounded-sm border border-deepink/15 bg-parchment-dim p-6 shadow-[0_6px_20px_-6px_rgba(43,36,64,0.25)]">
-            <Doodle variant="star" className="h-6 w-6 text-rose" />
-            <MarginNote className="mt-3" tilt="right">
-              "the notebook remembers what the roadmap forgets"
-            </MarginNote>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="font-hand text-xl text-sage">side quests</p>
+            <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
+              I also tear down other people's products
+            </h2>
           </div>
+          <Link
+            to="/teardowns"
+            className="font-display text-sm text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
+          >
+            Read the teardowns
+          </Link>
         </div>
+
+        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+          {featuredTeardowns.map((t) => (
+            <Link
+              to={`/teardowns/${t.slug}`}
+              key={t.slug}
+              className="group flex gap-4 rounded-md border border-deepink/12 bg-parchment-dim p-5 transition-all hover:-translate-y-1 hover:shadow-[0_14px_28px_-16px_rgba(43,36,64,0.3)]"
+            >
+              <TopicArt topic={t.topic} className="h-12 w-12 shrink-0" />
+              <div>
+                <h3 className="font-display text-base text-ink transition-colors group-hover:text-deepink">
+                  {t.product}
+                </h3>
+                <p className="mt-1 text-sm text-ink/65">{t.tagline}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <hr className="stitch-divider" />
+
+      {/* Notebook stats */}
+      <section className="py-16 sm:py-20">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="font-display text-3xl text-ink sm:text-4xl">
+                <CountUp to={s.to} suffix={s.suffix} />
+              </div>
+              <p className="mt-1 text-sm text-ink/60">{s.label}</p>
+            </div>
+          ))}
+        </div>
+        <p className="font-hand mt-10 text-center text-2xl text-sage">
+          "the notebook remembers what the roadmap forgets"
+        </p>
       </section>
     </div>
   );

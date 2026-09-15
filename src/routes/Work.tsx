@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Doodle from "../components/Doodle";
+import TopicArt from "../components/TopicArt";
 import { projects } from "../data/projects";
 
 export default function Work() {
@@ -20,14 +20,17 @@ export default function Work() {
           <Link
             to={`/work/${p.slug}`}
             key={p.slug}
-            className="group grid gap-4 py-10 transition-transform hover:-translate-y-0.5 sm:grid-cols-[100px_120px_1fr_auto] sm:items-start sm:gap-8"
+            className="group grid grid-cols-[64px_1fr] gap-5 py-10 transition-transform hover:-translate-y-0.5 sm:grid-cols-[72px_120px_1fr] sm:items-start sm:gap-8"
           >
-            <span className="inline-block w-fit rounded-full border border-lavender/40 px-2.5 py-1 text-xs text-lavender">
-              Quest {String(i + 1).padStart(2, "0")}
+            <TopicArt topic={p.topic} className="h-14 w-14 transition-transform group-hover:scale-105 sm:h-16 sm:w-16" />
+            <span className="hidden font-hand text-xl text-sage sm:block">
+              {p.timeframe}
             </span>
-            <span className="font-hand text-xl text-sage">{p.timeframe}</span>
             <div>
-              <h2 className="font-display text-2xl text-ink transition-colors group-hover:text-deepink">
+              <span className="inline-block w-fit rounded-full border border-lavender/40 px-2.5 py-1 text-xs text-lavender">
+                Quest {String(i + 1).padStart(2, "0")}
+              </span>
+              <h2 className="font-display mt-2 text-2xl text-ink transition-colors group-hover:text-deepink">
                 {p.title}
               </h2>
               <p className="mt-2 max-w-xl text-ink/70">{p.subtitle}</p>
@@ -42,10 +45,6 @@ export default function Work() {
                 ))}
               </div>
             </div>
-            <Doodle
-              variant="star"
-              className="hidden h-5 w-5 text-rose/70 transition-transform group-hover:rotate-12 group-hover:scale-125 sm:block"
-            />
           </Link>
         ))}
       </div>

@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import Doodle from "../components/Doodle";
 import MarginNote from "../components/MarginNote";
 import Stamp from "../components/Stamp";
+import TopicArt from "../components/TopicArt";
 import { getProject, projects } from "../data/projects";
 
 export default function CaseStudy() {
@@ -22,27 +23,32 @@ export default function CaseStudy() {
         ← back to the table of contents
       </Link>
 
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        <Stamp label={project.timeframe} />
-        <span className="text-sm text-ink/60">{project.role}</span>
-      </div>
+      <div className="mt-8 flex items-start gap-6">
+        <TopicArt topic={project.topic} className="hidden h-24 w-24 shrink-0 sm:block" />
+        <div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Stamp label={project.timeframe} />
+            <span className="text-sm text-ink/60">{project.role}</span>
+          </div>
 
-      <h1 className="font-display mt-6 text-4xl leading-[1.1] text-ink sm:text-5xl">
-        {project.title}
-      </h1>
-      <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/75">
-        {project.subtitle}
-      </p>
+          <h1 className="font-display mt-4 text-4xl leading-[1.1] text-ink sm:text-5xl">
+            {project.title}
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/75">
+            {project.subtitle}
+          </p>
 
-      <div className="mt-4 flex flex-wrap gap-2">
-        {project.tags.map((t) => (
-          <span
-            key={t}
-            className="rounded-full border border-sage/40 px-3 py-1 text-xs text-sage"
-          >
-            {t}
-          </span>
-        ))}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.tags.map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-sage/40 px-3 py-1 text-xs text-sage"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Metrics */}

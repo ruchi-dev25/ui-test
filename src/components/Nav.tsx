@@ -5,6 +5,7 @@ import { profile } from "../data/profile";
 const links = [
   { to: "/", label: "Home" },
   { to: "/work", label: "Work" },
+  { to: "/teardowns", label: "Teardowns" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
@@ -27,7 +28,7 @@ export default function Nav() {
                 to={link.to}
                 end={link.to === "/"}
                 className={({ isActive }) =>
-                  `relative rounded-md px-3 py-2 font-display text-[0.95rem] transition-colors ${
+                  `relative rounded-md px-2 py-2 font-display text-[0.9rem] transition-colors sm:px-2.5 ${
                     isActive
                       ? "text-ink"
                       : "text-ink/55 hover:text-ink/80"
@@ -59,7 +60,7 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-        <span className="hidden shrink-0 items-center gap-1.5 rounded-full border border-sage/40 px-3 py-1 text-xs whitespace-nowrap text-sage lg:flex">
+        <span className="hidden shrink-0 items-center gap-1.5 rounded-full border border-sage/40 px-3 py-1 text-xs whitespace-nowrap text-sage xl:flex">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage opacity-60" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-sage" />

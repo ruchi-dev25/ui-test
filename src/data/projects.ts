@@ -5,6 +5,8 @@ export type Section = {
   pullQuote?: string;
 };
 
+import type { Topic } from "../components/TopicArt";
+
 export type Project = {
   slug: string;
   title: string;
@@ -14,6 +16,7 @@ export type Project = {
   tags: string[];
   teaser: string;
   marginTease: string;
+  topic: Topic;
   metrics: { value: string; label: string }[];
   sections: Section[];
   reflection: string;
@@ -22,6 +25,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "checkout-friction",
+    topic: "checkout",
     title: "The checkout that lost a third of its buyers",
     subtitle:
       "Rebuilding checkout for a mid-market marketplace after discovering drop-off was a design problem wearing a payments costume.",
@@ -74,6 +78,7 @@ export const projects: Project[] = [
   },
   {
     slug: "onboarding-rewrite",
+    topic: "onboarding",
     title: "Teaching a B2B tool to introduce itself",
     subtitle:
       "New workspace activation was stuck at 41% for two years. The fix wasn't a better tutorial — it was admitting most tutorials were being built for a user who no longer existed.",
@@ -117,6 +122,7 @@ export const projects: Project[] = [
   },
   {
     slug: "trust-signals",
+    topic: "trust",
     title: "Building trust without adding a single badge",
     subtitle:
       "A peer-to-peer marketplace asked for 'more trust signals' on listings. What buyers actually needed was fewer, better-timed ones.",
