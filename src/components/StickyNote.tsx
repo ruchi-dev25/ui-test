@@ -24,7 +24,7 @@ export default function StickyNote({
         }}
       />
       <div
-        className="rounded-sm p-5 shadow-[0_10px_20px_-8px_rgba(43,36,64,0.35)]"
+        className="arcade-btn rounded-sm p-5"
         style={{ backgroundColor: color }}
       >
         {children}

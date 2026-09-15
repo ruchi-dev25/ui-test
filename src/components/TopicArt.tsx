@@ -6,11 +6,11 @@ export type Topic =
   | "notebook";
 
 const topicColor: Record<Topic, string> = {
-  checkout: "var(--color-sage)",
-  onboarding: "var(--color-lavender)",
-  trust: "var(--color-rose)",
-  teardown: "var(--color-amber)",
-  notebook: "var(--color-lavender)",
+  checkout: "var(--color-punch-green)",
+  onboarding: "var(--color-punch-violet)",
+  trust: "var(--color-punch-pink)",
+  teardown: "var(--color-punch-gold)",
+  notebook: "var(--color-punch-violet)",
 };
 
 function Art({ topic }: { topic: Topic }) {

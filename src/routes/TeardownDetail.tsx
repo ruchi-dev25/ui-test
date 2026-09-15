@@ -2,10 +2,10 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import TopicArt from "../components/TopicArt";
 import { getTeardown, teardowns, verdictLabel, type Verdict } from "../data/teardowns";
 
-const verdictColor: Record<Verdict, string> = {
-  love: "border-sage/50 text-sage bg-sage/10",
-  mixed: "border-amber/60 text-amber bg-amber/10",
-  pass: "border-rose/60 text-rose bg-rose/10",
+const verdictStyle: Record<Verdict, { bg: string; text: string }> = {
+  love: { bg: "var(--color-punch-green)", text: "white" },
+  mixed: { bg: "var(--color-punch-gold)", text: "var(--color-night-deep)" },
+  pass: { bg: "var(--color-punch-pink)", text: "white" },
 };
 
 export default function TeardownDetail() {
@@ -27,7 +27,11 @@ export default function TeardownDetail() {
         <TopicArt topic={teardown.topic} className="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
         <div>
           <span
-            className={`inline-block rounded-full border px-2.5 py-0.5 text-xs ${verdictColor[teardown.verdict]}`}
+            className="inline-block rounded-full px-3 py-0.5 text-xs font-medium"
+            style={{
+              backgroundColor: verdictStyle[teardown.verdict].bg,
+              color: verdictStyle[teardown.verdict].text,
+            }}
           >
             {verdictLabel[teardown.verdict]}
           </span>

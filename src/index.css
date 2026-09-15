@@ -13,6 +13,12 @@
   --color-amber: #d9a441;
   --color-coral: #e2825c;
   --color-periwinkle: #7b8fd4;
+  --color-night: #372a56;
+  --color-night-deep: #241c3d;
+  --color-punch-pink: #ee6fa0;
+  --color-punch-green: #4fb85f;
+  --color-punch-violet: #8b6bd6;
+  --color-punch-gold: #f0b93d;
 
   --font-display: "Fraunces", "Iowan Old Style", serif;
   --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -153,6 +159,36 @@ button:focus-visible,
     animation: none;
     opacity: 0.7;
   }
+}
+
+.pixel-corners {
+  clip-path: polygon(
+    10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px),
+    calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px
+  );
+}
+
+.arcade-btn {
+  border: 2px solid var(--color-night-deep);
+  box-shadow: 0 3px 0 var(--color-night-deep);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.arcade-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--color-night-deep);
+}
+
+.arcade-btn:active,
+.arcade-btn[data-active="true"] {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 var(--color-night-deep);
+}
+
+.night-sky {
+  background:
+    radial-gradient(circle at 25% 20%, color-mix(in srgb, var(--color-punch-violet) 35%, transparent) 0%, transparent 55%),
+    linear-gradient(180deg, var(--color-night-deep) 0%, var(--color-night) 100%);
 }
 
 .wax-seal {

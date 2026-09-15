@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import TopicArt from "../components/TopicArt";
 import { teardowns, verdictLabel, type Verdict } from "../data/teardowns";
 
-const verdictColor: Record<Verdict, string> = {
-  love: "border-sage/50 text-sage",
-  mixed: "border-amber/60 text-amber",
-  pass: "border-rose/60 text-rose",
+const verdictStyle: Record<Verdict, { bg: string; text: string }> = {
+  love: { bg: "var(--color-punch-green)", text: "white" },
+  mixed: { bg: "var(--color-punch-gold)", text: "var(--color-night-deep)" },
+  pass: { bg: "var(--color-punch-pink)", text: "white" },
 };
 
 export default function Teardowns() {
@@ -20,17 +20,18 @@ export default function Teardowns() {
         got right, what I'd push back on, and the one idea worth stealing.
       </p>
 
-      <div className="mt-16 grid gap-6 sm:grid-cols-2">
+      <div className="mt-16 grid gap-7 sm:grid-cols-2">
         {teardowns.map((t) => (
           <Link
             to={`/teardowns/${t.slug}`}
             key={t.slug}
-            className="group flex gap-5 rounded-md border border-deepink/12 bg-parchment-dim p-6 transition-all hover:-translate-y-1 hover:shadow-[0_16px_32px_-18px_rgba(43,36,64,0.35)]"
+            className="arcade-btn group flex gap-5 rounded-lg bg-parchment-dim p-6 transition-transform hover:-translate-y-1"
           >
             <TopicArt topic={t.topic} className="h-16 w-16 shrink-0" />
             <div>
               <span
-                className={`inline-block rounded-full border px-2.5 py-0.5 text-[0.7rem] ${verdictColor[t.verdict]}`}
+                className="inline-block rounded-full px-3 py-0.5 text-[0.7rem] font-medium"
+                style={{ backgroundColor: verdictStyle[t.verdict].bg, color: verdictStyle[t.verdict].text }}
               >
                 {verdictLabel[t.verdict]}
               </span>

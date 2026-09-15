@@ -15,10 +15,10 @@ const fadeUp = {
 };
 
 const stats = [
-  { to: 3, suffix: "", label: "quests logged", color: "var(--color-sage)", rotate: -4 },
-  { to: 3, suffix: "", label: "teardowns written", color: "var(--color-lavender-soft)", rotate: 3 },
-  { to: 41, suffix: "%", label: "best funnel lift shipped", color: "var(--color-coral)", rotate: -2 },
-  { to: 1, suffix: "", label: "companion, always awake", color: "var(--color-amber)", rotate: 4 },
+  { to: 3, suffix: "", label: "quests logged", color: "var(--color-punch-green)", rotate: -4 },
+  { to: 3, suffix: "", label: "teardowns written", color: "var(--color-punch-violet)", rotate: 3 },
+  { to: 41, suffix: "%", label: "best funnel lift shipped", color: "var(--color-punch-pink)", rotate: -2 },
+  { to: 1, suffix: "", label: "companion, always awake", color: "var(--color-punch-gold)", rotate: 4 },
 ];
 
 export default function Home() {
@@ -235,7 +235,7 @@ export default function Home() {
           {stats.map((s) => (
             <StickyNote
               key={s.label}
-              color={`color-mix(in srgb, ${s.color} 40%, white)`}
+              color={`color-mix(in srgb, ${s.color} 62%, white)`}
               rotate={s.rotate}
               className="w-36 text-center"
             >
@@ -246,7 +246,7 @@ export default function Home() {
             </StickyNote>
           ))}
           <StickyNote
-            color="color-mix(in srgb, var(--color-periwinkle) 32%, white)"
+            color="color-mix(in srgb, var(--color-periwinkle) 55%, white)"
             rotate={-3}
             className="w-56"
           >
