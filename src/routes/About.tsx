@@ -106,7 +106,7 @@ export default function About() {
         <div className="space-y-6">
           <div className="rounded-md border border-deepink/15 bg-parchment-dim p-6">
             <div className="flex items-center gap-2">
-              <PipMascot className="h-7 w-7" />
+              <PipMascot className="h-9 w-9" interactive={false} />
               <p className="font-display text-sm text-ink">
                 {companion.name}'s read on {profile.name.split(" ")[0]}
               </p>

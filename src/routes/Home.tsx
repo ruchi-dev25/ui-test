@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Doodle from "../components/Doodle";
 import CompanionCard from "../components/CompanionCard";
 import CountUp from "../components/CountUp";
+import StickyNote from "../components/StickyNote";
 import TopicArt from "../components/TopicArt";
 import { profile } from "../data/profile";
 import { projects } from "../data/projects";
@@ -14,10 +15,10 @@ const fadeUp = {
 };
 
 const stats = [
-  { to: 3, suffix: "", label: "quests logged" },
-  { to: 3, suffix: "", label: "teardowns written" },
-  { to: 41, suffix: "%", label: "best funnel lift shipped" },
-  { to: 1, suffix: "", label: "companion, always awake" },
+  { to: 3, suffix: "", label: "quests logged", color: "var(--color-sage)", rotate: -4 },
+  { to: 3, suffix: "", label: "teardowns written", color: "var(--color-lavender-soft)", rotate: 3 },
+  { to: 41, suffix: "%", label: "best funnel lift shipped", color: "var(--color-coral)", rotate: -2 },
+  { to: 1, suffix: "", label: "companion, always awake", color: "var(--color-amber)", rotate: 4 },
 ];
 
 export default function Home() {
@@ -49,6 +50,9 @@ export default function Home() {
           variant="moon"
           className="absolute -top-2 right-2 h-10 w-10 text-lavender-soft sm:right-8"
         />
+        <span className="twinkle absolute top-16 right-24 hidden h-1.5 w-1.5 bg-rose sm:block" style={{ animationDelay: "0.4s" }} />
+        <span className="twinkle absolute top-32 right-40 hidden h-1 w-1 bg-amber sm:block" style={{ animationDelay: "1.3s" }} />
+        <span className="twinkle absolute top-6 right-52 hidden h-1 w-1 bg-sage sm:block" style={{ animationDelay: "2s" }} />
 
         <motion.div
           initial={reduceMotion ? undefined : "hidden"}
@@ -224,21 +228,33 @@ export default function Home() {
 
       <hr className="stitch-divider" />
 
-      {/* Notebook stats */}
-      <section className="py-16 sm:py-20">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+      {/* Notebook stats, pinned like a corkboard */}
+      <section className="py-16 sm:py-24">
+        <p className="font-hand text-xl text-sage">pinned to the corkboard</p>
+        <div className="mt-10 flex flex-wrap items-start justify-center gap-x-6 gap-y-10 sm:gap-x-10">
           {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="font-display text-3xl text-ink sm:text-4xl">
+            <StickyNote
+              key={s.label}
+              color={`color-mix(in srgb, ${s.color} 40%, white)`}
+              rotate={s.rotate}
+              className="w-36 text-center"
+            >
+              <div className="font-display text-3xl text-ink">
                 <CountUp to={s.to} suffix={s.suffix} />
               </div>
-              <p className="mt-1 text-sm text-ink/60">{s.label}</p>
-            </div>
+              <p className="mt-1 text-sm text-ink/70">{s.label}</p>
+            </StickyNote>
           ))}
+          <StickyNote
+            color="color-mix(in srgb, var(--color-periwinkle) 32%, white)"
+            rotate={-3}
+            className="w-56"
+          >
+            <p className="font-hand text-2xl leading-snug text-ink/85">
+              "the notebook remembers what the roadmap forgets"
+            </p>
+          </StickyNote>
         </div>
-        <p className="font-hand mt-10 text-center text-2xl text-sage">
-          "the notebook remembers what the roadmap forgets"
-        </p>
       </section>
     </div>
   );
