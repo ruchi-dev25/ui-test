@@ -1,4 +1,5 @@
 import Doodle from "./Doodle";
+import { profile } from "../data/profile";
 
 export default function Footer() {
   return (
@@ -10,23 +11,26 @@ export default function Footer() {
               — end of this page, more in the notebook
             </p>
             <p className="mt-1 text-sm text-ink/60">
-              © {new Date().getFullYear()} Hritik Madankar. Built page by page.
+              © {new Date().getFullYear()} {profile.name}. Built page by page.
             </p>
           </div>
           <div className="flex items-center gap-5 font-display text-sm">
             <a
-              href="mailto:hritik.madankar@ril.com"
+              href={`mailto:${profile.email}`}
               className="text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
             >
               Email
             </a>
             <a
-              href="https://linkedin.com"
+              href={profile.linkedin}
               className="text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
             >
               LinkedIn
             </a>
-            <Doodle variant="sage-elder" className="h-6 w-6 text-sage/70" />
+            <Doodle
+              variant="sage-elder"
+              className="h-6 w-6 text-sage/70 transition-transform hover:rotate-6"
+            />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Doodle from "./Doodle";
+import { profile } from "../data/profile";
 
 const links = [
   { to: "/", label: "Home" },
@@ -14,12 +15,12 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <NavLink
           to="/"
-          className="font-display flex items-center gap-2 text-lg font-medium text-ink"
+          className="font-display flex shrink-0 items-center gap-2 text-base font-medium whitespace-nowrap text-ink sm:text-lg"
         >
           <Doodle variant="star" className="h-4 w-4 text-rose" />
-          Hritik Madankar
+          {profile.name}
         </NavLink>
-        <ul className="flex items-center gap-1">
+        <ul className="flex shrink-0 items-center gap-1">
           {links.map((link) => (
             <li key={link.to}>
               <NavLink
@@ -58,6 +59,13 @@ export default function Nav() {
             </li>
           ))}
         </ul>
+        <span className="hidden shrink-0 items-center gap-1.5 rounded-full border border-sage/40 px-3 py-1 text-xs whitespace-nowrap text-sage lg:flex">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage opacity-60" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-sage" />
+          </span>
+          {profile.availability}
+        </span>
       </nav>
     </header>
   );

@@ -1,15 +1,16 @@
 import Doodle from "../components/Doodle";
+import { profile } from "../data/profile";
 
 const links = [
   {
     label: "Email",
-    value: "hritik.madankar@ril.com",
-    href: "mailto:hritik.madankar@ril.com",
+    value: profile.email,
+    href: `mailto:${profile.email}`,
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/hritikmadankar",
-    href: "https://linkedin.com",
+    value: "linkedin.com/in/ruchimadankar",
+    href: profile.linkedin,
   },
   {
     label: "Resume",
@@ -36,7 +37,7 @@ export default function Contact() {
           <a
             key={l.label}
             href={l.href}
-            className="group flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4"
+            className="group flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4 transition-transform hover:translate-x-1"
           >
             <span className="font-hand w-28 shrink-0 text-xl text-sage">
               {l.label}

@@ -1,5 +1,6 @@
 import Doodle from "../components/Doodle";
-import MarginNote from "../components/MarginNote";
+import StatBar from "../components/StatBar";
+import { companion, letter, profile } from "../data/profile";
 
 const timeline = [
   {
@@ -46,31 +47,62 @@ const principles = [
 export default function About() {
   return (
     <div className="mx-auto max-w-5xl px-6 pt-14 pb-24 sm:pt-20">
-      <div className="grid gap-12 sm:grid-cols-[1.3fr_0.7fr] sm:gap-16">
-        <div>
-          <p className="font-hand text-2xl text-sage">about this notebook</p>
-          <h1 className="font-display mt-2 text-4xl leading-tight text-ink sm:text-5xl">
-            I used to work in support. It shows.
-          </h1>
-          <p className="mt-6 max-w-xl leading-relaxed text-ink/75">
-            Most of what I know about product came from reading complaints
-            before I ever wrote a spec. I still start every project the same
-            way — find the person who's annoyed, and ask them exactly what
-            went wrong, in their words, not a survey's.
-          </p>
-          <p className="mt-4 max-w-xl leading-relaxed text-ink/75">
-            I care about the parts of a product that don't get a launch
-            announcement: the empty state, the second time someone uses a
-            feature, the moment a form resets itself for no visible reason.
-            That's usually where the real work is.
-          </p>
+      <p className="font-hand text-2xl text-sage">origin story & operational code</p>
+      <h1 className="font-display mt-1 text-4xl leading-tight text-ink sm:text-5xl">
+        My story…
+      </h1>
+
+      <div className="mt-12 grid gap-10 lg:grid-cols-[1.4fr_0.9fr] lg:gap-14">
+        {/* Letter */}
+        <div className="-rotate-1 rounded-md border border-rose/30 bg-[color-mix(in_srgb,var(--color-rose)_8%,var(--color-parchment))] p-8 shadow-[0_16px_40px_-20px_rgba(43,36,64,0.3)]">
+          <p className="font-hand text-2xl text-deepink">{letter.salutation}</p>
+
+          <blockquote className="font-display mt-6 border-l-2 border-lavender pl-5 text-lg leading-snug text-deepink italic">
+            {letter.pullQuote}
+          </blockquote>
+
+          <div className="mt-6 space-y-4 text-ink/80">
+            {letter.paragraphs.map((p) => (
+              <p key={p} className="leading-relaxed">
+                {p}
+              </p>
+            ))}
+          </div>
+
+          <div className="mt-6 rotate-1 rounded-sm border border-dashed border-sage/50 bg-parchment p-4">
+            <p className="font-hand text-xl text-sage">sticky note // operating principle</p>
+            <p className="font-display mt-1 text-ink italic">{letter.stickyNote}</p>
+          </div>
+
+          <div className="mt-8 flex items-center gap-3">
+            <Doodle variant="heart" className="h-6 w-6 shrink-0 text-rose" />
+            <div>
+              <p className="text-sm text-ink/60">{letter.signoff}</p>
+              <p className="font-display text-ink">{profile.name}</p>
+            </div>
+          </div>
         </div>
-        <div className="flex justify-center sm:justify-end">
-          <div className="w-full max-w-[240px] rotate-2 rounded-sm border border-deepink/15 bg-parchment-dim p-6 shadow-[0_10px_28px_-10px_rgba(43,36,64,0.3)]">
-            <Doodle variant="sage-elder" className="h-10 w-10 text-sage" />
-            <MarginNote className="mt-4" tilt="left">
-              "size matters not" — neither does the size of the roadmap slide
-            </MarginNote>
+
+        {/* Sidebar: companion attributes */}
+        <div className="space-y-6">
+          <div className="rounded-md border border-deepink/15 bg-parchment-dim p-6">
+            <div className="flex items-center gap-2">
+              <Doodle variant="sage-elder" className="h-5 w-5 text-sage" />
+              <p className="font-display text-sm text-ink">
+                {companion.name}'s read on {profile.name.split(" ")[0]}
+              </p>
+            </div>
+            <div className="mt-5 space-y-4">
+              {companion.stats.map((s) => (
+                <StatBar key={s.label} label={s.label} value={s.value} />
+              ))}
+            </div>
+          </div>
+          <div className="rounded-md border border-deepink/15 bg-parchment-dim p-6 text-sm">
+            <p className="text-ink/50">Standing</p>
+            <p className="font-display mt-1 text-ink">{profile.standing}</p>
+            <p className="mt-4 text-ink/50">Available for</p>
+            <p className="font-display mt-1 text-ink">{profile.availability}</p>
           </div>
         </div>
       </div>
