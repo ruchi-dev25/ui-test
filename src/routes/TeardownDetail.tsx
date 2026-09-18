@@ -1,11 +1,12 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import TopicArt from "../components/TopicArt";
+import RibbonTag from "../components/RibbonTag";
 import { getTeardown, teardowns, verdictLabel, type Verdict } from "../data/teardowns";
 
 const verdictColor: Record<Verdict, string> = {
-  love: "border-sage/50 text-sage bg-sage/10",
-  mixed: "border-amber/60 text-amber bg-amber/10",
-  pass: "border-rose/60 text-rose bg-rose/10",
+  love: "var(--color-sage)",
+  mixed: "var(--color-amber)",
+  pass: "var(--color-rose)",
 };
 
 export default function TeardownDetail() {
@@ -26,11 +27,9 @@ export default function TeardownDetail() {
       <div className="mt-8 flex items-start gap-6">
         <TopicArt topic={teardown.topic} className="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
         <div>
-          <span
-            className={`inline-block rounded-full border px-2.5 py-0.5 text-xs ${verdictColor[teardown.verdict]}`}
-          >
+          <RibbonTag color={verdictColor[teardown.verdict]} rotate={-2}>
             {verdictLabel[teardown.verdict]}
-          </span>
+          </RibbonTag>
           <h1 className="font-display mt-3 text-3xl leading-tight text-ink sm:text-4xl">
             {teardown.product}
           </h1>
@@ -65,7 +64,7 @@ export default function TeardownDetail() {
         </div>
       </div>
 
-      <div className="washi-tape mt-14 rounded-sm border border-deepink/15 bg-parchment-dim p-8">
+      <div className="widget-card widget-cream mt-14 px-8 py-8">
         <p className="font-hand text-2xl text-sage">the takeaway —</p>
         <p className="font-display mt-3 text-xl leading-relaxed text-ink">
           {teardown.takeaway}

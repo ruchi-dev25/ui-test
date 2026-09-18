@@ -11,8 +11,44 @@ export const profile = {
     "I collect problems. Then I get unreasonably curious about them.",
     "A Computer Engineering student exploring product management, one user, one product, and one questionable workflow at a time.",
   ],
-  tools: ["Python", "SQL", "Notion", "Tableau", "Excel"],
+  tools: [
+    { name: "Notion", key: "notion" },
+    { name: "Tableau", key: "tableau" },
+    { name: "Excel", key: "excel" },
+    { name: "SQL", key: "sql" },
+    { name: "Python", key: "python" },
+    { name: "Mixpanel", key: "mixpanel" },
+    { name: "Jira", key: "jira" },
+    { name: "Postman", key: "postman" },
+    { name: "Figma", key: "figma" },
+  ] satisfies { name: string; key: import("../components/ToolIcon").ToolKey }[],
+  aiTools: [
+    { name: "ChatGPT", key: "chatgpt" },
+    { name: "Claude", key: "claude" },
+    { name: "Perplexity", key: "perplexity" },
+    { name: "Cursor", key: "cursor" },
+    { name: "Midjourney", key: "midjourney" },
+  ] satisfies { name: string; key: import("../components/ToolIcon").ToolKey }[],
 };
+
+export const skills = [
+  {
+    name: "Talking to users before touching a dashboard",
+    note: "Interviews come first, always. If a metric looks fine but the anecdotes keep coming, I trust the anecdotes and go verify the metric — that instinct is what the checkout case study came out of.",
+  },
+  {
+    name: "Turning ambiguity into a PRD",
+    note: "Somewhere between a hallway idea and a sprint, someone has to write the thing down clearly enough for people to disagree with it. I like being that someone — it's where most of the real thinking happens.",
+  },
+  {
+    name: "Enough SQL to trust my own numbers",
+    note: "Not a data scientist, but I can pull my own cohorts, sanity-check a funnel, and ask an analyst a sharper question because I've already looked at the raw rows myself.",
+  },
+  {
+    name: "Shipping in small, reversible steps",
+    note: "I'd rather launch a rough version to five real users this week than a polished one to nobody next month. Most of my case studies exist because I killed my own first idea partway through.",
+  },
+];
 
 export type CompanionMode = "research" | "strategy" | "build" | "measure";
 

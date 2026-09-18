@@ -1,7 +1,26 @@
 import Doodle from "../components/Doodle";
-import PipMascot from "../components/PipMascot";
-import StatBar from "../components/StatBar";
-import { companion, letter, profile } from "../data/profile";
+import GinghamFrame from "../components/GinghamFrame";
+import ToolIcon from "../components/ToolIcon";
+import { letter, profile, skills } from "../data/profile";
+
+function ToolRow({ tools }: { tools: { name: string; key: import("../components/ToolIcon").ToolKey }[] }) {
+  return (
+    <div className="flex flex-wrap gap-x-4 gap-y-3">
+      {tools.map((tool, i) => (
+        <div
+          key={tool.name}
+          style={{ rotate: `${(i % 2 === 0 ? -1 : 1) * 1.4}deg` }}
+          className="flex flex-col items-center gap-1"
+        >
+          <div className="sketch-tile flex h-12 w-12 items-center justify-center shadow-[0_8px_14px_-9px_rgba(54,42,74,0.45)] transition-transform hover:-translate-y-1">
+            <ToolIcon tool={tool.key} className="h-7 w-7" />
+          </div>
+          <span className="text-xs text-ink/70">{tool.name}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 const timeline = [
   {
@@ -57,67 +76,47 @@ export default function About() {
         {/* Letter */}
         <div className="relative -rotate-1">
           <span className="wax-seal absolute -top-5 right-10 z-10 flex h-14 w-14 -rotate-6 items-center justify-center rounded-full">
-            <span className="font-display text-xl text-parchment/90 italic">R</span>
+            <span className="font-display text-xl text-white italic">R</span>
           </span>
           <span className="absolute top-4 left-5 z-10 flex h-12 w-10 -rotate-3 items-center justify-center border border-dashed border-deepink/30 bg-parchment/70">
             <Doodle variant="star" className="h-5 w-5 text-lavender" />
           </span>
 
-          <div className="deckle-edge aged-paper relative px-8 py-14 shadow-[0_16px_40px_-20px_rgba(43,36,64,0.35)]">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-8 top-1/3 h-px rotate-[0.3deg] bg-deepink/10"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-8 top-2/3 h-px -rotate-[0.2deg] bg-deepink/10"
-            />
+          <GinghamFrame>
+            <div className="aged-paper relative px-8 py-14">
+              <p className="font-hand text-2xl text-deepink">{letter.salutation}</p>
 
-            <p className="font-hand text-2xl text-deepink">{letter.salutation}</p>
+              <blockquote className="font-display mt-6 border-l-2 border-lavender pl-5 text-lg leading-snug text-deepink italic">
+                {letter.pullQuote}
+              </blockquote>
 
-            <blockquote className="font-display mt-6 border-l-2 border-lavender pl-5 text-lg leading-snug text-deepink italic">
-              {letter.pullQuote}
-            </blockquote>
+              <div className="mt-6 space-y-4 text-ink/80">
+                {letter.paragraphs.map((p) => (
+                  <p key={p} className="leading-relaxed">
+                    {p}
+                  </p>
+                ))}
+              </div>
 
-            <div className="mt-6 space-y-4 text-ink/80">
-              {letter.paragraphs.map((p) => (
-                <p key={p} className="leading-relaxed">
-                  {p}
-                </p>
-              ))}
-            </div>
+              <div className="widget-card widget-mint mt-6 rotate-1 p-4">
+                <p className="font-hand text-xl text-sage">sticky note // operating principle</p>
+                <p className="font-display mt-1 text-ink italic">{letter.stickyNote}</p>
+              </div>
 
-            <div className="mt-6 rotate-1 rounded-sm border border-dashed border-sage/50 bg-parchment/80 p-4">
-              <p className="font-hand text-xl text-sage">sticky note // operating principle</p>
-              <p className="font-display mt-1 text-ink italic">{letter.stickyNote}</p>
-            </div>
-
-            <div className="mt-8 flex items-center gap-3">
-              <Doodle variant="heart" className="h-6 w-6 shrink-0 text-rose" />
-              <div>
-                <p className="text-sm text-ink/60">{letter.signoff}</p>
-                <p className="font-display italic text-ink">{profile.name}</p>
+              <div className="mt-8 flex items-center gap-3">
+                <Doodle variant="heart" className="h-6 w-6 shrink-0 text-rose" />
+                <div>
+                  <p className="text-sm text-ink/60">{letter.signoff}</p>
+                  <p className="font-display italic text-ink">{profile.name}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </GinghamFrame>
         </div>
 
-        {/* Sidebar: companion attributes */}
+        {/* Sidebar */}
         <div className="space-y-6">
-          <div className="rounded-md border border-deepink/15 bg-parchment-dim p-6">
-            <div className="flex items-center gap-2">
-              <PipMascot className="h-9 w-9" interactive={false} />
-              <p className="font-display text-sm text-ink">
-                {companion.name}'s read on {profile.name.split(" ")[0]}
-              </p>
-            </div>
-            <div className="mt-5 space-y-4">
-              {companion.stats.map((s) => (
-                <StatBar key={s.label} label={s.label} value={s.value} />
-              ))}
-            </div>
-          </div>
-          <div className="rounded-md border border-deepink/15 bg-parchment-dim p-6 text-sm">
+          <div className="widget-card widget-cream p-6 text-sm">
             <p className="text-ink/50">Standing</p>
             <p className="font-display mt-1 text-ink">{profile.standing}</p>
             <p className="mt-4 text-ink/50">Available for</p>
@@ -125,6 +124,51 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <hr className="stitch-divider my-16" />
+
+      <section>
+        <p className="font-hand text-2xl text-sage">what I'm good at</p>
+        <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
+          A few pages on how I think
+        </h2>
+        <div className="mt-10 space-y-10 border-l-2 border-dashed border-sage/40 pl-8">
+          {skills.map((s) => (
+            <div key={s.name} className="relative">
+              <Doodle
+                variant="star"
+                className="absolute top-1 -left-[2.6rem] h-3.5 w-3.5 text-sage"
+              />
+              <h3 className="font-display text-xl text-ink">{s.name}</h3>
+              <p className="mt-1 max-w-xl text-ink/70">{s.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr className="stitch-divider my-16" />
+
+      <section>
+        <p className="font-hand text-2xl text-sage">what's on my desk</p>
+        <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
+          Toolkit
+        </h2>
+
+        <div className="mt-10 space-y-8">
+          <div>
+            <p className="font-hand text-lg text-ink/60">the usual suspects</p>
+            <div className="mt-3">
+              <ToolRow tools={profile.tools} />
+            </div>
+          </div>
+          <div>
+            <p className="font-hand text-lg text-ink/60">and the new co-pilots</p>
+            <div className="mt-3">
+              <ToolRow tools={profile.aiTools} />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <hr className="stitch-divider my-16" />
 

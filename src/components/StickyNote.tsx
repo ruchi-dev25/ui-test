@@ -1,34 +1,31 @@
 import type { ReactNode } from "react";
 
+type Tint = "rose" | "mint" | "amber" | "periwinkle" | "cream";
+
 export default function StickyNote({
-  color,
+  tint = "rose",
   rotate = 0,
+  label,
   className = "",
   children,
 }: {
-  color: string;
+  tint?: Tint;
   rotate?: number;
+  label?: string;
   className?: string;
   children: ReactNode;
 }) {
   return (
     <div
-      className={`relative transition-transform duration-300 hover:-translate-y-1.5 ${className}`}
+      className={`widget-card widget-${tint} relative p-5 transition-transform duration-300 hover:-translate-y-1.5 ${className}`}
       style={{ rotate: `${rotate}deg` }}
     >
-      <span
-        aria-hidden="true"
-        className="absolute -top-2.5 left-1/2 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border border-ink/20 shadow-[0_2px_3px_rgba(43,36,64,0.35)]"
-        style={{
-          background: `radial-gradient(circle at 35% 30%, white, ${color} 70%)`,
-        }}
-      />
-      <div
-        className="rounded-sm p-5 shadow-[0_10px_20px_-8px_rgba(43,36,64,0.35)]"
-        style={{ backgroundColor: color }}
-      >
-        {children}
-      </div>
+      {label && (
+        <span className="ribbon-tag font-display absolute -top-3 -left-2 py-0.5 pl-2.5 text-[0.65rem] text-parchment shadow-[0_4px_10px_-4px_rgba(54,42,74,0.5)]" style={{ backgroundColor: "var(--color-ink)" }}>
+          {label}
+        </span>
+      )}
+      {children}
     </div>
   );
 }

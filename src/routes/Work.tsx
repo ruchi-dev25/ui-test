@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import TopicArt from "../components/TopicArt";
+import RibbonTag from "../components/RibbonTag";
 import { projects } from "../data/projects";
+
+const questTint = ["var(--color-sage)", "var(--color-periwinkle)", "var(--color-coral)"];
 
 export default function Work() {
   return (
@@ -27,9 +30,9 @@ export default function Work() {
               {p.timeframe}
             </span>
             <div>
-              <span className="inline-block w-fit rounded-full border border-lavender/40 px-2.5 py-1 text-xs text-lavender">
+              <RibbonTag color={questTint[i % questTint.length]} rotate={-2}>
                 Quest {String(i + 1).padStart(2, "0")}
-              </span>
+              </RibbonTag>
               <h2 className="font-display mt-2 text-2xl text-ink transition-colors group-hover:text-deepink">
                 {p.title}
               </h2>

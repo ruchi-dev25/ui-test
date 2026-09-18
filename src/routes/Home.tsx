@@ -4,7 +4,9 @@ import Doodle from "../components/Doodle";
 import CompanionCard from "../components/CompanionCard";
 import CountUp from "../components/CountUp";
 import StickyNote from "../components/StickyNote";
+import RibbonTag from "../components/RibbonTag";
 import TopicArt from "../components/TopicArt";
+import ToolIcon from "../components/ToolIcon";
 import { profile } from "../data/profile";
 import { projects } from "../data/projects";
 import { teardowns } from "../data/teardowns";
@@ -15,10 +17,10 @@ const fadeUp = {
 };
 
 const stats = [
-  { to: 3, suffix: "", label: "quests logged", color: "var(--color-sage)", rotate: -4 },
-  { to: 3, suffix: "", label: "teardowns written", color: "var(--color-lavender-soft)", rotate: 3 },
-  { to: 41, suffix: "%", label: "best funnel lift shipped", color: "var(--color-coral)", rotate: -2 },
-  { to: 1, suffix: "", label: "companion, always awake", color: "var(--color-amber)", rotate: 4 },
+  { to: 3, suffix: "", label: "quests logged", tint: "mint" as const, rotate: -4 },
+  { to: 3, suffix: "", label: "teardowns written", tint: "periwinkle" as const, rotate: 3 },
+  { to: 41, suffix: "%", label: "best funnel lift shipped", tint: "amber" as const, rotate: -2 },
+  { to: 1, suffix: "", label: "companion, always awake", tint: "rose" as const, rotate: 4 },
 ];
 
 export default function Home() {
@@ -119,22 +121,29 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="mt-10">
-              <p className="text-sm text-ink/50">tools in the kit</p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <p className="font-hand text-xl text-sage">tools in the kit</p>
+              <div className="mt-4 flex flex-wrap gap-x-4 gap-y-3">
                 {profile.tools.map((tool, i) => (
-                  <span
-                    key={tool}
-                    style={{ rotate: `${(i % 2 === 0 ? -1 : 1) * 1.5}deg` }}
-                    className="inline-block rounded-md border border-deepink/15 bg-parchment-dim px-3 py-1.5 text-sm text-ink/80 transition-transform hover:-translate-y-0.5 hover:border-sage/50 hover:text-ink"
+                  <div
+                    key={tool.name}
+                    style={{ rotate: `${(i % 2 === 0 ? -1 : 1) * 1.4}deg` }}
+                    className="flex flex-col items-center gap-1"
                   >
-                    {tool}
-                  </span>
+                    <div className="sketch-tile flex h-12 w-12 items-center justify-center shadow-[0_8px_14px_-9px_rgba(54,42,74,0.45)] transition-transform hover:-translate-y-1">
+                      <ToolIcon tool={tool.key} className="h-7 w-7" />
+                    </div>
+                    <span className="text-xs text-ink/70">{tool.name}</span>
+                  </div>
                 ))}
               </div>
             </motion.div>
           </div>
 
-          <motion.div variants={fadeUp} transition={{ duration: 0.55 }}>
+          <motion.div variants={fadeUp} transition={{ duration: 0.55 }} className="relative">
+            <div
+              aria-hidden="true"
+              className="gingham-strip absolute -top-3 -right-3 -z-10 h-16 w-16 rounded-2xl opacity-70 sm:h-20 sm:w-20"
+            />
             <CompanionCard />
           </motion.div>
         </motion.div>
@@ -162,6 +171,9 @@ export default function Home() {
               >
                 <div className="flex shrink-0 items-center gap-4 sm:w-40 sm:flex-col sm:items-start">
                   <TopicArt topic={p.topic} className="h-14 w-14" />
+                  <RibbonTag color="var(--color-ink)" rotate={i % 2 === 0 ? -2 : 2}>
+                    Quest {String(i + 1).padStart(2, "0")}
+                  </RibbonTag>
                   <span className="font-hand text-xl text-sage">
                     {p.timeframe}
                   </span>
@@ -208,18 +220,18 @@ export default function Home() {
         </div>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
-          {featuredTeardowns.map((t) => (
-            <Link
-              to={`/teardowns/${t.slug}`}
-              key={t.slug}
-              className="group flex gap-4 rounded-md border border-deepink/12 bg-parchment-dim p-5 transition-all hover:-translate-y-1 hover:shadow-[0_14px_28px_-16px_rgba(43,36,64,0.3)]"
-            >
-              <TopicArt topic={t.topic} className="h-12 w-12 shrink-0" />
-              <div>
-                <h3 className="font-display text-base text-ink transition-colors group-hover:text-deepink">
-                  {t.product}
-                </h3>
-                <p className="mt-1 text-sm text-ink/65">{t.tagline}</p>
+          {featuredTeardowns.map((t, i) => (
+            <Link to={`/teardowns/${t.slug}`} key={t.slug} className="group block">
+              <div
+                className={`widget-card widget-${i % 2 === 0 ? "mint" : "periwinkle"} flex gap-4 p-5 transition-all group-hover:-translate-y-1`}
+              >
+                <TopicArt topic={t.topic} className="h-12 w-12 shrink-0" />
+                <div>
+                  <h3 className="font-display text-base text-ink transition-colors group-hover:text-deepink">
+                    {t.product}
+                  </h3>
+                  <p className="mt-1 text-sm text-ink/65">{t.tagline}</p>
+                </div>
               </div>
             </Link>
           ))}
@@ -235,7 +247,7 @@ export default function Home() {
           {stats.map((s) => (
             <StickyNote
               key={s.label}
-              color={`color-mix(in srgb, ${s.color} 40%, white)`}
+              tint={s.tint}
               rotate={s.rotate}
               className="w-36 text-center"
             >
@@ -245,11 +257,7 @@ export default function Home() {
               <p className="mt-1 text-sm text-ink/70">{s.label}</p>
             </StickyNote>
           ))}
-          <StickyNote
-            color="color-mix(in srgb, var(--color-periwinkle) 32%, white)"
-            rotate={-3}
-            className="w-56"
-          >
+          <StickyNote tint="periwinkle" rotate={-3} className="w-56">
             <p className="font-hand text-2xl leading-snug text-ink/85">
               "the notebook remembers what the roadmap forgets"
             </p>

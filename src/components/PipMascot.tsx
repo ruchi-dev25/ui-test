@@ -23,7 +23,7 @@ export default function PipMascot({
 
   return (
     <motion.svg
-      viewBox="0 0 80 92"
+      viewBox="0 0 80 84"
       className={`${className} ${interactive ? "cursor-pointer" : ""}`}
       role={interactive ? "button" : undefined}
       aria-label={interactive ? "Poke Pip" : undefined}
@@ -51,7 +51,7 @@ export default function PipMascot({
           ? undefined
           : delighted
             ? { y: [0, -10, 0], rotate: [0, -6, 6, 0] }
-            : { y: [0, -3, 0] }
+            : { y: [0, -4, 0] }
       }
       transition={
         delighted
@@ -60,49 +60,36 @@ export default function PipMascot({
       }
     >
       {/* ground shadow */}
-      <ellipse cx="40" cy="86" rx="18" ry="3.5" fill="var(--color-ink)" opacity="0.12" />
+      <ellipse cx="40" cy="78" rx="20" ry="3.5" fill="var(--color-ink)" opacity="0.1" />
 
-      {/* cape */}
+      {/* round, chibi body — big head, tiny stub arms */}
+      <circle cx="40" cy="42" r="30" fill="white" stroke={tint} strokeWidth="2.5" />
       <path
-        d="M20 46c-4 10-6 20-4 30 6-4 10-5 14-4-2-9-2-18 2-27z"
+        d="M12 44a28 28 0 0 0 56 0"
         fill={tint}
-        opacity="0.85"
-      />
-      <path
-        d="M60 46c4 10 6 20 4 30-6-4-10-5-14-4 2-9 2-18-2-27z"
-        fill={tint}
-        opacity="0.85"
+        opacity="0.16"
       />
 
-      {/* body / robe */}
-      <path
-        d="M40 30c11 0 20 9 20 22 0 12-3 22-20 26-17-4-20-14-20-26 0-13 9-22 20-22z"
-        fill="var(--color-parchment)"
-        stroke={tint}
-        strokeWidth="2.5"
-      />
+      {/* little arms */}
+      <circle cx="12" cy="46" r="5.5" fill={tint} opacity="0.85" />
+      <circle cx="68" cy="46" r="5.5" fill={tint} opacity="0.85" />
 
-      {/* hat */}
+      {/* fringe / tuft of hair */}
       <path
-        d="M40 4L27 34c4-2 8-3 13-3s9 1 13 3z"
+        d="M28 16c2-6 6-9 12-9s10 3 12 9c-4-2-8-3-12-3s-8 1-12 3z"
         fill={tint}
       />
-      <ellipse cx="40" cy="34" rx="15" ry="4" fill={tint} />
-      <path
-        d="M40 4l2.4 5.4L48 12l-5.6 2.6L40 20l-2.4-5.4L32 12l5.6-2.6z"
-        fill="var(--color-amber)"
-        opacity="0.9"
-      />
+      <circle cx="40" cy="7.5" r="3.2" fill="var(--color-amber)" />
 
       {/* blush */}
-      <circle cx="27" cy="54" r="3" fill={tint} opacity="0.4" />
-      <circle cx="53" cy="54" r="3" fill={tint} opacity="0.4" />
+      <circle cx="24" cy="48" r="4.2" fill={tint} opacity="0.35" />
+      <circle cx="56" cy="48" r="4.2" fill={tint} opacity="0.35" />
 
       {/* eyes */}
       {delighted ? (
-        <g stroke="var(--color-ink)" strokeWidth="2.4" strokeLinecap="round" fill="none">
-          <path d="M27 49q4 -5 8 0" />
-          <path d="M45 49q4 -5 8 0" />
+        <g stroke="var(--color-ink)" strokeWidth="2.6" strokeLinecap="round" fill="none">
+          <path d="M28 41q4.5 -5.5 9 0" />
+          <path d="M43 41q4.5 -5.5 9 0" />
         </g>
       ) : (
         <motion.g
@@ -113,31 +100,28 @@ export default function PipMascot({
             times: [0, 0.85, 0.9, 0.95, 1],
             ease: "easeInOut",
           }}
-          style={{ transformOrigin: "40px 49px" }}
+          style={{ transformOrigin: "40px 41px" }}
         >
-          <circle cx="31" cy="49" r="3.4" fill="var(--color-ink)" />
-          <circle cx="49" cy="49" r="3.4" fill="var(--color-ink)" />
-          <circle cx="32.1" cy="47.8" r="1" fill="var(--color-parchment)" />
-          <circle cx="50.1" cy="47.8" r="1" fill="var(--color-parchment)" />
+          <circle cx="32" cy="41" r="3.6" fill="var(--color-ink)" />
+          <circle cx="48" cy="41" r="3.6" fill="var(--color-ink)" />
+          <circle cx="33.2" cy="39.6" r="1.1" fill="white" />
+          <circle cx="49.2" cy="39.6" r="1.1" fill="white" />
         </motion.g>
       )}
 
       {/* smile */}
       <path
-        d={delighted ? "M33 58q7 6 14 0" : "M34 57c2 2.2 4 3.2 6 3.2s4-1 6-3.2"}
+        d={delighted ? "M33 50q7 6.5 14 0" : "M34.5 49c1.8 2.4 3.6 3.4 5.5 3.4s3.7-1 5.5-3.4"}
         fill="none"
         stroke="var(--color-ink)"
-        strokeWidth="2"
+        strokeWidth="2.2"
         strokeLinecap="round"
       />
 
       {/* tiny wand */}
-      <g transform="translate(56 40) rotate(25)">
-        <line x1="0" y1="0" x2="0" y2="16" stroke={tint} strokeWidth="2" strokeLinecap="round" />
-        <path
-          d="M0 -3l1.4 3-1.4 3-1.4-3z"
-          fill="var(--color-amber)"
-        />
+      <g transform="translate(62 30) rotate(20)">
+        <line x1="0" y1="0" x2="0" y2="14" stroke={tint} strokeWidth="2.2" strokeLinecap="round" />
+        <path d="M0 -3.2l1.6 3.2-1.6 3.2-1.6-3.2z" fill="var(--color-amber)" />
       </g>
     </motion.svg>
   );

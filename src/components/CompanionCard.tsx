@@ -27,14 +27,13 @@ export default function CompanionCard({ className = "" }: { className?: string }
           background: `radial-gradient(circle, ${tint} 0%, transparent 70%)`,
         }}
       />
-      <div className="rotate-1 rounded-md border border-deepink/15 bg-parchment-dim/95 p-5 shadow-[0_14px_36px_-16px_rgba(43,36,64,0.35)] sm:p-6">
+      <div className="widget-card widget-cream rotate-1 p-5 sm:p-6">
         <div className="grid gap-5 sm:grid-cols-[9rem_1fr]">
           {/* Scene */}
           <div
-            className="relative flex flex-col items-center justify-end overflow-hidden rounded-md border transition-colors duration-500"
+            className="relative flex flex-col items-center justify-end overflow-hidden rounded-2xl transition-colors duration-500"
             style={{
-              borderColor: `color-mix(in srgb, ${tint} 45%, transparent)`,
-              background: `linear-gradient(180deg, color-mix(in srgb, ${tint} 14%, var(--color-parchment)) 0%, var(--color-parchment) 75%)`,
+              background: `linear-gradient(180deg, color-mix(in srgb, ${tint} 22%, white) 0%, white 78%)`,
             }}
           >
             <span className="twinkle absolute top-3 left-4 h-1 w-1 rounded-full" style={{ background: tint, animationDelay: "0.2s" }} />
@@ -51,7 +50,7 @@ export default function CompanionCard({ className = "" }: { className?: string }
                 <p className="font-display text-sm text-ink">{companion.name}</p>
                 <p className="text-xs text-ink/60">{companion.role}</p>
               </div>
-              <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-sage/15 px-2.5 py-1 text-[0.7rem] whitespace-nowrap text-sage">
+              <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-sage/20 px-2.5 py-1 text-[0.7rem] whitespace-nowrap text-sage">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage opacity-60" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-sage" />
@@ -60,7 +59,7 @@ export default function CompanionCard({ className = "" }: { className?: string }
               </span>
             </div>
 
-            <div className="mt-3 min-h-[80px] rounded-sm border border-deepink/10 bg-parchment p-3">
+            <div className="mt-3 min-h-[80px] rounded-xl bg-white/60 p-3">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={mode}
@@ -82,8 +81,8 @@ export default function CompanionCard({ className = "" }: { className?: string }
                   type="button"
                   onClick={() => setMode(m)}
                   data-active={mode === m}
-                  className="pixel-btn rounded-sm bg-parchment px-2 py-1.5 text-xs text-ink/70"
-                  style={mode === m ? { backgroundColor: modeColor[m], color: "var(--color-parchment)" } : undefined}
+                  className="rounded-full bg-white/70 px-2 py-1.5 text-xs text-ink/70 shadow-[0_2px_6px_-2px_rgba(54,42,74,0.35)] transition-transform hover:-translate-y-0.5"
+                  style={mode === m ? { backgroundColor: modeColor[m], color: "white" } : undefined}
                 >
                   {companion.modes[m].label}
                 </button>

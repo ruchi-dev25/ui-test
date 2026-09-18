@@ -5,15 +5,15 @@ export type Topic =
   | "teardown"
   | "notebook";
 
-const topicColor: Record<Topic, string> = {
-  checkout: "var(--color-sage)",
-  onboarding: "var(--color-lavender)",
-  trust: "var(--color-rose)",
-  teardown: "var(--color-amber)",
-  notebook: "var(--color-lavender)",
+const topicTint: Record<Topic, { fg: string; a: string; b: string }> = {
+  checkout: { fg: "var(--color-sage)", a: "var(--color-sage-soft)", b: "white" },
+  onboarding: { fg: "var(--color-lavender)", a: "var(--color-lavender-soft)", b: "white" },
+  trust: { fg: "var(--color-coral)", a: "var(--color-rose)", b: "white" },
+  teardown: { fg: "var(--color-amber)", a: "var(--color-amber)", b: "white" },
+  notebook: { fg: "var(--color-periwinkle)", a: "var(--color-periwinkle)", b: "white" },
 };
 
-function Art({ topic }: { topic: Topic }) {
+function Art({ topic, fg }: { topic: Topic; fg: string }) {
   switch (topic) {
     case "checkout":
       return (
@@ -23,7 +23,6 @@ function Art({ topic }: { topic: Topic }) {
           <circle cx="33" cy="64" r="3.4" />
           <circle cx="53" cy="64" r="3.4" />
           <path d="M30 42h30" strokeDasharray="2 4" />
-          <path d="M60 20l6 6-6 6" />
         </g>
       );
     case "onboarding":
@@ -31,8 +30,7 @@ function Art({ topic }: { topic: Topic }) {
         <g strokeLinecap="round" strokeLinejoin="round">
           <circle cx="36" cy="36" r="22" />
           <path d="M36 14v8M36 50v8M14 36h8M50 36h8" />
-          <path d="M44 28l-6 10-10 6 6-10z" fill="currentColor" stroke="none" />
-          <path d="M56 56l6 6" />
+          <path d="M44 28l-6 10-10 6 6-10z" fill={fg} stroke="none" />
         </g>
       );
     case "trust":
@@ -54,7 +52,7 @@ function Art({ topic }: { topic: Topic }) {
     default:
       return (
         <g strokeLinecap="round" strokeLinejoin="round">
-          <rect x="16" y="10" width="40" height="52" rx="2" />
+          <rect x="16" y="10" width="40" height="52" rx="4" />
           <path d="M16 20h40M24 10v52" />
           <path d="M34 34h14M34 42h10" strokeDasharray="2 4" />
         </g>
@@ -69,23 +67,21 @@ export default function TopicArt({
   topic: Topic;
   className?: string;
 }) {
-  const tint = topicColor[topic];
+  const { fg, a, b } = topicTint[topic];
   return (
-    <div className={`relative ${className}`}>
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 rounded-full opacity-50 blur-2xl"
-        style={{ background: `radial-gradient(circle, ${tint} 0%, transparent 72%)` }}
-      />
+    <div
+      className={`flex items-center justify-center rounded-2xl shadow-[0_10px_22px_-12px_rgba(54,42,74,0.4)] ${className}`}
+      style={{ background: `linear-gradient(155deg, color-mix(in srgb, ${a} 55%, ${b}) 0%, ${b} 120%)` }}
+    >
       <svg
         viewBox="0 0 72 72"
         fill="none"
-        stroke={tint}
-        strokeWidth="2"
-        className="h-full w-full"
+        stroke={fg}
+        strokeWidth="2.5"
+        className="h-[62%] w-[62%]"
         aria-hidden="true"
       >
-        <Art topic={topic} />
+        <Art topic={topic} fg={fg} />
       </svg>
     </div>
   );

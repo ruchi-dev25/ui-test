@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-parchment: #f7f3ec;
-  --color-parchment-dim: #efe9dd;
-  --color-ink: #2b2440;
-  --color-deepink: #3d3653;
-  --color-lavender: #8b7fb8;
-  --color-lavender-soft: #b8afd9;
-  --color-sage: #7c9473;
-  --color-sage-soft: #a8bc9e;
-  --color-rose: #e8a0a0;
-  --color-amber: #d9a441;
-  --color-coral: #e2825c;
-  --color-periwinkle: #7b8fd4;
+  --color-parchment: #fdf7f2;
+  --color-parchment-dim: #f7ebe3;
+  --color-ink: #362a4a;
+  --color-deepink: #6e5c8a;
+  --color-lavender: #a68bdb;
+  --color-lavender-soft: #d4c4f2;
+  --color-sage: #6fa895;
+  --color-sage-soft: #bfe0d4;
+  --color-rose: #f2a8c4;
+  --color-amber: #eeb45f;
+  --color-coral: #f0916d;
+  --color-periwinkle: #93a4ec;
 
   --font-display: "Fraunces", "Iowan Old Style", serif;
   --font-body: "Public Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -31,9 +31,11 @@ body {
   margin: 0;
   background-color: var(--color-parchment);
   background-image:
-    radial-gradient(var(--color-deepink) 0.6px, transparent 0.6px);
-  background-size: 22px 22px;
-  background-position: -8px -8px;
+    radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--color-coral) 22%, transparent) 0%, transparent 45%),
+    radial-gradient(circle at 88% 12%, color-mix(in srgb, var(--color-periwinkle) 22%, transparent) 0%, transparent 48%),
+    radial-gradient(circle at 50% 92%, color-mix(in srgb, var(--color-sage-soft) 30%, transparent) 0%, transparent 50%),
+    radial-gradient(circle at 95% 80%, color-mix(in srgb, var(--color-rose) 18%, transparent) 0%, transparent 45%);
+  background-attachment: fixed;
   color: var(--color-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -69,20 +71,85 @@ button:focus-visible,
   font-family: var(--font-hand);
 }
 
-.washi-tape {
-  position: relative;
+/* ---- gingham / checker trim, used sparingly as a frame accent ---- */
+.gingham-strip {
+  --c1: color-mix(in srgb, var(--color-rose) 55%, transparent);
+  --c2: color-mix(in srgb, var(--color-periwinkle) 45%, transparent);
+  background-image:
+    conic-gradient(var(--c1) 90deg, transparent 90deg 180deg, var(--c1) 180deg 270deg, transparent 270deg),
+    linear-gradient(var(--c2), var(--c2));
+  background-size: 14px 14px, 100% 100%;
+  background-blend-mode: normal;
 }
 
-.washi-tape::before {
+.gingham-frame {
+  padding: 9px;
+  border-radius: 1.5rem;
+  background-image: conic-gradient(
+    color-mix(in srgb, var(--color-rose) 60%, var(--color-periwinkle)) 90deg,
+    color-mix(in srgb, var(--color-parchment) 92%, transparent) 90deg 180deg,
+    color-mix(in srgb, var(--color-rose) 60%, var(--color-periwinkle)) 180deg 270deg,
+    color-mix(in srgb, var(--color-parchment) 92%, transparent) 270deg
+  );
+  background-size: 16px 16px;
+  box-shadow: 0 20px 44px -26px color-mix(in srgb, var(--color-ink) 45%, transparent);
+}
+
+.gingham-frame > .gingham-inner {
+  border-radius: 1.15rem;
+  background: var(--color-parchment);
+  height: 100%;
+}
+
+/* ---- widget-card: soft gradient rounded panel, iOS-widget inspired ---- */
+.widget-card {
+  border-radius: 1.75rem;
+  box-shadow:
+    0 24px 48px -28px color-mix(in srgb, var(--color-ink) 45%, transparent),
+    0 2px 10px -2px color-mix(in srgb, var(--color-ink) 14%, transparent);
+}
+
+.widget-rose {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--color-rose) 55%, white) 0%, color-mix(in srgb, var(--color-lavender-soft) 55%, white) 100%);
+}
+.widget-mint {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--color-sage-soft) 65%, white) 0%, color-mix(in srgb, var(--color-periwinkle) 22%, white) 100%);
+}
+.widget-amber {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--color-amber) 45%, white) 0%, color-mix(in srgb, var(--color-coral) 35%, white) 100%);
+}
+.widget-periwinkle {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--color-periwinkle) 45%, white) 0%, color-mix(in srgb, var(--color-lavender) 30%, white) 100%);
+}
+.widget-cream {
+  background: linear-gradient(160deg, var(--color-parchment-dim) 0%, color-mix(in srgb, var(--color-rose) 12%, var(--color-parchment)) 100%);
+}
+
+/* ---- ribbon tag: folded corner label ---- */
+.ribbon-tag {
+  clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%);
+  padding-right: 1.15em;
+}
+
+.sketch-tile {
+  position: relative;
+  border-radius: 12px 14px 11px 15px / 14px 11px 15px 12px;
+  border: 1.5px solid color-mix(in srgb, var(--color-ink) 60%, transparent);
+  background: white;
+}
+
+.sketch-tile::before {
   content: "";
   position: absolute;
-  top: -0.6rem;
-  left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
-  width: 3.6rem;
-  height: 1.1rem;
-  background: color-mix(in srgb, var(--color-sage) 55%, transparent);
-  opacity: 0.7;
+  inset: -2.5px;
+  border-radius: 13px 11px 15px 12px / 12px 15px 11px 14px;
+  border: 1.1px solid color-mix(in srgb, var(--color-ink) 28%, transparent);
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+
+.sketch-panel {
+  border-radius: 2.25rem 2rem 2.5rem 1.9rem / 2rem 2.5rem 1.9rem 2.25rem;
 }
 
 .stitch-divider {
@@ -95,7 +162,7 @@ button:focus-visible,
     transparent 6px,
     transparent 12px
   );
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 .deckle-edge {
@@ -111,8 +178,12 @@ button:focus-visible,
 }
 
 .aged-paper {
-  background-color: color-mix(in srgb, var(--color-rose) 7%, var(--color-parchment));
-  box-shadow: inset 0 0 50px 12px color-mix(in srgb, var(--color-lavender) 6%, transparent);
+  background-image: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--color-rose) 14%, var(--color-parchment)) 0%,
+    color-mix(in srgb, var(--color-periwinkle) 10%, var(--color-parchment)) 100%
+  );
+  box-shadow: inset 0 0 60px 14px color-mix(in srgb, var(--color-lavender) 8%, transparent);
 }
 
 .pixel-btn {
@@ -156,11 +227,11 @@ button:focus-visible,
 }
 
 .wax-seal {
-  background: radial-gradient(circle at 35% 30%, #c2685f, #8c3b32 70%);
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--color-rose) 70%, white), var(--color-coral) 75%);
   box-shadow:
-    0 3px 6px rgba(43, 36, 64, 0.35),
-    inset 0 -3px 4px rgba(0, 0, 0, 0.3),
-    inset 0 2px 3px rgba(255, 255, 255, 0.25);
+    0 3px 6px color-mix(in srgb, var(--color-ink) 30%, transparent),
+    inset 0 -3px 4px rgba(0, 0, 0, 0.15),
+    inset 0 2px 3px rgba(255, 255, 255, 0.4);
 }
 
 .paper-fold {

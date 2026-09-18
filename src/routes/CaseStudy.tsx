@@ -3,7 +3,11 @@ import Doodle from "../components/Doodle";
 import MarginNote from "../components/MarginNote";
 import Stamp from "../components/Stamp";
 import TopicArt from "../components/TopicArt";
+import WidgetCard from "../components/WidgetCard";
+import RibbonTag from "../components/RibbonTag";
 import { getProject, projects } from "../data/projects";
+
+const chapterTint = ["mint", "periwinkle", "amber", "rose"] as const;
 
 export default function CaseStudy() {
   const { slug } = useParams();
@@ -52,22 +56,32 @@ export default function CaseStudy() {
       </div>
 
       {/* Metrics */}
-      <div className="mt-12 grid grid-cols-3 gap-4 border-y border-dashed border-deepink/20 py-8">
-        {project.metrics.map((m) => (
-          <div key={m.label} className="text-center">
+      <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {project.metrics.map((m, i) => (
+          <WidgetCard
+            key={m.label}
+            tint={chapterTint[i % chapterTint.length]}
+            rotate={i % 2 === 0 ? -1 : 1}
+            className="px-5 py-6 text-center"
+          >
             <div className="font-display text-2xl text-ink sm:text-3xl">
               {m.value}
             </div>
-            <div className="mt-1 text-xs text-ink/60">{m.label}</div>
-          </div>
+            <div className="mt-1 text-xs text-ink/70">{m.label}</div>
+          </WidgetCard>
         ))}
       </div>
 
-      {/* Story */}
+      {/* Story, told chapter by chapter */}
       <div className="mt-16 space-y-16">
         {project.sections.map((section, i) => (
           <section key={section.heading} className="relative">
-            <h2 className="font-display text-2xl text-ink">
+            <div className="flex items-center gap-3">
+              <RibbonTag color={`var(--color-${["sage", "periwinkle", "amber", "rose"][i % 4]})`} rotate={-2}>
+                Chapter {String(i + 1).padStart(2, "0")}
+              </RibbonTag>
+            </div>
+            <h2 className="font-display mt-3 text-2xl text-ink">
               {section.heading}
             </h2>
             <div className="mt-4 space-y-4">
@@ -78,9 +92,11 @@ export default function CaseStudy() {
               ))}
             </div>
             {section.pullQuote && (
-              <blockquote className="font-display mt-6 border-l-2 border-lavender pl-6 text-xl leading-snug text-deepink italic">
-                {section.pullQuote}
-              </blockquote>
+              <div className="widget-card widget-periwinkle mt-6 max-w-xl px-6 py-5">
+                <p className="font-display text-xl leading-snug text-ink italic">
+                  {section.pullQuote}
+                </p>
+              </div>
             )}
             {section.marginNote && (
               <MarginNote
@@ -94,7 +110,7 @@ export default function CaseStudy() {
         ))}
       </div>
 
-      <div className="washi-tape mt-20 rounded-sm border border-deepink/15 bg-parchment-dim p-8">
+      <div className="widget-card widget-cream mt-20 px-8 py-10">
         <p className="font-hand text-2xl text-sage">looking back —</p>
         <p className="font-display mt-3 text-xl leading-relaxed text-ink">
           {project.reflection}
