@@ -50,6 +50,42 @@ export const skills = [
   },
 ];
 
+export const skillGroups = [
+  {
+    category: "Product Execution & Strategy",
+    tint: "sage" as const,
+    items: [
+      "0→1 Product Scoping",
+      "User Interviews & Stakeholder Discovery",
+      "PRD Writing",
+      "Feature Prioritization (Impact vs. Effort)",
+      "Sprint Tracking (Linear/Jira)",
+      "QA & Handoff Verification",
+    ],
+  },
+  {
+    category: "Technical Literacy",
+    tint: "periwinkle" as const,
+    items: [
+      "REST APIs",
+      "JSON Formatting",
+      "Postman (API Testing)",
+      "Basic SQL (Queries & Filters)",
+      "Web Performance Basics (Lighthouse, Page Speed)",
+    ],
+  },
+  {
+    category: "Product Analytics",
+    tint: "amber" as const,
+    items: [
+      "Mixpanel (Event Telemetry, Funnels, Drop-offs)",
+      "Google Analytics",
+      "Tableau (Dashboards & Reporting)",
+      "Excel / Google Sheets",
+    ],
+  },
+];
+
 export type CompanionMode = "research" | "strategy" | "build" | "measure";
 
 export const companion = {

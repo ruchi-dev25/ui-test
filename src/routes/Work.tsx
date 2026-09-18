@@ -47,6 +47,10 @@ export default function Work() {
                   </span>
                 ))}
               </div>
+              <p className="font-hand mt-3 flex items-center gap-1.5 text-lg text-sage transition-transform group-hover:translate-x-1">
+                Read the case study
+                <span aria-hidden="true">→</span>
+              </p>
             </div>
           </Link>
         ))}

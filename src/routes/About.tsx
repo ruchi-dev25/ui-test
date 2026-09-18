@@ -1,7 +1,8 @@
 import Doodle from "../components/Doodle";
 import GinghamFrame from "../components/GinghamFrame";
+import RibbonTag from "../components/RibbonTag";
 import ToolIcon from "../components/ToolIcon";
-import { letter, profile, skills } from "../data/profile";
+import { letter, profile, skillGroups, skills } from "../data/profile";
 
 function ToolRow({ tools }: { tools: { name: string; key: import("../components/ToolIcon").ToolKey }[] }) {
   return (
@@ -21,33 +22,6 @@ function ToolRow({ tools }: { tools: { name: string; key: import("../components/
     </div>
   );
 }
-
-const timeline = [
-  {
-    when: "2018 – 2020",
-    what: "Started in support and ops",
-    detail:
-      "Answered tickets, then started asking why the same three complaints kept coming back. Ended up building the internal tools nobody had time to build.",
-  },
-  {
-    when: "2020 – 2022",
-    what: "Associate PM, first real ownership",
-    detail:
-      "Owned a feature area nobody wanted — the settings page. Learned that unglamorous surfaces are where trust is won or lost quietly.",
-  },
-  {
-    when: "2022 – 2024",
-    what: "PM, growth & activation",
-    detail:
-      "Moved into funnels and onboarding. Got comfortable killing my own ideas when the data disagreed with them.",
-  },
-  {
-    when: "2024 – now",
-    what: "Senior PM, product & trust",
-    detail:
-      "Working across checkout, activation, and trust — the parts of a product that don't get a launch party but decide whether people come back.",
-  },
-];
 
 const principles = [
   {
@@ -128,19 +102,28 @@ export default function About() {
       <hr className="stitch-divider my-16" />
 
       <section>
-        <p className="font-hand text-2xl text-sage">what I'm good at</p>
+        <p className="font-hand text-2xl text-sage">the specifics</p>
         <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
-          A few pages on how I think
+          Skills
         </h2>
-        <div className="mt-10 space-y-10 border-l-2 border-dashed border-sage/40 pl-8">
-          {skills.map((s) => (
-            <div key={s.name} className="relative">
-              <Doodle
-                variant="star"
-                className="absolute top-1 -left-[2.6rem] h-3.5 w-3.5 text-sage"
-              />
-              <h3 className="font-display text-xl text-ink">{s.name}</h3>
-              <p className="mt-1 max-w-xl text-ink/70">{s.note}</p>
+        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          {skillGroups.map((group, i) => (
+            <div
+              key={group.category}
+              className={`widget-card widget-${group.tint} p-5`}
+              style={{ rotate: `${(i % 2 === 0 ? -1 : 1) * 0.8}deg` }}
+            >
+              <RibbonTag color="var(--color-ink)" rotate={-2}>
+                {group.category}
+              </RibbonTag>
+              <ul className="mt-4 space-y-2.5">
+                {group.items.map((item) => (
+                  <li key={item} className="flex gap-2 text-sm leading-snug text-ink/80">
+                    <Doodle variant="star" className="mt-0.5 h-3 w-3 shrink-0 text-ink/50" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -148,47 +131,48 @@ export default function About() {
 
       <hr className="stitch-divider my-16" />
 
-      <section>
-        <p className="font-hand text-2xl text-sage">what's on my desk</p>
-        <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
-          Toolkit
-        </h2>
+      <div className="grid gap-14 lg:grid-cols-2">
+        <section>
+          <p className="font-hand text-2xl text-sage">what I'm good at</p>
+          <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
+            A few pages on how I think
+          </h2>
+          <div className="mt-10 space-y-10 border-l-2 border-dashed border-sage/40 pl-8">
+            {skills.map((s) => (
+              <div key={s.name} className="relative">
+                <Doodle
+                  variant="star"
+                  className="absolute top-1 -left-[2.6rem] h-3.5 w-3.5 text-sage"
+                />
+                <h3 className="font-display text-xl text-ink">{s.name}</h3>
+                <p className="mt-1 text-ink/70">{s.note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <div className="mt-10 space-y-8">
-          <div>
-            <p className="font-hand text-lg text-ink/60">the usual suspects</p>
-            <div className="mt-3">
-              <ToolRow tools={profile.tools} />
+        <section>
+          <p className="font-hand text-2xl text-sage">what's on my desk</p>
+          <h2 className="font-display mt-1 text-2xl text-ink sm:text-3xl">
+            Toolkit
+          </h2>
+
+          <div className="mt-10 space-y-8">
+            <div>
+              <p className="font-hand text-lg text-ink/60">the usual suspects</p>
+              <div className="mt-3">
+                <ToolRow tools={profile.tools} />
+              </div>
+            </div>
+            <div>
+              <p className="font-hand text-lg text-ink/60">and the new co-pilots</p>
+              <div className="mt-3">
+                <ToolRow tools={profile.aiTools} />
+              </div>
             </div>
           </div>
-          <div>
-            <p className="font-hand text-lg text-ink/60">and the new co-pilots</p>
-            <div className="mt-3">
-              <ToolRow tools={profile.aiTools} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <hr className="stitch-divider my-16" />
-
-      <section>
-        <h2 className="font-display text-2xl text-ink sm:text-3xl">
-          How I got here
-        </h2>
-        <div className="mt-10 space-y-10 border-l-2 border-dashed border-lavender/40 pl-8">
-          {timeline.map((item) => (
-            <div key={item.when} className="relative">
-              <span className="absolute top-1.5 -left-[2.35rem] h-3 w-3 rounded-full bg-lavender" />
-              <span className="font-hand text-xl text-sage">{item.when}</span>
-              <h3 className="font-display mt-1 text-xl text-ink">
-                {item.what}
-              </h3>
-              <p className="mt-1 max-w-xl text-ink/70">{item.detail}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+        </section>
+      </div>
 
       <hr className="stitch-divider my-16" />
 

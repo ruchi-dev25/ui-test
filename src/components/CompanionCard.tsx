@@ -39,7 +39,7 @@ export default function CompanionCard({ className = "" }: { className?: string }
             <span className="twinkle absolute top-3 left-4 h-1 w-1 rounded-full" style={{ background: tint, animationDelay: "0.2s" }} />
             <span className="twinkle absolute top-6 right-5 h-1.5 w-1.5 rounded-full" style={{ background: tint, animationDelay: "1s" }} />
             <span className="twinkle absolute top-10 left-8 h-1 w-1 rounded-full" style={{ background: tint, animationDelay: "1.8s" }} />
-            <PipMascot mode={mode} className="h-28 w-28" />
+            <PipMascot mode={mode} className="h-20 w-20" />
             <p className="mb-2 text-[0.65rem] tracking-wide text-ink/40">tap to poke</p>
           </div>
 
@@ -59,7 +59,7 @@ export default function CompanionCard({ className = "" }: { className?: string }
               </span>
             </div>
 
-            <div className="mt-3 min-h-[80px] rounded-xl bg-white/60 p-3">
+            <div className="mt-3 min-h-[56px] rounded-xl bg-white/60 p-3">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={mode}
@@ -91,22 +91,7 @@ export default function CompanionCard({ className = "" }: { className?: string }
           </div>
         </div>
 
-        <dl className="mt-5 space-y-2 border-y border-dashed border-deepink/15 py-4 text-sm">
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink/55">Current quest</dt>
-            <dd className="text-right text-ink/85">{companion.quest}</dd>
-          </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink/55">Standing</dt>
-            <dd className="text-right text-ink/85">{companion.standing}</dd>
-          </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink/55">Artifacts</dt>
-            <dd className="text-right text-ink/85">{companion.artifacts}</dd>
-          </div>
-        </dl>
-
-        <div className="mt-5 space-y-4">
+        <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-dashed border-deepink/15 pt-4">
           {companion.stats.map((s) => (
             <StatBar key={s.label} label={s.label} value={s.value} />
           ))}

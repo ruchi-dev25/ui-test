@@ -6,6 +6,7 @@ import CountUp from "../components/CountUp";
 import StickyNote from "../components/StickyNote";
 import RibbonTag from "../components/RibbonTag";
 import TopicArt from "../components/TopicArt";
+import BrandLogo from "../components/BrandLogo";
 import ToolIcon from "../components/ToolIcon";
 import { profile } from "../data/profile";
 import { projects } from "../data/projects";
@@ -112,12 +113,12 @@ export default function Home() {
               >
                 See the case studies
               </Link>
-              <a
-                href="/resume.pdf"
+              <Link
+                to="/about"
                 className="font-display text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
               >
-                Read my dossier
-              </a>
+                More about me →
+              </Link>
             </motion.div>
 
             <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="mt-10">
@@ -193,6 +194,10 @@ export default function Home() {
                       </span>
                     ))}
                   </div>
+                  <p className="font-hand mt-3 flex items-center gap-1.5 text-lg text-sage transition-transform group-hover:translate-x-1">
+                    Read the story
+                    <span aria-hidden="true">→</span>
+                  </p>
                 </div>
               </div>
             </Link>
@@ -213,9 +218,10 @@ export default function Home() {
           </div>
           <Link
             to="/teardowns"
-            className="font-display text-sm text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
+            className="group font-display flex items-center gap-1.5 text-sm text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
           >
             Read the teardowns
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
 
@@ -225,12 +231,16 @@ export default function Home() {
               <div
                 className={`widget-card widget-${i % 2 === 0 ? "mint" : "periwinkle"} flex gap-4 p-5 transition-all group-hover:-translate-y-1`}
               >
-                <TopicArt topic={t.topic} className="h-12 w-12 shrink-0" />
+                <BrandLogo brand={t.brand} className="h-12 w-12 shrink-0" />
                 <div>
                   <h3 className="font-display text-base text-ink transition-colors group-hover:text-deepink">
                     {t.product}
                   </h3>
                   <p className="mt-1 text-sm text-ink/65">{t.tagline}</p>
+                  <p className="font-hand mt-2 flex items-center gap-1.5 text-sage transition-transform group-hover:translate-x-1">
+                    Read
+                    <span aria-hidden="true">→</span>
+                  </p>
                 </div>
               </div>
             </Link>

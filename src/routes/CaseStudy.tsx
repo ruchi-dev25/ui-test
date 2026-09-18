@@ -20,12 +20,15 @@ export default function CaseStudy() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 pt-14 pb-24 sm:pt-20">
-      <Link
-        to="/work"
-        className="font-hand text-xl text-sage hover:text-ink"
-      >
-        ← back to the table of contents
-      </Link>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-hand text-xl text-sage">
+        <Link to="/" className="flex items-center gap-1.5 hover:text-ink">
+          <span aria-hidden="true">←</span> home
+        </Link>
+        <span className="text-ink/30">/</span>
+        <Link to="/work" className="hover:text-ink">
+          back to the table of contents
+        </Link>
+      </div>
 
       <div className="mt-8 flex items-start gap-6">
         <TopicArt topic={project.topic} className="hidden h-24 w-24 shrink-0 sm:block" />

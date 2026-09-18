@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import TopicArt from "../components/TopicArt";
+import BrandLogo from "../components/BrandLogo";
 import RibbonTag from "../components/RibbonTag";
 import { getTeardown, teardowns, verdictLabel, type Verdict } from "../data/teardowns";
 
@@ -20,12 +20,18 @@ export default function TeardownDetail() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 pt-14 pb-24 sm:pt-20">
-      <Link to="/teardowns" className="font-hand text-xl text-sage hover:text-ink">
-        ← back to teardowns
-      </Link>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-hand text-xl text-sage">
+        <Link to="/" className="flex items-center gap-1.5 hover:text-ink">
+          <span aria-hidden="true">←</span> home
+        </Link>
+        <span className="text-ink/30">/</span>
+        <Link to="/teardowns" className="hover:text-ink">
+          back to teardowns
+        </Link>
+      </div>
 
       <div className="mt-8 flex items-start gap-6">
-        <TopicArt topic={teardown.topic} className="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
+        <BrandLogo brand={teardown.brand} className="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
         <div>
           <RibbonTag color={verdictColor[teardown.verdict]} rotate={-2}>
             {verdictLabel[teardown.verdict]}

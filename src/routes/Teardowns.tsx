@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import TopicArt from "../components/TopicArt";
+import BrandLogo from "../components/BrandLogo";
 import RibbonTag from "../components/RibbonTag";
 import { teardowns, verdictLabel, type Verdict } from "../data/teardowns";
 
@@ -38,7 +38,7 @@ export default function Teardowns() {
               className={`widget-card widget-${verdictWidget[t.verdict]} flex gap-5 p-6 transition-all group-hover:-translate-y-1`}
               style={{ rotate: `${i % 2 === 0 ? -0.6 : 0.6}deg` }}
             >
-              <TopicArt topic={t.topic} className="h-16 w-16 shrink-0" />
+              <BrandLogo brand={t.brand} className="h-16 w-16 shrink-0" />
               <div>
                 <RibbonTag color={verdictColor[t.verdict]} rotate={-2}>
                   {verdictLabel[t.verdict]}
@@ -49,6 +49,10 @@ export default function Teardowns() {
                 <p className="mt-1 text-xs text-ink/50">{t.category}</p>
                 <p className="mt-2 text-sm leading-relaxed text-ink/70">
                   {t.tagline}
+                </p>
+                <p className="font-hand mt-2 flex items-center gap-1.5 text-sage transition-transform group-hover:translate-x-1">
+                  Read the teardown
+                  <span aria-hidden="true">→</span>
                 </p>
               </div>
             </div>

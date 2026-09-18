@@ -1,4 +1,5 @@
 import type { Topic } from "../components/TopicArt";
+import type { Brand } from "../components/BrandLogo";
 
 export type Verdict = "love" | "mixed" | "pass";
 
@@ -9,6 +10,7 @@ export type Teardown = {
   verdict: Verdict;
   tagline: string;
   topic: Topic;
+  brand: Brand;
   whatWorks: string[];
   whatMisses: string[];
   takeaway: string;
@@ -29,6 +31,7 @@ export const teardowns: Teardown[] = [
     tagline:
       "A paid feature that quietly protects the habit loop instead of monetizing guilt.",
     topic: "trust",
+    brand: "duolingo",
     whatWorks: [
       "It sells insurance against a bad day, not against the product's own friction — the difference between monetizing anxiety and monetizing life happening.",
       "Framing it as a 'freeze' instead of a 'pause' keeps the streak metaphor intact instead of admitting the mechanic is fragile.",
@@ -47,6 +50,7 @@ export const teardowns: Teardown[] = [
     tagline:
       "Genuinely useful for first drafts, genuinely disorienting for anyone who didn't ask for one.",
     topic: "notebook",
+    brand: "notion",
     whatWorks: [
       "Keeping the suggestion inline, in the same font and cursor position, makes it feel like a continuation of your own thought rather than an interruption.",
     ],
@@ -65,6 +69,7 @@ export const teardowns: Teardown[] = [
     tagline:
       "Solves discovery for recruiters and creates a public signal the job-seeker can't fully control.",
     topic: "onboarding",
+    brand: "linkedin",
     whatWorks: [
       "The recruiter-only visibility option is the right default and should have been the only option.",
     ],
