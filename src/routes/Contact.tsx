@@ -39,7 +39,7 @@ export default function Contact() {
     <div className="mx-auto max-w-3xl px-6 pt-14 pb-24 sm:pt-20">
       <Doodle variant="heart" className="h-8 w-8 text-rose" />
       <p className="font-hand mt-4 text-2xl text-sage">last page</p>
-      <h1 className="font-display mt-2 text-4xl leading-tight text-ink sm:text-5xl">
+      <h1 className="font-display mt-2 text-[1.85rem] leading-[1.15] text-ink sm:text-4xl lg:text-5xl">
         Say hello, or just ask a question about one of the case studies
       </h1>
       <p className="mt-6 max-w-lg leading-relaxed text-ink/75">

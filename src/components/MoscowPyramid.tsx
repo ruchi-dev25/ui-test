@@ -7,7 +7,7 @@ type Tier = {
 
 // Widths shrink from Must-have (the wide foundation) up to Won't-have (the narrow tip) —
 // a MoSCoW priority pyramid, not a two-axis matrix.
-const widths = ["100%", "80%", "60%", "42%"];
+const widths = ["100%", "max(230px, 80%)", "max(230px, 60%)", "max(230px, 42%)"];
 
 export default function MoscowPyramid({ tiers }: { tiers: Tier[] }) {
   const ordered = [...tiers].reverse();

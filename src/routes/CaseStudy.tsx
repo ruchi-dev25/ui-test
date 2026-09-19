@@ -52,7 +52,7 @@ export default function CaseStudy() {
             <span className="text-sm text-ink/60">{project.role}</span>
           </div>
 
-          <h1 className="font-display mt-4 text-4xl leading-[1.1] text-ink sm:text-5xl">
+          <h1 className="font-display mt-4 text-[1.85rem] leading-[1.15] text-ink sm:text-4xl lg:text-5xl">
             {project.title}
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/75">

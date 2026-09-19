@@ -19,7 +19,7 @@ export default function Teardowns() {
   return (
     <div className="mx-auto max-w-5xl px-6 pt-14 pb-24 sm:pt-20">
       <p className="font-hand text-2xl text-sage">margin notes on other people's products</p>
-      <h1 className="font-display mt-2 max-w-2xl text-4xl leading-tight text-ink sm:text-5xl">
+      <h1 className="font-display mt-2 max-w-2xl text-[1.85rem] leading-[1.15] text-ink sm:text-4xl lg:text-5xl">
         Product teardowns
       </h1>
       <p className="mt-5 max-w-xl text-ink/70">

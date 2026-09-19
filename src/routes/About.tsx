@@ -42,7 +42,7 @@ export default function About() {
   return (
     <div className="mx-auto max-w-5xl px-6 pt-14 pb-24 sm:pt-20">
       <p className="font-hand text-2xl text-sage">origin story & operational code</p>
-      <h1 className="font-display mt-1 text-4xl leading-tight text-ink sm:text-5xl">
+      <h1 className="font-display mt-1 text-[1.85rem] leading-[1.15] text-ink sm:text-4xl lg:text-5xl">
         My story…
       </h1>
 

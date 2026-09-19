@@ -9,7 +9,7 @@ export default function Work() {
   return (
     <div className="mx-auto max-w-5xl px-6 pt-14 pb-24 sm:pt-20">
       <p className="font-hand text-2xl text-sage">table of contents</p>
-      <h1 className="font-display mt-2 max-w-2xl text-4xl leading-tight text-ink sm:text-5xl">
+      <h1 className="font-display mt-2 max-w-2xl text-[1.85rem] leading-[1.15] text-ink sm:text-4xl lg:text-5xl">
         Case studies, kept in order
       </h1>
       <p className="mt-5 max-w-xl text-ink/70">
@@ -47,10 +47,10 @@ export default function Work() {
                   </span>
                 ))}
               </div>
-              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
                 {p.metrics.slice(0, 3).map((m) => (
-                  <div key={m.label} className="flex items-baseline gap-1.5">
-                    <span className="font-display text-lg text-ink">{m.value}</span>
+                  <div key={m.label} className="flex flex-col sm:flex-row sm:items-baseline sm:gap-1.5">
+                    <span className="font-display text-base whitespace-nowrap text-ink sm:text-lg">{m.value}</span>
                     <span className="text-xs text-ink/55">{m.label}</span>
                   </div>
                 ))}
