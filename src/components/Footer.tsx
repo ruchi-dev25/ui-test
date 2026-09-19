@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
             <p className="font-hand text-2xl text-sage">
-              — end of this page, more in the notebook
+              end of this page, more in the notebook
             </p>
             <p className="mt-1 text-sm text-ink/60">
               © {new Date().getFullYear()} {profile.name}. Built page by page.

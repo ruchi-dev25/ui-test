@@ -71,7 +71,7 @@ export default function TeardownDetail() {
       </div>
 
       <div className="widget-card widget-cream mt-14 px-8 py-8">
-        <p className="font-hand text-2xl text-sage">the takeaway —</p>
+        <p className="font-hand text-2xl text-sage">the takeaway</p>
         <p className="font-display mt-3 text-xl leading-relaxed text-ink">
           {teardown.takeaway}
         </p>

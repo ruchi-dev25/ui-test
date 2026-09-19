@@ -47,6 +47,14 @@ export default function Work() {
                   </span>
                 ))}
               </div>
+              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                {p.metrics.slice(0, 3).map((m) => (
+                  <div key={m.label} className="flex items-baseline gap-1.5">
+                    <span className="font-display text-lg text-ink">{m.value}</span>
+                    <span className="text-xs text-ink/55">{m.label}</span>
+                  </div>
+                ))}
+              </div>
               <p className="font-hand mt-3 flex items-center gap-1.5 text-lg text-sage transition-transform group-hover:translate-x-1">
                 Read the case study
                 <span aria-hidden="true">→</span>

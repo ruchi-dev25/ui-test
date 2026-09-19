@@ -127,8 +127,8 @@ button:focus-visible,
 
 /* ---- ribbon tag: folded corner label ---- */
 .ribbon-tag {
-  clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%);
-  padding-right: 1.15em;
+  clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 50%, calc(100% - 11px) 100%, 0 100%);
+  padding-right: 1.4em;
 }
 
 .sketch-tile {

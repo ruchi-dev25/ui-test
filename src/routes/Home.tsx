@@ -18,9 +18,9 @@ const fadeUp = {
 };
 
 const stats = [
-  { to: 3, suffix: "", label: "quests logged", tint: "mint" as const, rotate: -4 },
+  { to: 2, suffix: "", label: "quests logged", tint: "mint" as const, rotate: -4 },
   { to: 3, suffix: "", label: "teardowns written", tint: "periwinkle" as const, rotate: 3 },
-  { to: 41, suffix: "%", label: "best funnel lift shipped", tint: "amber" as const, rotate: -2 },
+  { to: 20, suffix: "", label: "prompt scenarios per QA pass", tint: "amber" as const, rotate: -2 },
   { to: 1, suffix: "", label: "companion, always awake", tint: "rose" as const, rotate: 4 },
 ];
 
@@ -69,7 +69,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="font-hand text-2xl text-sage sm:text-3xl"
             >
-              hello, I am —
+              hello, I am
             </motion.p>
             <motion.h1
               variants={fadeUp}
@@ -192,6 +192,14 @@ export default function Home() {
                       >
                         {t}
                       </span>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                    {p.metrics.slice(0, 3).map((m) => (
+                      <div key={m.label} className="flex items-baseline gap-1.5">
+                        <span className="font-display text-lg text-ink">{m.value}</span>
+                        <span className="text-xs text-ink/55">{m.label}</span>
+                      </div>
                     ))}
                   </div>
                   <p className="font-hand mt-3 flex items-center gap-1.5 text-lg text-sage transition-transform group-hover:translate-x-1">

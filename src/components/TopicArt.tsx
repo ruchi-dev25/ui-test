@@ -3,7 +3,9 @@ export type Topic =
   | "onboarding"
   | "trust"
   | "teardown"
-  | "notebook";
+  | "notebook"
+  | "academic"
+  | "builder";
 
 const topicTint: Record<Topic, { fg: string; a: string; b: string }> = {
   checkout: { fg: "var(--color-sage)", a: "var(--color-sage-soft)", b: "white" },
@@ -11,6 +13,8 @@ const topicTint: Record<Topic, { fg: string; a: string; b: string }> = {
   trust: { fg: "var(--color-coral)", a: "var(--color-rose)", b: "white" },
   teardown: { fg: "var(--color-amber)", a: "var(--color-amber)", b: "white" },
   notebook: { fg: "var(--color-periwinkle)", a: "var(--color-periwinkle)", b: "white" },
+  academic: { fg: "var(--color-lavender)", a: "var(--color-lavender-soft)", b: "white" },
+  builder: { fg: "var(--color-coral)", a: "var(--color-amber)", b: "white" },
 };
 
 function Art({ topic, fg }: { topic: Topic; fg: string }) {
@@ -46,6 +50,25 @@ function Art({ topic, fg }: { topic: Topic; fg: string }) {
           <circle cx="30" cy="30" r="16" />
           <path d="M41 41l14 14" />
           <path d="M23 30h14M30 23v14" />
+        </g>
+      );
+    case "academic":
+      return (
+        <g strokeLinecap="round" strokeLinejoin="round">
+          <path d="M36 16L10 28l26 12 26-12z" />
+          <path d="M20 32v14c0 4 7 8 16 8s16-4 16-8V32" />
+          <path d="M56 28v14" strokeDasharray="2 3" />
+          <circle cx="56" cy="45" r="1.6" fill={fg} stroke="none" />
+        </g>
+      );
+    case "builder":
+      return (
+        <g strokeLinecap="round" strokeLinejoin="round">
+          <rect x="10" y="16" width="52" height="40" rx="4" />
+          <path d="M10 26h52" />
+          <circle cx="16" cy="21" r="1.4" fill={fg} stroke="none" />
+          <circle cx="21" cy="21" r="1.4" fill={fg} stroke="none" />
+          <path d="M18 34h20M18 41h28M18 48h14" strokeDasharray="2 3" />
         </g>
       );
     case "notebook":

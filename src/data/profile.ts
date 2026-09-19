@@ -2,8 +2,8 @@ export const profile = {
   name: "Ruchi Madankar",
   title: "Aspiring Product Manager",
   standing: "Final-year CS · APM candidate",
-  email: "ruchi.madankar@example.com",
-  linkedin: "https://linkedin.com",
+  email: "madankar.ruchi@gmail.com",
+  linkedin: "https://www.linkedin.com/in/ruchi-madankar-42aabb28a",
   availability: "Open to APM roles · 2027 grad",
   compass:
     "What if we stopped accepting ‘that’s just how it works’?",
@@ -25,20 +25,21 @@ export const profile = {
   aiTools: [
     { name: "ChatGPT", key: "chatgpt" },
     { name: "Claude", key: "claude" },
+    { name: "Antigravity", key: "antigravity" },
     { name: "Perplexity", key: "perplexity" },
-    { name: "Cursor", key: "cursor" },
-    { name: "Midjourney", key: "midjourney" },
+    { name: "Stitch", key: "stitch" },
+    { name: "Lovable", key: "lovable" },
   ] satisfies { name: string; key: import("../components/ToolIcon").ToolKey }[],
 };
 
 export const skills = [
   {
     name: "Talking to users before touching a dashboard",
-    note: "Interviews come first, always. If a metric looks fine but the anecdotes keep coming, I trust the anecdotes and go verify the metric — that instinct is what the checkout case study came out of.",
+    note: "Interviews come first, always. That instinct is what took the academic mentorship platform from 'improve compliance tracking' to a real 4-tier access model. The spreadsheets looked fine until I asked mentors to walk me through one.",
   },
   {
     name: "Turning ambiguity into a PRD",
-    note: "Somewhere between a hallway idea and a sprint, someone has to write the thing down clearly enough for people to disagree with it. I like being that someone — it's where most of the real thinking happens.",
+    note: "Somewhere between a hallway idea and a sprint, someone has to write the thing down clearly enough for people to disagree with it. I like being that someone, it's where most of the real thinking happens.",
   },
   {
     name: "Enough SQL to trust my own numbers",
@@ -127,12 +128,12 @@ export const companion = {
 export const letter = {
   salutation: "Dear fellow explorer,",
   paragraphs: [
-    "I came into a Computer Engineering degree writing code, wiring up databases, and getting things to work. I was never the strongest at it — but somewhere in the process of debugging, I got far more curious about a question beyond raw syntax: who is this for, and does it truly solve their friction?",
-    "That question pulled me toward product. I don't pause pure engineering — I'm actively learning what tools I build with. What I do possess is a strong grounding to sit in a room with engineers and ask the uncomfortable questions, obsessing over the why behind the architecture. Are we solving a genuine pain point? How does this telemetry map back to human intent?",
+    "I came into a Computer Engineering degree writing code, wiring up databases, and getting things to work. I was never the strongest at it, but somewhere in the process of debugging, I got far more curious about a question beyond raw syntax: who is this for, and does it truly solve their friction?",
+    "That question pulled me toward product. I don't pause pure engineering, I'm actively learning what tools I build with. What I do possess is a strong grounding to sit in a room with engineers and ask the uncomfortable questions, obsessing over the why behind the architecture. Are we solving a genuine pain point? How does this telemetry map back to human intent?",
     "When I'm not drafting PRDs or reading retention cohorts, you'll find me strategizing in Clash of Clans, wandering typography archives, or picking apart early-stage consumer startups.",
   ],
   pullQuote:
-    "Code showed me how complex systems survive under load. Product taught me why systems exist in the first place — for humans.",
+    "Code showed me how complex systems survive under load. Product taught me why systems exist in the first place: for humans.",
   stickyNote: "Experience compounds. Mine is small right now, but it's compounding on real problems, not tutorials.",
   signoff: "Warmly, and in build mode,",
 };

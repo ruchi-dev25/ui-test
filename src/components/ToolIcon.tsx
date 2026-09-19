@@ -12,7 +12,10 @@ export type ToolKey =
   | "claude"
   | "perplexity"
   | "cursor"
-  | "midjourney";
+  | "midjourney"
+  | "antigravity"
+  | "stitch"
+  | "lovable";
 
 function Mark({ tool }: { tool: ToolKey }) {
   switch (tool) {
@@ -51,12 +54,19 @@ function Mark({ tool }: { tool: ToolKey }) {
       );
     case "tableau":
       return (
-        <g fill="#3E7CB1">
-          <rect x="11.1" y="3.5" width="1.8" height="5" />
-          <rect x="11.1" y="15.5" width="1.8" height="5" />
-          <rect x="3.5" y="11.1" width="5" height="1.8" />
-          <rect x="15.5" y="11.1" width="5" height="1.8" />
-          <rect x="8.4" y="8.4" width="7.2" height="7.2" opacity="0.85" />
+        <g fill="#0176D3">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <rect
+              key={i}
+              x="11.15"
+              y="2.6"
+              width="1.7"
+              height="4.6"
+              rx="0.7"
+              transform={`rotate(${i * 45} 12 12)`}
+            />
+          ))}
+          <circle cx="12" cy="12" r="1.5" fill="#0176D3" />
         </g>
       );
     case "excel":
@@ -96,31 +106,40 @@ function Mark({ tool }: { tool: ToolKey }) {
         <g>
           <circle cx="12" cy="12" r="8" fill="#FF6C37" />
           <path
-            d="M9 15l6-6M11 8.5l-1 1M14.5 12l1-1"
-            stroke="white"
-            strokeWidth="1.6"
-            strokeLinecap="round"
+            d="M15.5 8.5a4.2 4.2 0 0 0-6 0l-.7.7a1 1 0 0 0 1.4 1.4l.7-.7a2.2 2.2 0 0 1 3.2 0 2.2 2.2 0 0 1 0 3.2l-3 3a1 1 0 0 0 1.4 1.4l3-3a4.2 4.2 0 0 0 0-6z"
+            fill="white"
           />
+          <circle cx="9.3" cy="14.7" r="1" fill="white" />
         </g>
       );
     case "chatgpt":
       return (
-        <g fill="none" stroke="#10A37F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 4.5a3.4 3.4 0 0 0-3.2 2.3A3.5 3.5 0 0 0 6.5 12a3.5 3.5 0 0 0 1.2 8.1 3.4 3.4 0 0 0 5.5 1.1 3.5 3.5 0 0 0 4.8-3.3 3.5 3.5 0 0 0 .8-6.6 3.5 3.5 0 0 0-1.2-6A3.4 3.4 0 0 0 12 4.5z" />
-          <circle cx="12" cy="12" r="2" fill="#10A37F" stroke="none" />
+        <g fill="#10A37F">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <rect
+              key={i}
+              x="10.9"
+              y="3.2"
+              width="2.2"
+              height="6.6"
+              rx="1.1"
+              transform={`rotate(${i * 60} 12 12)`}
+            />
+          ))}
+          <circle cx="12" cy="12" r="2.2" fill="white" />
         </g>
       );
     case "claude":
       return (
-        <g fill="#D97757">
+        <g fill="#DA7756">
           {Array.from({ length: 8 }).map((_, i) => (
             <rect
               key={i}
-              x="11.3"
-              y="3.5"
-              width="1.4"
-              height="6.2"
-              rx="0.7"
+              x="11.35"
+              y={i % 2 === 0 ? "2.6" : "4"}
+              width="1.3"
+              height={i % 2 === 0 ? "6.4" : "5"}
+              rx="0.65"
               transform={`rotate(${i * 45} 12 12)`}
             />
           ))}
@@ -151,6 +170,28 @@ function Mark({ tool }: { tool: ToolKey }) {
           <path d="M3.5 15.5c2-5.5 5-8.5 8.5-8.5s6.5 3 8.5 8.5" />
           <path d="M6.5 15.5c1.4-3.4 3.2-5 5.5-5s4.1 1.6 5.5 5" />
         </g>
+      );
+    case "antigravity":
+      return (
+        <g fill="none" stroke="#3C4043" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="7.2" />
+          <path d="M12 15V9M12 9l-2.6 2.6M12 9l2.6 2.6" />
+        </g>
+      );
+    case "stitch":
+      return (
+        <g fill="none" stroke="#4285F4" strokeWidth="1.6" strokeLinecap="round">
+          <path d="M4 12h3M9 12h3M15 12h3M20 12h1" strokeDasharray="2.2 2.2" />
+          <circle cx="4" cy="12" r="1.3" fill="#4285F4" stroke="none" />
+          <circle cx="20" cy="12" r="1.3" fill="#4285F4" stroke="none" />
+        </g>
+      );
+    case "lovable":
+      return (
+        <path
+          d="M12 19.5s-7-4.2-9.2-8.6C1.4 8 3 4.8 6 4.8c2 0 3.4 1.2 4.4 2.7C11.4 6 12.8 4.8 14.8 4.8c3 0 4.6 3.2 3.2 6.1-2.2 4.4-9.2 8.6-9.2 8.6z"
+          fill="#FF6B6B"
+        />
       );
     case "figma":
     default:

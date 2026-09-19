@@ -34,7 +34,7 @@ const principles = [
   },
   {
     title: "Instrument before you optimize",
-    body: "If I can't measure a step, I don't trust my opinion about it — including my own.",
+    body: "If I can't measure a step, I don't trust my opinion about it, including my own.",
   },
 ];
 

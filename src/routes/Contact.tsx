@@ -11,7 +11,7 @@ const links = [
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/ruchimadankar",
+    value: "linkedin.com/in/ruchi-madankar-42aabb28a",
     href: profile.linkedin,
   },
   {
@@ -29,7 +29,7 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = `Hello from ${name || "your notebook"}`;
-    const body = `${message}\n\n— ${name}${email ? ` (${email})` : ""}`;
+    const body = `${message}\n\nFrom, ${name}${email ? ` (${email})` : ""}`;
     window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`;
@@ -38,7 +38,7 @@ export default function Contact() {
   return (
     <div className="mx-auto max-w-3xl px-6 pt-14 pb-24 sm:pt-20">
       <Doodle variant="heart" className="h-8 w-8 text-rose" />
-      <p className="font-hand mt-4 text-2xl text-sage">last page —</p>
+      <p className="font-hand mt-4 text-2xl text-sage">last page</p>
       <h1 className="font-display mt-2 text-4xl leading-tight text-ink sm:text-5xl">
         Say hello, or just ask a question about one of the case studies
       </h1>
@@ -101,7 +101,7 @@ export default function Contact() {
             Send the note
           </button>
           <p className="text-xs text-ink/45">
-            Opens your email app with this note ready to send — nothing leaves your device until you hit send there.
+            Opens your email app with this note ready to send. Nothing leaves your device until you hit send there.
           </p>
         </form>
       </GinghamFrame>

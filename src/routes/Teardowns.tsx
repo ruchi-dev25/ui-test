@@ -23,7 +23,7 @@ export default function Teardowns() {
         Product teardowns
       </h1>
       <p className="mt-5 max-w-xl text-ink/70">
-        Short, opinionated reads on features I didn't build — what the team
+        Short, opinionated reads on features I didn't build: what the team
         got right, what I'd push back on, and the one idea worth stealing.
       </p>
 
