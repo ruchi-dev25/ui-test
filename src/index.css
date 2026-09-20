@@ -69,6 +69,8 @@ button:focus-visible,
 
 .font-hand {
   font-family: var(--font-hand);
+  font-style: italic;
+  font-weight: 700;
 }
 
 /* ---- gingham / checker trim, used sparingly as a frame accent ---- */
