@@ -1,25 +1,7 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import Doodle from "../components/Doodle";
 import GinghamFrame from "../components/GinghamFrame";
 import { profile } from "../data/profile";
-
-const links = [
-  {
-    label: "Email",
-    value: profile.email,
-    href: `mailto:${profile.email}`,
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/ruchi-madankar-42aabb28a",
-    href: profile.linkedin,
-  },
-  {
-    label: "Resume",
-    value: "download as PDF",
-    href: "/resume.pdf",
-  },
-];
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -27,6 +9,11 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedNote, setCopiedNote] = useState(false);
+
+  const getSubject = () => `Note from ${name || "Notebook Visitor"}`;
+  const getBody = () => `${message}\n\nFrom,\n${name || "Visitor"}${email ? ` (${email})` : ""}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,24 +45,51 @@ export default function Contact() {
         setEmail("");
         setMessage("");
       } else {
-        throw new Error(data.message || "Failed to deliver the note.");
+        const msg = data.message || "Unable to send note directly.";
+        throw new Error(msg);
       }
     } catch (err: any) {
-      console.error("Form submission error:", err);
+      console.error("Form submission notice:", err);
       setStatus("error");
       setErrorMsg(
-        err?.message || "Something went wrong sending the note. You can also send directly via email below."
+        err?.message?.includes("Activation")
+          ? "Form is awaiting one-time email activation from the owner. You can send your note directly using Gmail or your email app below:"
+          : (err?.message || "Something went wrong sending the note.")
       );
     }
   };
 
-  const handleMailtoFallback = () => {
-    const subject = `Hello from ${name || "your notebook"}`;
-    const body = `${message}\n\nFrom, ${name}${email ? ` (${email})` : ""}`;
-    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    } catch {
+      // fallback
+    }
   };
+
+  const handleCopyNote = async () => {
+    try {
+      await navigator.clipboard.writeText(getBody());
+      setCopiedNote(true);
+      setTimeout(() => setCopiedNote(false), 2500);
+    } catch {
+      // fallback
+    }
+  };
+
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    profile.email
+  )}&su=${encodeURIComponent(getSubject())}&body=${encodeURIComponent(getBody())}`;
+
+  const directGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    profile.email
+  )}`;
+
+  const mailtoUrl = `mailto:${profile.email}?subject=${encodeURIComponent(
+    getSubject()
+  )}&body=${encodeURIComponent(getBody())}`;
 
   return (
     <div className="mx-auto max-w-3xl px-6 pt-14 pb-24 sm:pt-20">
@@ -85,20 +99,20 @@ export default function Contact() {
         Say hello, or just ask a question about one of the case studies
       </h1>
       <p className="mt-6 max-w-lg leading-relaxed text-ink/75">
-        Leave a note below, or reach me directly through the links underneath.
-        I read everything that comes in and reply from the same inbox.
+        Leave a note below, or reach me directly through email or LinkedIn.
+        I read everything that comes in and reply promptly.
       </p>
 
       <GinghamFrame className="mt-12" rotate={-0.6}>
         <div className="aged-paper px-7 py-9 sm:px-9">
           {status === "success" ? (
             <div className="py-6 text-center">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-sage/20 text-2xl">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-sage/20 text-3xl">
                 💌
               </div>
               <p className="font-hand text-3xl text-sage">note delivered!</p>
               <p className="font-display mt-2 text-lg text-ink">
-                Thank you for writing. Your message went straight to my inbox ({profile.email}).
+                Thank you for writing. Your message has been dispatched to my inbox ({profile.email}).
               </p>
               <p className="mt-2 text-sm text-ink/70">
                 I'll read it and get back to you as soon as I can.
@@ -162,19 +176,35 @@ export default function Contact() {
               </div>
 
               {status === "error" && (
-                <div className="rounded-md border border-rose/40 bg-rose/10 p-3 text-sm text-ink/90">
-                  <p>{errorMsg}</p>
-                  <button
-                    type="button"
-                    onClick={handleMailtoFallback}
-                    className="mt-2 text-xs font-semibold text-deepink underline hover:text-ink"
-                  >
-                    Click here to send via your email client instead →
-                  </button>
+                <div className="rounded-xl border border-rose/50 bg-rose/15 p-4 text-sm text-ink/90">
+                  <p className="font-semibold text-deepink">{errorMsg}</p>
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <a
+                      href={gmailComposeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display inline-flex items-center gap-1.5 rounded-md bg-ink px-3 py-1.5 text-xs text-parchment hover:bg-deepink"
+                    >
+                      <span>✉️</span> Open in Gmail (pre-filled)
+                    </a>
+                    <a
+                      href={mailtoUrl}
+                      className="font-display inline-flex items-center gap-1.5 rounded-md border border-deepink/30 bg-white/60 px-3 py-1.5 text-xs text-ink hover:bg-white"
+                    >
+                      <span>📬</span> Mail App
+                    </a>
+                    <button
+                      type="button"
+                      onClick={handleCopyNote}
+                      className="font-display inline-flex items-center gap-1.5 rounded-md border border-deepink/30 bg-white/60 px-3 py-1.5 text-xs text-ink hover:bg-white"
+                    >
+                      <span>{copiedNote ? "✅ Copied!" : "📋 Copy note text"}</span>
+                    </button>
+                  </div>
                 </div>
               )}
 
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-3">
                 <button
                   type="submit"
                   disabled={status === "sending"}
@@ -189,31 +219,81 @@ export default function Contact() {
                     "Send the note"
                   )}
                 </button>
+                <a
+                  href={gmailComposeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-display inline-flex items-center gap-1.5 rounded-md border border-deepink/20 px-4 py-3 text-sm text-ink/80 transition-all hover:bg-white/50 hover:text-ink"
+                >
+                  <span>✉️</span> Or send via Gmail
+                </a>
               </div>
 
               <p className="text-xs text-ink/50">
-                Delivers directly to {profile.email}. I reply to every thoughtful note.
+                Delivers directly to {profile.email}. I reply to every note that lands in my inbox.
               </p>
             </form>
           )}
         </div>
       </GinghamFrame>
 
+      {/* Direct Contact Links */}
       <div className="mt-14 space-y-6 border-t border-deepink/10 pt-10">
-        {links.map((l) => (
+        {/* Email Row */}
+        <div className="flex flex-col gap-2 border-b border-dashed border-deepink/15 pb-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <div className="flex items-baseline gap-4">
+            <span className="font-hand w-28 shrink-0 text-xl text-sage">Email</span>
+            <a
+              href={`mailto:${profile.email}`}
+              className="font-display text-lg text-ink/90 underline decoration-lavender decoration-2 underline-offset-4 hover:text-deepink"
+            >
+              {profile.email}
+            </a>
+          </div>
+          <div className="flex items-center gap-2 pl-32 sm:pl-0">
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className="rounded border border-deepink/20 bg-white/70 px-2.5 py-1 text-xs text-ink/80 transition hover:bg-white hover:text-ink"
+            >
+              {copiedEmail ? "Copied! ✨" : "Copy email"}
+            </button>
+            <a
+              href={directGmailUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded border border-deepink/20 bg-white/70 px-2.5 py-1 text-xs text-ink/80 transition hover:bg-white hover:text-ink"
+            >
+              Open Gmail ↗
+            </a>
+          </div>
+        </div>
+
+        {/* LinkedIn Row */}
+        <div className="flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4">
+          <span className="font-hand w-28 shrink-0 text-xl text-sage">LinkedIn</span>
           <a
-            key={l.label}
-            href={l.href}
-            className="group flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4 transition-transform hover:translate-x-1"
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display text-lg text-ink/80 underline decoration-lavender decoration-2 underline-offset-4 transition-colors hover:text-deepink"
           >
-            <span className="font-hand w-28 shrink-0 text-xl text-sage">
-              {l.label}
-            </span>
-            <span className="font-display text-lg text-ink/80 transition-colors group-hover:text-ink">
-              {l.value}
-            </span>
+            linkedin.com/in/ruchi-madankar-42aabb28a ↗
           </a>
-        ))}
+        </div>
+
+        {/* Resume Row */}
+        <div className="flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4">
+          <span className="font-hand w-28 shrink-0 text-xl text-sage">Resume</span>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display text-lg text-ink/80 underline decoration-lavender decoration-2 underline-offset-4 transition-colors hover:text-deepink"
+          >
+            download as PDF ↗
+          </a>
+        </div>
       </div>
     </div>
   );

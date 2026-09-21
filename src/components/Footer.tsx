@@ -1,4 +1,4 @@
-import Doodle from "./Doodle";
+﻿import Doodle from "./Doodle";
 import { profile } from "../data/profile";
 
 export default function Footer() {
@@ -23,9 +23,11 @@ export default function Footer() {
             </a>
             <a
               href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-ink/70 underline decoration-lavender decoration-2 underline-offset-4 hover:text-ink"
             >
-              LinkedIn
+              LinkedIn ↗
             </a>
             <Doodle
               variant="sage-elder"
