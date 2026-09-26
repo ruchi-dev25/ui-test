@@ -74,8 +74,8 @@ export default function StabilityOSTeardown() {
   const [openRisk, setOpenRisk] = useState(0);
   const selectedFlow = flow[activeFlow] ?? flow[0];
 
-  return (
-    <div className="mx-auto max-w-6xl px-4 pt-10 pb-24 sm:px-6 sm:pt-14">
+    return (
+    <div className="mx-auto max-w-[1380px] px-4 pt-10 pb-24 sm:px-6 sm:pt-14">
       {/* Portfolio Header & Navigation */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-hand text-2xl text-sage">
         <Link to="/" className="flex items-center gap-1.5 hover:text-ink">
@@ -103,17 +103,17 @@ export default function StabilityOSTeardown() {
       </div>
 
       {/* Torn Notebook Paper Sheet containing the EXACT teardown layout */}
-      <div className="relative mt-10 rounded-3xl border border-ink/20 bg-paper shadow-[0_20px_45px_-15px_rgba(54,42,74,0.15),0_2px_8px_rgba(54,42,74,0.06)] overflow-hidden">
+      <div className="relative mt-10 rounded-3xl border-2 border-ink bg-paper shadow-[0_22px_45px_-15px_rgba(54,42,74,0.18),0_2px_8px_rgba(54,42,74,0.06)] overflow-hidden">
         {/* Top torn decorative strip */}
-        <div className="h-3.5 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_20%,transparent)_0px,color-mix(in_oklab,var(--sketch)_20%,transparent)_10px,transparent_10px,transparent_20px)] border-b border-ink/15" />
+        <div className="h-4 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_25%,transparent)_0px,color-mix(in_oklab,var(--sketch)_25%,transparent)_12px,transparent_12px,transparent_24px)] border-b border-ink/20" />
 
-        <div className="paper-sheet relative overflow-hidden bg-paper px-4 pb-12 pt-5 sm:px-8 lg:px-12 text-ink">
+        <div className="paper-sheet relative overflow-hidden bg-paper px-4 pb-12 pt-6 sm:px-8 lg:px-12 text-ink">
         <DoodleFlower className="absolute -left-2 top-44 text-5xl text-peach" />
         <DoodleFlower className="absolute right-3 top-24 text-4xl text-blue-strong" />
 
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-dashed border-sketch pb-4">
-          <div className="flex min-w-0 items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full border border-ink bg-butter"><ShieldCheck className="size-5" /></span><div className="min-w-0"><b className="block truncate font-hand text-xl">Stability OS</b><span className="block truncate text-[10px] uppercase tracking-widest text-note">PM New Grad Accelerator — [Your Name]</span></div></div>
-          <Link to="/original" className="font-note text-sm text-note underline decoration-wavy">view v1 ↗</Link> <Link to="/scrapbook" className="font-note text-sm text-note underline decoration-wavy">scrapbook ↗</Link>
+          <div className="flex min-w-0 items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full border border-ink bg-butter"><ShieldCheck className="size-5" /></span><div className="min-w-0"><b className="block truncate font-hand text-xl">Stability OS</b><span className="block truncate text-[10px] uppercase tracking-widest text-note">PM New Grad Accelerator — Ruchi Madankar</span></div></div>
+          <Link to="/teardowns/stripe-stability-os" className="font-note text-sm text-note underline decoration-wavy">view v1 ↗</Link> <Link to="/teardowns/stripe-stability-os" className="font-note text-sm text-note underline decoration-wavy">scrapbook ↗</Link>
         </header>
 
         <section className="grid gap-5 py-9 lg:grid-cols-[1.2fr_.8fr] lg:items-stretch">
@@ -309,10 +309,10 @@ export default function StabilityOSTeardown() {
 
         <section className="mt-8 irregular-panel bg-lavender p-6 text-center sm:p-9"><DoodleFlower className="mx-auto block text-4xl"/><h2 className="mt-2 font-hand text-3xl font-bold">The product promise</h2><p className="mx-auto mt-3 max-w-2xl text-sm leading-6">Explain risk before it becomes a crisis. Show the path to resolution. Protect Stripe’s loss rate while giving good merchants time, clarity, and options.</p><a href="mailto:your@email.com" className="mt-5 inline-flex items-center gap-2 rounded-full border border-ink bg-paper px-5 py-2 text-sm shadow-paper"><Mail className="size-4"/> Contact</a></section>
 
-        <footer className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-dashed border-sketch pt-5 text-center text-xs text-note sm:flex-row sm:text-left"><span>Built for Stripe PM New Grad Accelerator — [Your Name] — [LinkedIn/GitHub]</span><span className="font-note text-base">made with research, not guesswork ✿</span></footer>
-        </div>
+        <footer className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-dashed border-sketch pt-5 text-center text-xs text-note sm:flex-row sm:text-left"><span>Built for Stripe PM New Grad Accelerator — Ruchi Madankar — [LinkedIn/GitHub]</span><span className="font-note text-base">made with research, not guesswork ✿</span></footer>
+              </div>
         {/* Bottom torn decorative strip */}
-        <div className="h-3.5 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_20%,transparent)_0px,color-mix(in_oklab,var(--sketch)_20%,transparent)_10px,transparent_10px,transparent_20px)] border-t border-ink/15" />
+        <div className="h-4 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_25%,transparent)_0px,color-mix(in_oklab,var(--sketch)_25%,transparent)_12px,transparent_12px,transparent_24px)] border-t border-ink/20" />
       </div>
 
       {/* Bottom Navigation */}
