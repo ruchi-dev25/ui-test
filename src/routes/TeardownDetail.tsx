@@ -1,6 +1,7 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+﻿import { Link, Navigate, useParams } from "react-router-dom";
 import BrandLogo from "../components/BrandLogo";
 import RibbonTag from "../components/RibbonTag";
+import StabilityOSTeardown from "../components/StabilityOSTeardown";
 import { getTeardown, teardowns, verdictLabel, type Verdict } from "../data/teardowns";
 
 const verdictColor: Record<Verdict, string> = {
@@ -14,6 +15,10 @@ export default function TeardownDetail() {
   const teardown = getTeardown(slug ?? "");
 
   if (!teardown) return <Navigate to="/teardowns" replace />;
+
+  if (teardown.slug === "stripe-stability-os") {
+    return <StabilityOSTeardown />;
+  }
 
   const index = teardowns.findIndex((t) => t.slug === teardown.slug);
   const next = teardowns[(index + 1) % teardowns.length];

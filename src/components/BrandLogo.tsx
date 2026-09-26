@@ -1,9 +1,10 @@
-export type Brand = "duolingo" | "notion" | "linkedin";
+﻿export type Brand = "duolingo" | "notion" | "linkedin" | "stripe";
 
 const brandBg: Record<Brand, string> = {
   duolingo: "#58CC02",
   notion: "#FFFFFF",
   linkedin: "#0A66C2",
+  stripe: "#635BFF",
 };
 
 function Mark({ brand }: { brand: Brand }) {
@@ -26,6 +27,15 @@ function Mark({ brand }: { brand: Brand }) {
         <g>
           <rect x="9" y="9" width="30" height="30" rx="4" fill="white" stroke="#1F1F1F" strokeWidth="1.8" />
           <path d="M15 15h3.2l8.6 11.8V15H30v18h-3.2l-8.6-11.8V33H15z" fill="#1F1F1F" />
+        </g>
+      );
+    case "stripe":
+      return (
+        <g>
+          <path
+            d="M21.5 20.8c0-1.8 1.5-2.6 3.9-2.6 3.5 0 7.2 1.2 9.8 2.8l1.8-6.1c-2.8-1.5-6.9-2.5-11.6-2.5-9.3 0-15.5 4.9-15.5 13.1 0 12.8 17.6 10.7 17.6 16.3 0 2.1-1.9 2.9-4.5 2.9-4.1 0-8.7-1.7-11.9-3.7l-1.9 6.2c3.4 1.9 8.3 3.1 13.8 3.1 9.8 0 16.2-4.8 16.2-13.4C40.7 23.3 21.5 25.8 21.5 20.8z"
+            fill="white"
+          />
         </g>
       );
     case "linkedin":
