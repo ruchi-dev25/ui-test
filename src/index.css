@@ -252,3 +252,141 @@ button:focus-visible,
   border-color: transparent var(--color-parchment-dim) transparent transparent;
   filter: drop-shadow(-1px 1px 1px rgba(43, 36, 64, 0.15));
 }
+
+/* ==========================================================================
+   STABILITY OS DESIGN SYSTEM & EXACT UTILITIES
+   ========================================================================== */
+
+:root, .paper-world, .scrapbook {
+  --canvas: oklch(0.91 0.022 65);
+  --paper: oklch(0.975 0.012 50);
+  --sketch: oklch(0.55 0.025 315 / 0.55);
+  --note: oklch(0.43 0.035 315);
+  --blush: oklch(0.92 0.03 18);
+  --peach: oklch(0.85 0.075 47);
+  --cream: oklch(0.95 0.035 85);
+  --butter: oklch(0.92 0.085 95);
+  --lavender: oklch(0.86 0.07 290);
+  --blue: oklch(0.82 0.09 245);
+  --blue-soft: oklch(0.92 0.035 240);
+  --blue-strong: oklch(0.65 0.12 245);
+  --mist: oklch(0.91 0.025 205);
+  --coral: oklch(0.68 0.12 25);
+  --sage: oklch(0.62 0.085 145);
+  --sage-soft: oklch(0.88 0.055 140);
+  --alert: oklch(0.52 0.16 25);
+  --ink: oklch(0.19 0.03 279);
+  --shadow-paper: 4px 5px 0 oklch(0.3 0.025 315 / 0.2);
+}
+
+.paper-sheet {
+  background-color: var(--paper);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--ink) 10%, transparent);
+}
+
+.irregular-panel {
+  border: 1.5px solid var(--ink);
+  border-radius: 2.6rem 1.5rem 2.9rem 1.8rem / 1.8rem 2.7rem 1.5rem 2.5rem;
+  box-shadow: var(--shadow-paper);
+}
+
+.widget-panel {
+  border: 1.5px solid var(--ink);
+  border-radius: 2.4rem;
+  box-shadow: var(--shadow-paper);
+}
+
+.flow-pill {
+  border: 1.5px solid var(--ink);
+  border-radius: 1.7rem;
+  background: color-mix(in oklab, var(--paper) 80%, transparent);
+  box-shadow: 2px 2px 0 oklch(0.3 0.025 315 / 0.15);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.flow-pill:hover {
+  transform: translate(-1px, -1px);
+}
+
+.metric-scrap {
+  border: 1.5px solid var(--ink);
+  border-radius: 1.3rem 2rem 1.4rem 1.7rem;
+  box-shadow: 3px 3px 0 oklch(0.3 0.025 315 / 0.15);
+}
+
+.timeline-note {
+  border-radius: 1rem 1.8rem 1.2rem 1.5rem;
+  transition: transform 0.18s ease;
+}
+.timeline-note:hover {
+  transform: translateY(-2px);
+}
+
+.torn-note {
+  clip-path: polygon(0 3%, 6% 0, 12% 3%, 18% 0, 25% 2%, 34% 0, 42% 3%, 50% 0, 58% 2%, 67% 0, 75% 3%, 83% 0, 92% 2%, 100% 0, 100% 97%, 94% 100%, 88% 97%, 81% 100%, 73% 98%, 65% 100%, 57% 97%, 49% 100%, 41% 98%, 32% 100%, 24% 97%, 16% 100%, 8% 98%, 0 100%);
+  border: 1px dashed var(--sketch);
+}
+
+.doodle-flower {
+  font-family: "Gaegu", cursive;
+  filter: drop-shadow(1px 1px 0 color-mix(in oklab, var(--ink) 25%, transparent));
+}
+
+.score-dial {
+  background: conic-gradient(var(--coral) 0 223deg, color-mix(in oklab, var(--paper) 60%, transparent) 223deg 360deg);
+  box-shadow: 0 0 0 1.5px var(--ink);
+}
+
+/* SVG Chart Rules */
+.chart-grid { stroke: var(--sketch); stroke-width: 1; stroke-dasharray: 4 6; fill: none; }
+.chart-line { stroke: var(--ink); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.chart-fill { fill: color-mix(in oklab, var(--peach) 40%, transparent); }
+.chart-dot { fill: var(--coral); stroke: var(--ink); stroke-width: 1.5; }
+.cash-line { stroke: var(--sage); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cash-fill { fill: color-mix(in oklab, var(--sage-soft) 45%, transparent); }
+.hold-line { stroke: var(--coral); stroke-width: 2; stroke-dasharray: 4 4; fill: none; stroke-linecap: round; }
+.bar-a { fill: var(--peach); stroke: var(--ink); stroke-width: 1.2; }
+.bar-b { fill: var(--lavender); stroke: var(--ink); stroke-width: 1.2; }
+.bar-c { fill: var(--blue); stroke: var(--ink); stroke-width: 1.2; }
+.bar-d { fill: var(--butter); stroke: var(--ink); stroke-width: 1.2; }
+.bar-ink { fill: var(--ink); }
+.value-text { font-family: "Cormorant Garamond", serif; font-size: 24px; font-weight: 700; fill: var(--ink); }
+.tick-text { font-size: 19px; fill: var(--ink); opacity: 0.75; }
+.matrix-cell { stroke: var(--sketch); stroke-width: 1; stroke-dasharray: 2 4; }
+.mini-line { stroke: var(--ink); stroke-width: 1.5; fill: none; }
+
+/* Font utilities */
+.font-hand { font-family: "Cormorant Garamond", serif; font-weight: 700; }
+.font-note { font-family: "Caveat", cursive; font-size: 1.15em; }
+
+/* Colors shorthand utilities */
+.bg-canvas { background-color: var(--canvas); }
+.bg-paper { background-color: var(--paper); }
+.bg-butter { background-color: var(--butter); }
+.bg-peach { background-color: var(--peach); }
+.bg-cream { background-color: var(--cream); }
+.bg-blush { background-color: var(--blush); }
+.bg-lavender { background-color: var(--lavender); }
+.bg-blue { background-color: var(--blue); }
+.bg-blue-soft { background-color: var(--blue-soft); }
+.bg-blue-strong { background-color: var(--blue-strong); }
+.bg-mist { background-color: var(--mist); }
+.bg-coral { background-color: var(--coral); }
+.bg-sage { background-color: var(--sage); }
+.bg-sage-soft { background-color: var(--sage-soft); }
+.bg-alert { background-color: var(--alert); }
+
+.text-ink { color: var(--ink); }
+.text-note { color: var(--note); }
+.text-coral { color: var(--coral); }
+.text-sage { color: var(--sage); }
+.text-alert { color: var(--alert); }
+.text-paper { color: var(--paper); }
+
+.border-ink { border-color: var(--ink); }
+.border-sketch { border-color: var(--sketch); }
+.border-peach { border-color: var(--peach); }
+.border-lavender { border-color: var(--lavender); }
+.border-butter { border-color: var(--butter); }
+.border-coral { border-color: var(--coral); }
+
+.shadow-paper { box-shadow: var(--shadow-paper); }
