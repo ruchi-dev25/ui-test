@@ -18,8 +18,10 @@ function Button({ className, children, ...props }: React.ButtonHTMLAttributes<HT
 }
 
 import { Link } from "react-router-dom";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Mail, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import BrandLogo from "./BrandLogo";
+import RibbonTag from "./RibbonTag";
 
 
 
@@ -85,19 +87,46 @@ export default function StabilityOSTeardown() {
         </Link>
       </div>
 
-      {/* Torn Notebook Paper Sheet containing the EXACT teardown layout */}
-      <div className="relative mt-8 rounded-3xl border-2 border-ink bg-paper shadow-paper overflow-hidden">
-        {/* Top torn decorative strip */}
-        <div className="h-4 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_25%,transparent)_0px,color-mix(in_oklab,var(--sketch)_25%,transparent)_12px,transparent_12px,transparent_24px)] border-b border-ink/20" />
+      {/* Portfolio intro */}
+      <div className="mt-8 flex items-start gap-6">
+        <BrandLogo brand="stripe" className="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
+        <div>
+          <RibbonTag color="var(--color-sage)" rotate={-2}>
+            Product teardown
+          </RibbonTag>
+          <h1 className="font-display mt-3 text-3xl leading-tight text-ink sm:text-4xl">
+            Stripe — Stability OS
+          </h1>
+          <p className="mt-1 text-sm text-ink/50">fintech · risk infrastructure</p>
+        </div>
+      </div>
 
-        <div className="paper-sheet relative overflow-hidden bg-paper px-4 pb-12 pt-6 sm:px-8 lg:px-12 text-ink">
+      <p className="font-display mt-8 max-w-2xl border-l-2 border-lavender pl-5 text-xl leading-snug text-deepink italic">
+        A proposal for helping Stripe merchants understand rising risk before a hold, track reviews
+        clearly, and keep cash flowing while decisions are made.
+      </p>
+
+      <Link
+        to="/teardowns/stripe-stability-os/prototype"
+        className="mt-6 inline-flex items-center gap-2 rounded-full border border-ink bg-paper px-5 py-2 font-medium text-ink shadow-paper transition-transform hover:-translate-y-0.5"
+      >
+        Explore the prototype <ArrowUpRight className="size-4" aria-hidden="true" />
+      </Link>
+
+      <div className="mt-12 flex items-center gap-4">
+        <span className="font-hand text-2xl text-sage">the teardown</span>
+        <span className="h-px flex-1 border-t border-dashed border-sketch" />
+      </div>
+
+      {/* Notebook page resting on a warm kraft desk */}
+      <div className="desk-canvas relative mt-6 rounded-[1.6rem] p-3 sm:p-6 lg:p-8">
+        <span className="washi-tape left-10 -top-2 -rotate-3" aria-hidden="true" />
+        <span className="washi-tape right-12 -top-2 rotate-2" aria-hidden="true" />
+
+        <div className="paper-sheet relative overflow-hidden rounded-[0.6rem] border border-ink/25 px-4 pb-12 pt-8 text-ink shadow-paper sm:px-8 lg:px-12">
         <DoodleFlower className="absolute -left-2 top-44 text-5xl text-peach" />
         <DoodleFlower className="absolute right-3 top-24 text-4xl text-blue-strong" />
 
-        <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-dashed border-sketch pb-4">
-          <div className="flex min-w-0 items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full border border-ink bg-butter"><ShieldCheck className="size-5" /></span><div className="min-w-0"><b className="block truncate font-hand text-xl">Stripe teardown</b><span className="block truncate text-[10px] uppercase tracking-widest text-note">PM New Grad Accelerator — Ruchi Madankar</span></div></div>
-          <Link to="/teardowns/stripe-stability-os/prototype" className="font-note text-sm text-note underline decoration-wavy">prototype ↗</Link>
-        </header>
 
         <section className="grid gap-5 py-9 lg:grid-cols-[1.2fr_.8fr] lg:items-stretch">
           <div className="irregular-panel bg-blush p-6 sm:p-8">
@@ -293,13 +322,59 @@ export default function StabilityOSTeardown() {
         </section>
 
 
-        <section className="mt-8 irregular-panel bg-lavender p-6 text-center sm:p-9"><DoodleFlower className="mx-auto block text-4xl"/><h2 className="mt-2 font-hand text-3xl font-bold">The product promise</h2><p className="mx-auto mt-3 max-w-2xl text-sm leading-6">Explain risk before it becomes a crisis. Show the path to resolution. Protect Stripe’s loss rate while giving good merchants time, clarity, and options.</p><a href="mailto:your@email.com" className="mt-5 inline-flex items-center gap-2 rounded-full border border-ink bg-paper px-5 py-2 text-sm shadow-paper"><Mail className="size-4"/> Contact</a></section>
-
-        <footer className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-dashed border-sketch pt-5 text-center text-xs text-note sm:flex-row sm:text-left"><span>Built for Stripe PM New Grad Accelerator — Ruchi Madankar — [LinkedIn/GitHub]</span><span className="font-note text-base">made with research, not guesswork ✿</span></footer>
+        <footer className="mt-12 border-t border-dashed border-sketch pt-8">
+          <p className="max-w-xl text-sm leading-6 text-ink/75">
+            Thanks for reading all the way down. This teardown is my own synthesis from public
+            merchant reviews and forum accounts — the numbers are illustrative, the pain is real.
+          </p>
+          <p className="font-note mt-6 text-lg text-note">Written with research, not guesswork,</p>
+          <p className="font-hand mt-1 text-4xl leading-none">by Ruchi Madankar</p>
+          <p className="mt-3 text-xs uppercase tracking-widest text-note">Product teardown · Stability OS</p>
+        </footer>
               </div>
-        {/* Bottom torn decorative strip */}
-        <div className="h-4 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_25%,transparent)_0px,color-mix(in_oklab,var(--sketch)_25%,transparent)_12px,transparent_12px,transparent_24px)] border-t border-ink/20" />
       </div>
+
+      {/* My thoughts & what I learnt */}
+      <section className="mt-16 max-w-3xl">
+        <h2 className="font-display text-2xl text-ink sm:text-3xl">My thoughts &amp; what I learnt</h2>
+        <div className="mt-8 grid gap-8 sm:grid-cols-2">
+          <div>
+            <h3 className="font-display text-lg text-sage">What I think works</h3>
+            <ul className="mt-3 space-y-3">
+              <li className="border-l-2 border-sage/40 pl-4 text-ink/80">
+                A continuous risk score turns a sudden, unexplained freeze into something a merchant
+                can see coming and act on.
+              </li>
+              <li className="border-l-2 border-sage/40 pl-4 text-ink/80">
+                Putting an owner, a status and an ETA on every review makes the wait bearable even
+                when the answer takes time.
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-display text-lg text-rose">What I'd still wrestle with</h3>
+            <ul className="mt-3 space-y-3">
+              <li className="border-l-2 border-rose/40 pl-4 text-ink/80">
+                Showing enough to guide honest merchants without handing bad actors a map of the
+                thresholds.
+              </li>
+              <li className="border-l-2 border-rose/40 pl-4 text-ink/80">
+                Promising review speed only works if document collection is largely automated, so
+                the ops team can keep up.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="widget-card widget-cream mt-10 px-8 py-8">
+          <p className="font-hand text-2xl text-sage">what I learnt</p>
+          <p className="font-display mt-3 text-xl leading-relaxed text-ink">
+            Working through this taught me that trust is a product surface. The hard part wasn't
+            designing a score — it was deciding how much to reveal, and accepting that a good risk
+            system has to protect the platform and the merchant at the same time.
+          </p>
+        </div>
+      </section>
 
       {/* Bottom Navigation */}
       <div className="mt-16 flex items-center justify-between border-t border-ink/10 pt-8">

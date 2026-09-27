@@ -1,2 +1,6 @@
-- [x] Place the Stripe Stability OS heading and brief inside the scrapbook teardown.
-- [x] Link the Stability OS prototype directly from the scrapbook.
+- [x] Portfolio heading, brief and prototype link before the teardown page.
+- [x] Notebook page on a warm kraft desk background (reference image).
+- [x] Remove duplicate header inside the teardown page.
+- [x] Remove product promise section and PM accelerator mentions.
+- [x] Letter-style "by Ruchi Madankar" sign-off at the end of the teardown.
+- [x] "My thoughts & what I learnt" section, then next-teardown navigation.
