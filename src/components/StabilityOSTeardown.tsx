@@ -387,9 +387,9 @@ export default function StabilityOSTeardown() {
         <Link to="/teardowns" className="font-hand text-2xl text-sage hover:text-ink">
           &larr; All Teardowns
         </Link>
-         <Link to="/teardowns/duolingo-streak-freeze" className="text-right font-display text-ink/70 hover:text-ink">
-          Next teardown
-           <span className="mt-0.5 block text-sm text-sage">Duolingo: streak freeze &rarr;</span>
+        <Link to="/projects" className="text-right font-display text-ink/70 hover:text-ink">
+          Explore Projects
+          <span className="mt-0.5 block text-sm text-sage">Shipped product work &rarr;</span>
         </Link>
       </div>
     </div>

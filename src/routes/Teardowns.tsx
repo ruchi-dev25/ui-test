@@ -27,7 +27,7 @@ export default function Teardowns() {
         got right, what I'd push back on, and the one idea worth stealing.
       </p>
 
-      <div className="mt-16 grid gap-6 sm:grid-cols-2">
+      <div className="mt-16 grid gap-6 sm:grid-cols-1 max-w-2xl">
         {teardowns.map((t, i) => (
           <Link
             to={`/teardowns/${t.slug}`}

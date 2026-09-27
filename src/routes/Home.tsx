@@ -19,7 +19,7 @@ const fadeUp = {
 
 const stats = [
   { to: 2, suffix: "", label: "quests logged", tint: "mint" as const, rotate: -4 },
-  { to: 3, suffix: "", label: "teardowns written", tint: "periwinkle" as const, rotate: 3 },
+  { to: 1, suffix: "", label: "teardown written", tint: "periwinkle" as const, rotate: 3 },
   { to: 20, suffix: "", label: "prompt scenarios per QA pass", tint: "amber" as const, rotate: -2 },
   { to: 1, suffix: "", label: "companion, always awake", tint: "rose" as const, rotate: 4 },
 ];
@@ -233,7 +233,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="mt-8 grid gap-5 sm:grid-cols-1 max-w-2xl">
           {featuredTeardowns.map((t, i) => (
             <Link to={`/teardowns/${t.slug}`} key={t.slug} className="group block">
               <div

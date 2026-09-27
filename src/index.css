@@ -629,3 +629,6 @@ button:focus-visible,
 .stripe-ui .su-pill-grey { background: #f1f4f8; color: var(--su-muted); }
 .stripe-ui .su-meter { background: #eef1f6; border-radius: 999px; overflow: hidden; height: 6px; }
 .stripe-ui .su-meter > span { display: block; height: 100%; border-radius: 999px; background: var(--su-brand); }
+.stripe-ui *::-webkit-scrollbar { display: none; }
+.stripe-ui * { -ms-overflow-style: none; scrollbar-width: none; }
+

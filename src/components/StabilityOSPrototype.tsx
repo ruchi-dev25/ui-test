@@ -66,13 +66,13 @@ export default function StabilityOSPrototype() {
             Test mode
           </span>
           <Bell className="size-4 text-white/70" />
-          <span className="text-[13px] font-semibold">Acme Studio</span>
+          <span className="text-[13px] font-semibold">Kite Studio</span>
         </div>
       </div>
 
       <div className="border-b bg-white su-line" style={{ borderBottomWidth: 1 }}>
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6">
-          <div className="flex gap-6 overflow-x-auto">
+          <div className="flex gap-6 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {tabs.map((t, i) => (
               <button key={t} className="su-tab whitespace-nowrap" data-active={tab === i} onClick={() => setTab(i)}>
                 {t}
