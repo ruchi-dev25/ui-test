@@ -180,7 +180,7 @@ export default function StabilityOSTeardown() {
             <PaperTitle note="illustrative $100k month">Money flow &amp; settlement math</PaperTitle>
             <svg viewBox="0 0 520 240" className="w-full" role="img" aria-label="Waterfall of captured volume reduced by disputes and reserve before release">
               <line x1="30" y1="200" x2="505" y2="200" className="axis-line" />
-              {[["Captured", 100, "bar-a", "$100.0k"], ["Disputes", 3.2, "bar-b", "-$3.2k"], ["Reserve held", 29, "bar-b", "-$29.0k"], ["Released now", 67.8, "bar-c", "$67.8k"]].map(([label, val, cls, money], i) => {
+              {[["Captured", 100, "bar-a", "$100.0k"], ["Fees", 3.0, "bar-d", "-$3.0k"], ["Disputes", 3.2, "bar-b", "-$3.2k"], ["Reserve held", 29, "bar-b", "-$29.0k"], ["Released now", 64.8, "bar-c", "$64.8k"]].map(([label, val, cls, money], i) => {
                 const h = (val as number) * 1.55;
                 return (
                   <g key={label as string}>
