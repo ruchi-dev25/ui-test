@@ -319,31 +319,134 @@ button:focus-visible,
   box-shadow: 0 1px 0 color-mix(in oklab, var(--ink) 10%, transparent);
 }
 
-/* Warm kraft desk surface the notebook page sits on */
-.desk-canvas {
-  background-color: var(--canvas);
+/* ---- single lined notebook sheet (no outer board, no second layer) ---- */
+.notebook-sheet {
+  position: relative;
+  background-color: oklch(0.976 0.011 82);
   background-image:
-    radial-gradient(color-mix(in oklab, var(--ink) 7%, transparent) 1px, transparent 1.2px),
     linear-gradient(
-      160deg,
-      color-mix(in oklab, var(--cream) 55%, transparent),
-      transparent 55%
-    );
-  background-size: 7px 7px, 100% 100%;
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 12%, transparent),
-    0 18px 40px color-mix(in oklab, var(--ink) 10%, transparent);
+      to bottom,
+      color-mix(in oklab, var(--blue-strong) 34%, transparent) 0 1px,
+      transparent 1px 34px
+    ),
+    radial-gradient(circle at 16% 6%, oklch(1 0 0 / 0.75), transparent 45%);
+  background-position: 0 0, 0 0;
+  border: 0;
+  border-radius: 0.2rem;
+  box-shadow:
+    0 26px 44px -30px color-mix(in oklab, var(--ink) 45%, transparent),
+    0 3px 9px color-mix(in oklab, var(--ink) 12%, transparent);
 }
 
+/* torn top + bottom edge of the sheet */
+.notebook-sheet::before,
+.notebook-sheet::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 9px;
+  background: inherit;
+  pointer-events: none;
+}
+.notebook-sheet::before {
+  top: -8px;
+  clip-path: polygon(0 100%, 4% 30%, 9% 80%, 15% 20%, 22% 70%, 29% 25%, 36% 75%, 44% 15%, 52% 70%, 60% 25%, 68% 80%, 76% 30%, 84% 75%, 92% 25%, 100% 70%, 100% 100%);
+}
+.notebook-sheet::after {
+  bottom: -8px;
+  clip-path: polygon(0 0, 5% 70%, 12% 20%, 20% 75%, 28% 25%, 36% 80%, 45% 30%, 54% 75%, 62% 20%, 70% 70%, 78% 25%, 86% 80%, 94% 30%, 100% 65%, 100% 0);
+}
+
+/* ---- sticky-note / washi tape accents ---- */
 .washi-tape {
   position: absolute;
   width: 5.5rem;
   height: 1.55rem;
-  background: color-mix(in oklab, var(--butter) 80%, transparent);
-  border-left: 1px dashed color-mix(in oklab, var(--ink) 25%, transparent);
-  border-right: 1px dashed color-mix(in oklab, var(--ink) 25%, transparent);
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in oklab, var(--butter) 78%, transparent) 0 8px,
+    color-mix(in oklab, var(--cream) 82%, transparent) 8px 16px
+  );
   box-shadow: 0 1px 3px color-mix(in oklab, var(--ink) 18%, transparent);
-  z-index: 2;
+  z-index: 3;
 }
+
+/* every pasted card gets a small tape strip, like a note stuck on the page */
+.taped {
+  position: relative;
+}
+.taped::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  translate: -50% 0;
+  rotate: -2deg;
+  width: 96px;
+  height: 22px;
+  background: repeating-linear-gradient(
+    45deg,
+    oklch(0.9 0.05 70 / 0.8) 0 8px,
+    oklch(0.95 0.03 70 / 0.8) 8px 16px
+  );
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--ink) 15%, transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+.taped-alt::before {
+  rotate: 3deg;
+  left: 28%;
+  background: repeating-linear-gradient(
+    90deg,
+    oklch(0.88 0.05 300 / 0.75) 0 6px,
+    oklch(0.94 0.03 300 / 0.75) 6px 12px
+  );
+}
+
+/* pasted-note feel inside the teardown sheet: softer paper shadows + auto tape */
+.teardown-sheet .irregular-panel,
+.teardown-sheet .widget-panel,
+.teardown-sheet .metric-scrap {
+  box-shadow:
+    0 1px 0 oklch(1 0 0 / 0.8) inset,
+    0 14px 28px -18px color-mix(in oklab, var(--ink) 40%, transparent),
+    0 2px 5px color-mix(in oklab, var(--ink) 12%, transparent);
+}
+.teardown-sheet section,
+.teardown-sheet article {
+  position: relative;
+}
+.teardown-sheet section > .irregular-panel::before,
+.teardown-sheet article.widget-panel::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  translate: -50% 0;
+  rotate: -2deg;
+  width: 104px;
+  height: 22px;
+  background: repeating-linear-gradient(
+    45deg,
+    oklch(0.9 0.05 70 / 0.78) 0 8px,
+    oklch(0.95 0.03 70 / 0.78) 8px 16px
+  );
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--ink) 15%, transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+.teardown-sheet article.widget-panel:nth-of-type(even)::before {
+  rotate: 3deg;
+  left: 30%;
+  background: repeating-linear-gradient(
+    90deg,
+    oklch(0.88 0.05 300 / 0.72) 0 6px,
+    oklch(0.94 0.03 300 / 0.72) 6px 12px
+  );
+}
+
+
 
 .irregular-panel {
   border: 1.5px solid var(--ink);
@@ -416,9 +519,20 @@ button:focus-visible,
 .matrix-cell { fill: none; stroke: var(--sketch); stroke-width: 1; stroke-dasharray: 2 4; }
 .mini-line { stroke: var(--ink); stroke-width: 1.5; fill: none; }
 
-/* Font utilities */
-.font-hand { font-family: "Cormorant Garamond", serif; font-weight: 700; letter-spacing: -0.01em; }
-.font-note { font-family: "Caveat", cursive; font-size: 1.15em; }
+/* Font utilities — scoped to the teardown sheet so the rest of the notebook keeps its own hand */
+.teardown-sheet .font-hand,
+.scrapbook .font-hand {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.01em;
+}
+.teardown-sheet .font-note,
+.scrapbook .font-note {
+  font-family: "Caveat", cursive;
+  font-style: normal;
+  font-size: 1.15em;
+}
 
 /* Shorthand Colors */
 .bg-canvas { background-color: var(--canvas); }

@@ -51,9 +51,6 @@ const risks = [
   ["Partner constraints", "SLA on review speed, not guaranteed release; communicate partner steps in tracker."],
 ];
 
-function DoodleFlower({ className }: { className?: string }) {
-  return <span className={cn("doodle-flower", className)} aria-hidden="true">✿</span>;
-}
 
 function PaperTitle({ children, note }: { children: React.ReactNode; note?: string }) {
   return <div className="mb-5 flex items-end gap-4"><h2 className="font-hand text-3xl font-bold text-ink sm:text-4xl">{children}</h2><span className="mb-1 h-px flex-1 border-t border-dashed border-sketch" />{note && <span className="hidden font-note text-sm text-note sm:block">{note}</span>}</div>;
@@ -118,14 +115,14 @@ export default function StabilityOSTeardown() {
         <span className="h-px flex-1 border-t border-dashed border-sketch" />
       </div>
 
-      {/* Notebook page resting on a warm kraft desk */}
-      <div className="desk-canvas relative mt-6 rounded-[1.6rem] p-3 sm:p-6 lg:p-8">
-        <span className="washi-tape left-10 -top-2 -rotate-3" aria-hidden="true" />
-        <span className="washi-tape right-12 -top-2 rotate-2" aria-hidden="true" />
+      {/* One single lined notebook sheet, taped to the page */}
+      <div className="relative mt-10">
+        <span className="washi-tape left-8 -top-3 -rotate-3 sm:left-16" aria-hidden="true" />
+        <span className="washi-tape right-10 -top-3 rotate-2 sm:right-20" aria-hidden="true" />
 
-        <div className="paper-sheet relative overflow-hidden rounded-[0.6rem] border border-ink/25 px-4 pb-12 pt-8 text-ink shadow-paper sm:px-8 lg:px-12">
-        <DoodleFlower className="absolute -left-2 top-44 text-5xl text-peach" />
-        <DoodleFlower className="absolute right-3 top-24 text-4xl text-blue-strong" />
+        <div className="teardown-sheet notebook-sheet relative px-4 pb-12 pt-10 text-ink sm:px-8 lg:px-12">
+
+
 
 
         <section className="grid gap-5 py-9 lg:grid-cols-[1.2fr_.8fr] lg:items-stretch">
@@ -168,7 +165,7 @@ export default function StabilityOSTeardown() {
             "Communication is opaque and slow, creating cash-flow crises and churn.",
             "Public reviews consistently flag this as the #1 merchant pain point on Stripe.",
           ].map((x,i)=><div className="grid grid-cols-[2rem_1fr] gap-2" key={x}><span className="font-hand text-xl text-coral">0{i+1}</span><p className="text-sm leading-6">{x}</p></div>)}</div><div className="mt-6 -rotate-1 border-2 border-ink bg-peach p-4 text-center shadow-paper"><strong className="font-hand text-4xl">60–180+</strong><span className="block font-note text-lg">day holds reported</span></div></article>
-          <article className="widget-panel bg-blue-soft p-6"><PaperTitle note="merchant impact model">Why this matters</PaperTitle><div className="grid gap-5 sm:grid-cols-[1fr_12rem]"><div><svg viewBox="0 0 500 200" className="w-full" role="img" aria-label="Cash available falls sharply after a hold"><path d="M25 170H480M25 120H480M25 70H480M25 20H480" className="chart-grid"/><path d="M25 35 C110 40 145 52 205 60 L230 145 C310 150 395 157 480 164" className="cash-line"/><path d="M25 35 C110 40 145 52 205 60 L230 145 C310 150 395 157 480 164 L480 180 L25 180Z" className="cash-fill"/><line x1="218" y1="18" x2="218" y2="178" className="hold-line"/><text x="230" y="34" className="chart-label">HOLD APPLIED</text></svg><div className="flex justify-between text-[10px] text-note"><span>healthy cash position</span><span>operating runway at risk</span></div></div><div className="space-y-2">{[["25–35%","reserve"],["#1","pain point"],["slow","support loop"]].map(([v,l])=><div className="rounded-[1.5rem] border border-ink bg-paper/70 p-3 text-center" key={l}><b className="font-hand text-2xl">{v}</b><span className="block text-[10px] uppercase">{l}</span></div>)}</div></div></article>
+          <article className="widget-panel bg-blue-soft p-6"><PaperTitle note="merchant impact model">Why this matters</PaperTitle><div className="grid gap-5 sm:grid-cols-[1fr_12rem]"><div><svg viewBox="0 0 500 205" className="w-full" role="img" aria-label="Cash available falls sharply after a hold"><path d="M25 170H480M25 120H480M25 70H480M25 20H480" className="chart-grid"/><path d="M25 35 C110 40 145 52 205 60 L230 145 C310 150 395 157 480 164" className="cash-line"/><path d="M25 35 C110 40 145 52 205 60 L230 145 C310 150 395 157 480 164 L480 170 L25 170Z" className="cash-fill"/><line x1="218" y1="18" x2="218" y2="178" className="hold-line"/><text x="230" y="34" className="chart-label">HOLD APPLIED</text><text x="16" y="95" transform="rotate(-90 16 95)" textAnchor="middle" className="tick-text">Working capital ($)</text><text x="252" y="199" textAnchor="middle" className="tick-text">Days / weeks →</text></svg><div className="flex justify-between text-[10px] text-note"><span>healthy cash position</span><span>operating runway at risk</span></div></div><div className="space-y-2">{[["25–35%","reserve"],["#1","pain point"],["slow","support loop"]].map(([v,l])=><div className="rounded-[1.5rem] border border-ink bg-paper/70 p-3 text-center" key={l}><b className="font-hand text-2xl">{v}</b><span className="block text-[10px] uppercase">{l}</span></div>)}</div></div></article>
         </section>
 
         <section className="mt-8 widget-panel bg-paper p-5 sm:p-7">
@@ -183,18 +180,18 @@ export default function StabilityOSTeardown() {
             <PaperTitle note="illustrative $100k month">Money flow &amp; settlement math</PaperTitle>
             <svg viewBox="0 0 520 240" className="w-full" role="img" aria-label="Waterfall of captured volume reduced by disputes and reserve before release">
               <line x1="30" y1="200" x2="505" y2="200" className="axis-line" />
-              {[["Captured", 100, "bar-a", "$100.0k"], ["Disputes", 3.2, "bar-b", "-$3.2k"], ["Reserve held", 29, "bar-b", "-$29.0k"], ["Released now", 67.8, "bar-c", "$67.8k"]].map(([label, val, cls, money], i) => {
+              {[["Captured", 100, "bar-a", "$100.0k"], ["Fees", 3.0, "bar-d", "-$3.0k"], ["Disputes", 3.2, "bar-b", "-$3.2k"], ["Reserve held", 29, "bar-b", "-$29.0k"], ["Released now", 64.8, "bar-c", "$64.8k"]].map(([label, val, cls, money], i) => {
                 const h = (val as number) * 1.55;
                 return (
                   <g key={label as string}>
-                    <rect x={45 + i * 118} y={200 - h} width="74" height={h} className={cn(cls as string, "bar-ink")} rx="6" />
-                    <text x={82 + i * 118} y={195 - h} textAnchor="middle" className="value-text">{money}</text>
-                    <text x={82 + i * 118} y="222" textAnchor="middle" className="tick-text">{label}</text>
+                    <rect x={40 + i * 95} y={200 - h} width="64" height={h} className={cn(cls as string, "bar-ink")} rx="6" />
+                    <text x={72 + i * 95} y={195 - h} textAnchor="middle" className="value-text">{money}</text>
+                    <text x={72 + i * 95} y="222" textAnchor="middle" className="tick-text">{label}</text>
                   </g>
                 );
               })}
             </svg>
-            <p className="mt-2 -rotate-1 font-note text-base text-note">↳ a 30% reserve removes a third of the month’s cash before any dispute is proven</p>
+            <p className="mt-2 -rotate-1 font-note text-base text-note">↳ a 30% reserve removes a third of the month’s cash before any dispute is proven · fees ≈ 2.9% + $0.30 per charge</p>
           </article>
           <article className="widget-panel bg-mist p-6 sm:p-7">
             <PaperTitle note="payout composition">Where the cash sits</PaperTitle>
@@ -231,6 +228,7 @@ export default function StabilityOSTeardown() {
         <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
           <article className="widget-panel bg-blush p-6 sm:p-7">
             <PaperTitle note="what drives a hold">Risk analysis</PaperTitle>
+            <p className="mb-3 font-note text-base text-note">Illustrative synthesis based on public merchant reviews (Trustpilot, G2, merchant forums)</p>
             <svg viewBox="0 0 430 210" className="w-full" role="img" aria-label="Relative weight of the top risk drivers">
               {[["Dispute rate", 38], ["Velocity spike", 27], ["Missing docs", 19], ["Refund ratio", 16]].map(([label, v], i) => (
                 <g key={label as string}>
@@ -244,6 +242,7 @@ export default function StabilityOSTeardown() {
           </article>
           <article className="widget-panel bg-blue-soft p-6 sm:p-7">
             <PaperTitle note="today’s hold durations">How long merchants wait</PaperTitle>
+            <p className="mb-3 font-note text-base text-note">Hypothesized distribution based on public forum sentiment</p>
             <svg viewBox="0 0 430 210" className="w-full" role="img" aria-label="Distribution of hold durations in days">
               <line x1="20" y1="170" x2="418" y2="170" className="axis-line" />
               {[["0–30", 18], ["31–60", 34], ["61–90", 26], ["91–180", 15], ["180+", 7]].map(([label, v], i) => {
@@ -257,7 +256,7 @@ export default function StabilityOSTeardown() {
                 );
               })}
             </svg>
-            <p className="mt-2 font-note text-base text-note">↳ 48% of held merchants wait more than 60 days for a decision</p>
+            <p className="mt-2 font-note text-base text-note">↳ est. 48% of held merchants wait more than 60 days for a decision</p>
           </article>
         </section>
 
@@ -265,18 +264,23 @@ export default function StabilityOSTeardown() {
         <section className="mt-8 widget-panel bg-blush p-6 sm:p-7"><PaperTitle note="north stars + guardrail">Success metrics</PaperTitle><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{[["-40%","surprise holds"],["-25%","median hold duration"],["+15–25 pts","merchant NPS (risk-hit segments)"],["-20%","support tickets (payout hold/freeze)"],["flat or down","Fraud loss rate: flat or down (guardrail)"]].map(([v,l],i)=><div className={cn("metric-scrap p-4",["bg-blue","bg-butter","bg-lavender","bg-peach","bg-sage-soft"][i])} key={l}><span className="font-hand text-3xl font-bold">{v}</span><span className="mt-2 block text-xs leading-5">{l}</span><svg viewBox="0 0 100 28" className="mt-4 h-7 w-full"><path d={i===4?"M2 15 C20 15 35 13 50 15 S80 14 98 14":"M2 24 C20 20 27 22 39 16 S60 15 70 9 S88 8 98 3"} className="mini-line"/></svg></div>)}</div>
           <div className="mt-7 rounded-[2rem] border border-ink bg-paper/70 p-5">
             <p className="font-note text-lg">baseline vs. 90-day target</p>
-            <svg viewBox="0 0 520 210" className="mt-2 w-full" role="img" aria-label="Baseline compared with target for holds, duration and tickets">
+            <svg viewBox="0 -30 520 240" className="mx-auto mt-2 w-full max-w-3xl" role="img" aria-label="Baseline compared with target for holds, duration and tickets">
               <line x1="24" y1="170" x2="505" y2="170" className="axis-line" />
               {[["Surprise holds", 100, 60], ["Median hold days", 100, 75], ["Support tickets", 100, 80]].map(([label, base, target], i) => (
                 <g key={label as string}>
                   <rect x={50 + i * 160} y={170 - (base as number) * 1.3} width="48" height={(base as number) * 1.3} className="bar-a bar-ink" rx="5" />
                   <rect x={104 + i * 160} y={170 - (target as number) * 1.3} width="48" height={(target as number) * 1.3} className="bar-c bar-ink" rx="5" />
-                  <text x={128 + i * 160} y={164 - (target as number) * 1.3} textAnchor="middle" className="value-text">{(target as number) - 100}%</text>
+                  <text x={74 + i * 160} y={164 - (base as number) * 1.3} textAnchor="middle" className="tick-text">100%</text>
+                  <text x={128 + i * 160} y={164 - (target as number) * 1.3} textAnchor="middle" className="tick-text">{target as number}%</text>
+                  <g transform={`translate(${128 + i * 160} ${136 - (target as number) * 1.3})`}>
+                    <rect x="-26" y="-16" width="52" height="24" rx="12" className="bar-d bar-ink" />
+                    <text y="2" textAnchor="middle" className="tick-text">{(target as number) - 100}% Δ</text>
+                  </g>
                   <text x={101 + i * 160} y="192" textAnchor="middle" className="tick-text">{label}</text>
                 </g>
               ))}
             </svg>
-            <div className="flex flex-wrap gap-4 font-note text-base"><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-blue-strong/60" />today</span><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-sage/60" />after Stability OS</span></div>
+            <div className="flex flex-wrap gap-4 font-note text-base"><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-blue-strong/60" />Current baseline (100%)</span><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-sage/60" />90-day target</span></div>
           </div>
         </section>
 
@@ -327,9 +331,11 @@ export default function StabilityOSTeardown() {
             Thanks for reading all the way down. This teardown is my own synthesis from public
             merchant reviews and forum accounts — the numbers are illustrative, the pain is real.
           </p>
-          <p className="font-note mt-6 text-lg text-note">Written with research, not guesswork,</p>
-          <p className="font-hand mt-1 text-4xl leading-none">by Ruchi Madankar</p>
-          <p className="mt-3 text-xs uppercase tracking-widest text-note">Product teardown · Stability OS</p>
+          <div className="mt-8 flex flex-col items-end text-right">
+            <p className="font-note text-lg text-note">Written with research, not guesswork,</p>
+            <p className="font-hand mt-1 text-4xl leading-none">by Ruchi Madankar</p>
+            <p className="mt-3 text-xs uppercase tracking-widest text-note">Product teardown · Stability OS</p>
+          </div>
         </footer>
               </div>
       </div>
