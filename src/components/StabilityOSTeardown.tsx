@@ -228,6 +228,7 @@ export default function StabilityOSTeardown() {
         <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_1fr]">
           <article className="widget-panel bg-blush p-6 sm:p-7">
             <PaperTitle note="what drives a hold">Risk analysis</PaperTitle>
+            <p className="mb-3 font-note text-base text-note">Illustrative synthesis based on public merchant reviews (Trustpilot, G2, merchant forums)</p>
             <svg viewBox="0 0 430 210" className="w-full" role="img" aria-label="Relative weight of the top risk drivers">
               {[["Dispute rate", 38], ["Velocity spike", 27], ["Missing docs", 19], ["Refund ratio", 16]].map(([label, v], i) => (
                 <g key={label as string}>
