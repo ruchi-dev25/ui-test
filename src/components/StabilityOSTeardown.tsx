@@ -115,14 +115,14 @@ export default function StabilityOSTeardown() {
         <span className="h-px flex-1 border-t border-dashed border-sketch" />
       </div>
 
-      {/* Notebook page resting on a warm kraft desk */}
-      <div className="desk-canvas relative mt-6 rounded-[1.6rem] p-3 sm:p-6 lg:p-8">
-        <span className="washi-tape left-10 -top-2 -rotate-3" aria-hidden="true" />
-        <span className="washi-tape right-12 -top-2 rotate-2" aria-hidden="true" />
+      {/* One single lined notebook sheet, taped to the page */}
+      <div className="relative mt-10">
+        <span className="washi-tape left-8 -top-3 -rotate-3 sm:left-16" aria-hidden="true" />
+        <span className="washi-tape right-10 -top-3 rotate-2 sm:right-20" aria-hidden="true" />
 
-        <div className="paper-sheet relative overflow-hidden rounded-[0.6rem] border border-ink/25 px-4 pb-12 pt-8 text-ink shadow-paper sm:px-8 lg:px-12">
-        <DoodleFlower className="absolute -left-2 top-44 text-5xl text-peach" />
-        <DoodleFlower className="absolute right-3 top-24 text-4xl text-blue-strong" />
+        <div className="teardown-sheet notebook-sheet relative px-4 pb-12 pt-10 text-ink sm:px-8 lg:px-12">
+
+
 
 
         <section className="grid gap-5 py-9 lg:grid-cols-[1.2fr_.8fr] lg:items-stretch">
