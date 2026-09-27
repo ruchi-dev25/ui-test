@@ -242,6 +242,7 @@ export default function StabilityOSTeardown() {
           </article>
           <article className="widget-panel bg-blue-soft p-6 sm:p-7">
             <PaperTitle note="today’s hold durations">How long merchants wait</PaperTitle>
+            <p className="mb-3 font-note text-base text-note">Hypothesized distribution based on public forum sentiment</p>
             <svg viewBox="0 0 430 210" className="w-full" role="img" aria-label="Distribution of hold durations in days">
               <line x1="20" y1="170" x2="418" y2="170" className="axis-line" />
               {[["0–30", 18], ["31–60", 34], ["61–90", 26], ["91–180", 15], ["180+", 7]].map(([label, v], i) => {
