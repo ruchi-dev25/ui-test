@@ -264,18 +264,23 @@ export default function StabilityOSTeardown() {
         <section className="mt-8 widget-panel bg-blush p-6 sm:p-7"><PaperTitle note="north stars + guardrail">Success metrics</PaperTitle><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{[["-40%","surprise holds"],["-25%","median hold duration"],["+15–25 pts","merchant NPS (risk-hit segments)"],["-20%","support tickets (payout hold/freeze)"],["flat or down","Fraud loss rate: flat or down (guardrail)"]].map(([v,l],i)=><div className={cn("metric-scrap p-4",["bg-blue","bg-butter","bg-lavender","bg-peach","bg-sage-soft"][i])} key={l}><span className="font-hand text-3xl font-bold">{v}</span><span className="mt-2 block text-xs leading-5">{l}</span><svg viewBox="0 0 100 28" className="mt-4 h-7 w-full"><path d={i===4?"M2 15 C20 15 35 13 50 15 S80 14 98 14":"M2 24 C20 20 27 22 39 16 S60 15 70 9 S88 8 98 3"} className="mini-line"/></svg></div>)}</div>
           <div className="mt-7 rounded-[2rem] border border-ink bg-paper/70 p-5">
             <p className="font-note text-lg">baseline vs. 90-day target</p>
-            <svg viewBox="0 0 520 210" className="mt-2 w-full" role="img" aria-label="Baseline compared with target for holds, duration and tickets">
+            <svg viewBox="0 -30 520 240" className="mx-auto mt-2 w-full max-w-3xl" role="img" aria-label="Baseline compared with target for holds, duration and tickets">
               <line x1="24" y1="170" x2="505" y2="170" className="axis-line" />
               {[["Surprise holds", 100, 60], ["Median hold days", 100, 75], ["Support tickets", 100, 80]].map(([label, base, target], i) => (
                 <g key={label as string}>
                   <rect x={50 + i * 160} y={170 - (base as number) * 1.3} width="48" height={(base as number) * 1.3} className="bar-a bar-ink" rx="5" />
                   <rect x={104 + i * 160} y={170 - (target as number) * 1.3} width="48" height={(target as number) * 1.3} className="bar-c bar-ink" rx="5" />
-                  <text x={128 + i * 160} y={164 - (target as number) * 1.3} textAnchor="middle" className="value-text">{(target as number) - 100}%</text>
+                  <text x={74 + i * 160} y={164 - (base as number) * 1.3} textAnchor="middle" className="tick-text">100%</text>
+                  <text x={128 + i * 160} y={164 - (target as number) * 1.3} textAnchor="middle" className="tick-text">{target as number}%</text>
+                  <g transform={`translate(${128 + i * 160} ${136 - (target as number) * 1.3})`}>
+                    <rect x="-26" y="-16" width="52" height="24" rx="12" className="bar-d bar-ink" />
+                    <text y="2" textAnchor="middle" className="tick-text">{(target as number) - 100}% Δ</text>
+                  </g>
                   <text x={101 + i * 160} y="192" textAnchor="middle" className="tick-text">{label}</text>
                 </g>
               ))}
             </svg>
-            <div className="flex flex-wrap gap-4 font-note text-base"><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-blue-strong/60" />today</span><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-sage/60" />after Stability OS</span></div>
+            <div className="flex flex-wrap gap-4 font-note text-base"><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-blue-strong/60" />Current baseline (100%)</span><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-sage/60" />90-day target</span></div>
           </div>
         </section>
 
