@@ -413,7 +413,7 @@ button:focus-visible,
 .bar-d { fill: color-mix(in oklab, var(--lavender) 85%, transparent); }
 .value-text { font-family: "Cormorant Garamond", serif; font-size: 24px; font-weight: 700; fill: var(--ink); }
 .tick-text { font-size: 19px; fill: var(--ink); opacity: 0.75; }
-.matrix-cell { stroke: var(--sketch); stroke-width: 1; stroke-dasharray: 2 4; }
+.matrix-cell { fill: none; stroke: var(--sketch); stroke-width: 1; stroke-dasharray: 2 4; }
 .mini-line { stroke: var(--ink); stroke-width: 1.5; fill: none; }
 
 /* Font utilities */
