@@ -404,6 +404,50 @@ button:focus-visible,
   );
 }
 
+/* pasted-note feel inside the teardown sheet: softer paper shadows + auto tape */
+.teardown-sheet .irregular-panel,
+.teardown-sheet .widget-panel,
+.teardown-sheet .metric-scrap {
+  box-shadow:
+    0 1px 0 oklch(1 0 0 / 0.8) inset,
+    0 14px 28px -18px color-mix(in oklab, var(--ink) 40%, transparent),
+    0 2px 5px color-mix(in oklab, var(--ink) 12%, transparent);
+}
+.teardown-sheet section,
+.teardown-sheet article {
+  position: relative;
+}
+.teardown-sheet section > .irregular-panel::before,
+.teardown-sheet article.widget-panel::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  translate: -50% 0;
+  rotate: -2deg;
+  width: 104px;
+  height: 22px;
+  background: repeating-linear-gradient(
+    45deg,
+    oklch(0.9 0.05 70 / 0.78) 0 8px,
+    oklch(0.95 0.03 70 / 0.78) 8px 16px
+  );
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--ink) 15%, transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+.teardown-sheet article.widget-panel:nth-of-type(even)::before {
+  rotate: 3deg;
+  left: 30%;
+  background: repeating-linear-gradient(
+    90deg,
+    oklch(0.88 0.05 300 / 0.72) 0 6px,
+    oklch(0.94 0.03 300 / 0.72) 6px 12px
+  );
+}
+
+
+
 .irregular-panel {
   border: 1.5px solid var(--ink);
   border-radius: 2.6rem 1.5rem 2.9rem 1.8rem / 1.8rem 2.7rem 1.5rem 2.5rem;
