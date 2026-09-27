@@ -178,19 +178,17 @@ export default function StabilityOSTeardown() {
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
           <article className="widget-panel bg-cream p-6 sm:p-7">
             <PaperTitle note="illustrative $100k month">Money flow &amp; settlement math</PaperTitle>
-            <svg viewBox="0 0 520 240" className="w-full" role="img" aria-label="Waterfall of captured volume reduced by disputes and reserve before release">
-              <line x1="30" y1="200" x2="505" y2="200" className="axis-line" />
-              {[["Captured", 100, "bar-a", "$100.0k"], ["Fees", 3.0, "bar-d", "-$3.0k"], ["Disputes", 3.2, "bar-b", "-$3.2k"], ["Reserve held", 29, "bar-b", "-$29.0k"], ["Released now", 64.8, "bar-c", "$64.8k"]].map(([label, val, cls, money], i) => {
-                const h = (val as number) * 1.55;
-                return (
-                  <g key={label as string}>
-                    <rect x={40 + i * 95} y={200 - h} width="64" height={h} className={cn(cls as string, "bar-ink")} rx="6" />
-                    <text x={72 + i * 95} y={195 - h} textAnchor="middle" className="value-text">{money}</text>
-                    <text x={72 + i * 95} y="222" textAnchor="middle" className="tick-text">{label}</text>
-                  </g>
-                );
-              })}
-            </svg>
+            <div className="mt-6 overflow-x-auto pb-2" role="img" aria-label="Waterfall of captured volume reduced by fees, disputes and reserve before release">
+              <div className="grid min-w-[500px] grid-cols-5 gap-3 border-b border-ink px-1 pt-5">
+                {[["Captured", 100, "bg-blue", "$100.0k"], ["Fees", 3, "bg-lavender", "−$3.0k"], ["Disputes", 3.2, "bg-coral", "−$3.2k"], ["Reserve held", 29, "bg-coral", "−$29.0k"], ["Released now", 64.8, "bg-sage", "$64.8k"]].map(([label, val, bg, money]) => (
+                  <div className="flex min-w-0 flex-col items-center justify-end text-center" key={label as string}>
+                    <span className="mb-2 whitespace-nowrap font-hand text-lg font-bold">{money}</span>
+                    <span className={cn("w-full max-w-16 rounded-t-md border border-b-0 border-ink", bg as string)} style={{ height: `${Math.max(5, (val as number) * 1.55)}px` }} />
+                    <span className="min-h-12 px-1 pt-2 text-xs leading-4 text-note">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
             <p className="mt-2 -rotate-1 font-note text-base text-note">↳ a 30% reserve removes a third of the month’s cash before any dispute is proven · fees ≈ 2.9% + $0.30 per charge</p>
           </article>
           <article className="widget-panel bg-mist p-6 sm:p-7">
@@ -264,22 +262,24 @@ export default function StabilityOSTeardown() {
         <section className="mt-8 widget-panel bg-blush p-6 sm:p-7"><PaperTitle note="north stars + guardrail">Success metrics</PaperTitle><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{[["-40%","surprise holds"],["-25%","median hold duration"],["+15–25 pts","merchant NPS (risk-hit segments)"],["-20%","support tickets (payout hold/freeze)"],["flat or down","Fraud loss rate: flat or down (guardrail)"]].map(([v,l],i)=><div className={cn("metric-scrap p-4",["bg-blue","bg-butter","bg-lavender","bg-peach","bg-sage-soft"][i])} key={l}><span className="font-hand text-3xl font-bold">{v}</span><span className="mt-2 block text-xs leading-5">{l}</span><svg viewBox="0 0 100 28" className="mt-4 h-7 w-full"><path d={i===4?"M2 15 C20 15 35 13 50 15 S80 14 98 14":"M2 24 C20 20 27 22 39 16 S60 15 70 9 S88 8 98 3"} className="mini-line"/></svg></div>)}</div>
           <div className="mt-7 rounded-[2rem] border border-ink bg-paper/70 p-5">
             <p className="font-note text-lg">baseline vs. 90-day target</p>
-            <svg viewBox="0 -30 520 240" className="mx-auto mt-2 w-full max-w-3xl" role="img" aria-label="Baseline compared with target for holds, duration and tickets">
-              <line x1="24" y1="170" x2="505" y2="170" className="axis-line" />
-              {[["Surprise holds", 100, 60], ["Median hold days", 100, 75], ["Support tickets", 100, 80]].map(([label, base, target], i) => (
-                <g key={label as string}>
-                  <rect x={50 + i * 160} y={170 - (base as number) * 1.3} width="48" height={(base as number) * 1.3} className="bar-a bar-ink" rx="5" />
-                  <rect x={104 + i * 160} y={170 - (target as number) * 1.3} width="48" height={(target as number) * 1.3} className="bar-c bar-ink" rx="5" />
-                  <text x={74 + i * 160} y={164 - (base as number) * 1.3} textAnchor="middle" className="tick-text">100%</text>
-                  <text x={128 + i * 160} y={164 - (target as number) * 1.3} textAnchor="middle" className="tick-text">{target as number}%</text>
-                  <g transform={`translate(${128 + i * 160} ${136 - (target as number) * 1.3})`}>
-                    <rect x="-26" y="-16" width="52" height="24" rx="12" className="bar-d bar-ink" />
-                    <text y="2" textAnchor="middle" className="tick-text">{(target as number) - 100}% Δ</text>
-                  </g>
-                  <text x={101 + i * 160} y="192" textAnchor="middle" className="tick-text">{label}</text>
-                </g>
+            <div className="mx-auto mt-6 grid max-w-3xl gap-7 sm:grid-cols-3" role="img" aria-label="Baseline compared with target for holds, duration and tickets">
+              {[["Surprise holds", 60, "−40% Δ"], ["Median hold days", 75, "−25% Δ"], ["Support tickets", 80, "−20% Δ"]].map(([label, target, delta]) => (
+                <div className="min-w-0 text-center" key={label as string}>
+                  <span className="mb-3 inline-block rounded-full border border-ink bg-lavender px-3 py-1 font-note text-sm">{delta}</span>
+                  <div className="flex h-40 items-end justify-center gap-2 border-b border-ink">
+                    <div className="flex w-14 flex-col items-center">
+                      <span className="mb-1 text-sm text-note">100%</span>
+                      <span className="h-28 w-full rounded-t-md border border-b-0 border-ink bg-blue" />
+                    </div>
+                    <div className="flex w-14 flex-col items-center">
+                      <span className="mb-1 text-sm text-note">{target}%</span>
+                      <span className="w-full rounded-t-md border border-b-0 border-ink bg-sage" style={{ height: `${(target as number) * 1.12}px` }} />
+                    </div>
+                  </div>
+                  <p className="mt-2 min-h-10 text-sm leading-5 text-note">{label}</p>
+                </div>
               ))}
-            </svg>
+            </div>
             <div className="flex flex-wrap gap-4 font-note text-base"><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-blue-strong/60" />Current baseline (100%)</span><span className="flex items-center gap-2"><span className="size-3 rounded-sm border border-ink bg-sage/60" />90-day target</span></div>
           </div>
         </section>
@@ -287,16 +287,16 @@ export default function StabilityOSTeardown() {
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
           <article className="widget-panel bg-blue-soft p-6 sm:p-7"><PaperTitle note="90 day build plan">MVP (90 days)</PaperTitle><div className="grid gap-3 sm:grid-cols-3">{[["Weeks 0–4","Risk Health Score v1 + Dashboard widget","Unify risk signals; test score comprehension."],["Weeks 5–8","Pre-hold warnings + Case tracker v1","Trigger actions; show status, owner, and ETA."],["Weeks 9–12","SLA publishing + Pilot cash-flow option","Publish review speed; pilot partner option."]].map(([w,t,d],i)=><button key={w} onClick={()=>setPhase(i)} className={cn("timeline-note border border-ink bg-paper p-4 text-left",phase===i&&"bg-lavender shadow-paper")}><span className="font-note text-sm text-note">{w}</span><b className="mt-2 block font-hand text-lg leading-tight">{t}</b>{phase===i&&<p className="mt-3 border-t border-dashed border-sketch pt-3 text-xs leading-5">{d}</p>}</button>)}</div>
-            <svg viewBox="0 0 520 170" className="mt-6 w-full" role="img" aria-label="Timeline bars across twelve weeks">
-              {[0, 1, 2].map((i) => <line key={i} x1={40 + i * 150} y1="18" x2={40 + i * 150} y2="140" className="matrix-cell" />)}
-              {[["Score v1", 0, 150], ["Warnings + tracker", 150, 150], ["SLA + pilot", 300, 190]].map(([label, x, w], i) => (
-                <g key={label as string}>
-                  <rect x={40 + (x as number)} y={28 + i * 38} width={w as number} height="26" className={cn(["bar-a", "bar-d", "bar-c"][i], "bar-ink")} rx="13" onClick={() => setPhase(i)} />
-                  <text x={52 + (x as number)} y={46 + i * 38} className="tick-text">{label}</text>
-                </g>
-              ))}
-              {["W0", "W4", "W8", "W12"].map((t, i) => <text key={t} x={40 + i * 150} y="160" textAnchor="middle" className="tick-text">{t}</text>)}
-            </svg>
+            <div className="mt-6 overflow-x-auto pb-2" role="img" aria-label="Timeline bars across twelve weeks">
+              <div className="min-w-[500px]">
+                <div className="grid grid-cols-12 gap-y-3 border-x border-dashed border-sketch py-2">
+                  {[["Score v1", "col-span-4 bg-blue"], ["Warnings + tracker", "col-span-4 col-start-5 bg-peach"], ["SLA + pilot", "col-span-4 col-start-9 bg-sage-soft"]].map(([label, placement], i) => (
+                    <div className={cn("flex min-h-9 items-center rounded-full border border-ink px-4 text-xs", placement)} style={{ gridRow: i + 1 }} key={label}>{label}</div>
+                  ))}
+                </div>
+                <div className="mt-2 grid grid-cols-4 text-center font-note text-sm text-note"><span>W0</span><span>W4</span><span>W8</span><span>W12</span></div>
+              </div>
+            </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
               {[["Ship gate", "Score explains itself in a 5-merchant comprehension test."], ["Ship gate", "Warning → action completion rate above 40%."], ["Ship gate", "Published first-review SLA met on 90% of cases."]].map(([k, v], i) => (
                 <div className="rounded-[1.4rem] border border-ink bg-paper/70 p-3" key={i}>
