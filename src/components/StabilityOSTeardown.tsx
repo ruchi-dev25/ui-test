@@ -184,14 +184,14 @@ export default function StabilityOSTeardown() {
                 const h = (val as number) * 1.55;
                 return (
                   <g key={label as string}>
-                    <rect x={45 + i * 118} y={200 - h} width="74" height={h} className={cn(cls as string, "bar-ink")} rx="6" />
-                    <text x={82 + i * 118} y={195 - h} textAnchor="middle" className="value-text">{money}</text>
-                    <text x={82 + i * 118} y="222" textAnchor="middle" className="tick-text">{label}</text>
+                    <rect x={40 + i * 95} y={200 - h} width="64" height={h} className={cn(cls as string, "bar-ink")} rx="6" />
+                    <text x={72 + i * 95} y={195 - h} textAnchor="middle" className="value-text">{money}</text>
+                    <text x={72 + i * 95} y="222" textAnchor="middle" className="tick-text">{label}</text>
                   </g>
                 );
               })}
             </svg>
-            <p className="mt-2 -rotate-1 font-note text-base text-note">↳ a 30% reserve removes a third of the month’s cash before any dispute is proven</p>
+            <p className="mt-2 -rotate-1 font-note text-base text-note">↳ a 30% reserve removes a third of the month’s cash before any dispute is proven · fees ≈ 2.9% + $0.30 per charge</p>
           </article>
           <article className="widget-panel bg-mist p-6 sm:p-7">
             <PaperTitle note="payout composition">Where the cash sits</PaperTitle>
