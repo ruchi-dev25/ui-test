@@ -326,7 +326,7 @@ button:focus-visible,
   background-image:
     linear-gradient(
       to bottom,
-      color-mix(in oklab, var(--blue-strong) 16%, transparent) 0 1px,
+      color-mix(in oklab, var(--blue-strong) 34%, transparent) 0 1px,
       transparent 1px 34px
     ),
     radial-gradient(circle at 16% 6%, oklch(1 0 0 / 0.75), transparent 45%);
