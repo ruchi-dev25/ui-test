@@ -331,9 +331,11 @@ export default function StabilityOSTeardown() {
             Thanks for reading all the way down. This teardown is my own synthesis from public
             merchant reviews and forum accounts — the numbers are illustrative, the pain is real.
           </p>
-          <p className="font-note mt-6 text-lg text-note">Written with research, not guesswork,</p>
-          <p className="font-hand mt-1 text-4xl leading-none">by Ruchi Madankar</p>
-          <p className="mt-3 text-xs uppercase tracking-widest text-note">Product teardown · Stability OS</p>
+          <div className="mt-8 flex flex-col items-end text-right">
+            <p className="font-note text-lg text-note">Written with research, not guesswork,</p>
+            <p className="font-hand mt-1 text-4xl leading-none">by Ruchi Madankar</p>
+            <p className="mt-3 text-xs uppercase tracking-widest text-note">Product teardown · Stability OS</p>
+          </div>
         </footer>
               </div>
       </div>
