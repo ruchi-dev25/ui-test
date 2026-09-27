@@ -332,8 +332,6 @@ export default function StabilityOSTeardown() {
           <p className="mt-3 text-xs uppercase tracking-widest text-note">Product teardown · Stability OS</p>
         </footer>
               </div>
-        {/* Bottom torn decorative strip */}
-        <div className="h-4 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_25%,transparent)_0px,color-mix(in_oklab,var(--sketch)_25%,transparent)_12px,transparent_12px,transparent_24px)] border-t border-ink/20" />
       </div>
 
       {/* My thoughts & what I learnt */}
