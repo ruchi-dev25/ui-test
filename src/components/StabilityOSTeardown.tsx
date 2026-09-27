@@ -20,7 +20,7 @@ function Button({ className, children, ...props }: React.ButtonHTMLAttributes<HT
 import { Link } from "react-router-dom";
 import BrandLogo from "./BrandLogo";
 import RibbonTag from "./RibbonTag";
-import { ArrowDown, ArrowRight, Check, ChevronDown, Mail, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Mail, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 
 
@@ -91,19 +91,27 @@ export default function StabilityOSTeardown() {
         <BrandLogo brand="stripe" className="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
         <div>
           <RibbonTag color="var(--color-sage)" rotate={-1}>
-            Must-steal pattern
+            Product teardown
           </RibbonTag>
           <h1 className="font-display mt-3 text-3xl font-bold leading-tight text-ink sm:text-4xl">
             Stripe &mdash; Stability OS
           </h1>
-          <p className="mt-1 text-sm font-medium text-ink/60">
-            Proactive risk health score, transparent fund release, and merchant cash-flow visibility.
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/75 sm:text-lg">
+            A proposal for helping Stripe merchants understand rising risk before a hold, track reviews clearly, and keep cash flowing while decisions are made.
           </p>
+          <Link to="/teardowns/stripe-stability-os/prototype" className="mt-5 inline-flex items-center gap-2 border-b-2 border-sage pb-1 font-semibold text-ink transition-colors hover:text-sage">
+            Explore the prototype <ArrowUpRight className="size-4" aria-hidden="true" />
+          </Link>
         </div>
       </div>
 
+      <div className="mt-12 flex items-center gap-4" aria-hidden="true">
+        <span className="font-hand text-2xl text-sage">the teardown</span>
+        <span className="h-px flex-1 bg-ink/15" />
+      </div>
+
       {/* Torn Notebook Paper Sheet containing the EXACT teardown layout */}
-      <div className="relative mt-10 rounded-3xl border-2 border-ink bg-paper shadow-[0_22px_45px_-15px_rgba(54,42,74,0.18),0_2px_8px_rgba(54,42,74,0.06)] overflow-hidden">
+      <div className="relative mt-5 rounded-3xl border-2 border-ink bg-paper shadow-paper overflow-hidden">
         {/* Top torn decorative strip */}
         <div className="h-4 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_25%,transparent)_0px,color-mix(in_oklab,var(--sketch)_25%,transparent)_12px,transparent_12px,transparent_24px)] border-b border-ink/20" />
 
@@ -113,7 +121,7 @@ export default function StabilityOSTeardown() {
 
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-dashed border-sketch pb-4">
           <div className="flex min-w-0 items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full border border-ink bg-butter"><ShieldCheck className="size-5" /></span><div className="min-w-0"><b className="block truncate font-hand text-xl">Stability OS</b><span className="block truncate text-[10px] uppercase tracking-widest text-note">PM New Grad Accelerator — Ruchi Madankar</span></div></div>
-          <Link to="/teardowns/stripe-stability-os" className="font-note text-sm text-note underline decoration-wavy">view v1 ↗</Link> <Link to="/teardowns/stripe-stability-os" className="font-note text-sm text-note underline decoration-wavy">scrapbook ↗</Link>
+           <Link to="/teardowns/stripe-stability-os/prototype" className="font-note text-sm text-note underline decoration-wavy">prototype ↗</Link>
         </header>
 
         <section className="grid gap-5 py-9 lg:grid-cols-[1.2fr_.8fr] lg:items-stretch">
@@ -320,9 +328,9 @@ export default function StabilityOSTeardown() {
         <Link to="/teardowns" className="font-hand text-2xl text-sage hover:text-ink">
           &larr; All Teardowns
         </Link>
-        <Link to="/teardowns/linear-mobile" className="text-right font-display text-ink/70 hover:text-ink">
+         <Link to="/teardowns/duolingo-streak-freeze" className="text-right font-display text-ink/70 hover:text-ink">
           Next teardown
-          <span className="mt-0.5 block text-sm text-sage">Linear Mobile App &rarr;</span>
+           <span className="mt-0.5 block text-sm text-sage">Duolingo: streak freeze &rarr;</span>
         </Link>
       </div>
     </div>
