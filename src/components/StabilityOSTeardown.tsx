@@ -51,9 +51,6 @@ const risks = [
   ["Partner constraints", "SLA on review speed, not guaranteed release; communicate partner steps in tracker."],
 ];
 
-function DoodleFlower({ className }: { className?: string }) {
-  return <span className={cn("doodle-flower", className)} aria-hidden="true">✿</span>;
-}
 
 function PaperTitle({ children, note }: { children: React.ReactNode; note?: string }) {
   return <div className="mb-5 flex items-end gap-4"><h2 className="font-hand text-3xl font-bold text-ink sm:text-4xl">{children}</h2><span className="mb-1 h-px flex-1 border-t border-dashed border-sketch" />{note && <span className="hidden font-note text-sm text-note sm:block">{note}</span>}</div>;
