@@ -256,7 +256,7 @@ export default function StabilityOSTeardown() {
                 );
               })}
             </svg>
-            <p className="mt-2 font-note text-base text-note">↳ 48% of held merchants wait more than 60 days for a decision</p>
+            <p className="mt-2 font-note text-base text-note">↳ est. 48% of held merchants wait more than 60 days for a decision</p>
           </article>
         </section>
 
