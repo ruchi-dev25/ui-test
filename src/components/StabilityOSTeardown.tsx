@@ -18,8 +18,6 @@ function Button({ className, children, ...props }: React.ButtonHTMLAttributes<HT
 }
 
 import { Link } from "react-router-dom";
-import BrandLogo from "./BrandLogo";
-import RibbonTag from "./RibbonTag";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, Mail, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 
@@ -87,31 +85,8 @@ export default function StabilityOSTeardown() {
         </Link>
       </div>
 
-      <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
-        <BrandLogo brand="stripe" className="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
-        <div>
-          <RibbonTag color="var(--color-sage)" rotate={-1}>
-            Product teardown
-          </RibbonTag>
-          <h1 className="font-display mt-3 text-3xl font-bold leading-tight text-ink sm:text-4xl">
-            Stripe &mdash; Stability OS
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/75 sm:text-lg">
-            A proposal for helping Stripe merchants understand rising risk before a hold, track reviews clearly, and keep cash flowing while decisions are made.
-          </p>
-          <Link to="/teardowns/stripe-stability-os/prototype" className="mt-5 inline-flex items-center gap-2 border-b-2 border-sage pb-1 font-semibold text-ink transition-colors hover:text-sage">
-            Explore the prototype <ArrowUpRight className="size-4" aria-hidden="true" />
-          </Link>
-        </div>
-      </div>
-
-      <div className="mt-12 flex items-center gap-4" aria-hidden="true">
-        <span className="font-hand text-2xl text-sage">the teardown</span>
-        <span className="h-px flex-1 bg-ink/15" />
-      </div>
-
       {/* Torn Notebook Paper Sheet containing the EXACT teardown layout */}
-      <div className="relative mt-5 rounded-3xl border-2 border-ink bg-paper shadow-paper overflow-hidden">
+      <div className="relative mt-8 rounded-3xl border-2 border-ink bg-paper shadow-paper overflow-hidden">
         {/* Top torn decorative strip */}
         <div className="h-4 w-full bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--sketch)_25%,transparent)_0px,color-mix(in_oklab,var(--sketch)_25%,transparent)_12px,transparent_12px,transparent_24px)] border-b border-ink/20" />
 
@@ -120,17 +95,20 @@ export default function StabilityOSTeardown() {
         <DoodleFlower className="absolute right-3 top-24 text-4xl text-blue-strong" />
 
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-dashed border-sketch pb-4">
-          <div className="flex min-w-0 items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full border border-ink bg-butter"><ShieldCheck className="size-5" /></span><div className="min-w-0"><b className="block truncate font-hand text-xl">Stability OS</b><span className="block truncate text-[10px] uppercase tracking-widest text-note">PM New Grad Accelerator — Ruchi Madankar</span></div></div>
-           <Link to="/teardowns/stripe-stability-os/prototype" className="font-note text-sm text-note underline decoration-wavy">prototype ↗</Link>
+          <div className="flex min-w-0 items-center gap-3"><span className="grid size-9 shrink-0 place-items-center rounded-full border border-ink bg-butter"><ShieldCheck className="size-5" /></span><div className="min-w-0"><b className="block truncate font-hand text-xl">Stripe teardown</b><span className="block truncate text-[10px] uppercase tracking-widest text-note">PM New Grad Accelerator — Ruchi Madankar</span></div></div>
+          <Link to="/teardowns/stripe-stability-os/prototype" className="font-note text-sm text-note underline decoration-wavy">prototype ↗</Link>
         </header>
 
         <section className="grid gap-5 py-9 lg:grid-cols-[1.2fr_.8fr] lg:items-stretch">
           <div className="irregular-panel bg-blush p-6 sm:p-8">
             <span className="font-note text-base text-note">product teardown / 01</span>
-            <h1 className="mt-2 font-hand text-5xl font-bold leading-none sm:text-7xl">Stability OS</h1>
+            <h1 className="mt-2 font-hand text-5xl font-bold leading-none sm:text-7xl">Stripe — Stability OS</h1>
             <p className="mt-4 max-w-3xl font-hand text-2xl leading-tight">Proactive risk &amp; fund-release transparency for Stripe</p>
-            <p className="mt-5 max-w-3xl text-sm leading-6 sm:text-base">A risk cockpit + release engine that prevents surprise holds, explains risk in plain language, and gives merchants SLA-backed visibility and cash-flow options.</p>
-            <Button onClick={() => document.getElementById("solution")?.scrollIntoView({behavior:"smooth"})} className="mt-6 rounded-full border border-ink bg-ink px-5 text-paper shadow-paper hover:bg-ink/90">See how it works <ArrowDown /></Button>
+            <p className="mt-5 max-w-3xl text-sm leading-6 sm:text-base">A proposal for helping Stripe merchants understand rising risk before a hold, track reviews clearly, and keep cash flowing while decisions are made.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button onClick={() => document.getElementById("solution")?.scrollIntoView({behavior:"smooth"})} className="rounded-full border border-ink bg-ink px-5 text-paper shadow-paper hover:bg-ink/90">See the teardown <ArrowDown /></Button>
+              <Link to="/teardowns/stripe-stability-os/prototype" className="inline-flex items-center justify-center gap-2 rounded-full border border-ink bg-paper px-5 py-2 font-medium shadow-paper transition-transform hover:-translate-y-0.5">Explore prototype <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
+            </div>
           </div>
           <div className="widget-panel bg-lavender p-5 sm:p-7">
             <div className="flex items-center justify-between"><span className="font-note text-lg">merchant risk pulse</span><span className="rounded-full bg-ink px-3 py-1 text-xs text-paper">LIVE</span></div>

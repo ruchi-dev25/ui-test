@@ -1,2 +1,2 @@
-- [x] Present Stability OS with a heading and brief before the scrapbook teardown.
-- [x] Link the Stability OS prototype from the introduction and scrapbook.
+- [x] Place the Stripe Stability OS heading and brief inside the scrapbook teardown.
+- [x] Link the Stability OS prototype directly from the scrapbook.
