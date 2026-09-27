@@ -180,7 +180,7 @@ export default function StabilityOSTeardown() {
             <PaperTitle note="illustrative $100k month">Money flow &amp; settlement math</PaperTitle>
             <div className="mt-6 overflow-x-auto pb-2" role="img" aria-label="Waterfall of captured volume reduced by fees, disputes and reserve before release">
               <div className="grid min-w-[500px] grid-cols-5 gap-3 border-b border-ink px-1 pt-5">
-                {[["Captured", 100, "bg-blue-strong/60", "$100.0k"], ["Fees", 3, "bg-lavender", "−$3.0k"], ["Disputes", 3.2, "bg-coral", "−$3.2k"], ["Reserve held", 29, "bg-coral", "−$29.0k"], ["Released now", 64.8, "bg-sage", "$64.8k"]].map(([label, val, bg, money]) => (
+                {[["Captured", 100, "bg-blue", "$100.0k"], ["Fees", 3, "bg-lavender", "−$3.0k"], ["Disputes", 3.2, "bg-coral", "−$3.2k"], ["Reserve held", 29, "bg-coral", "−$29.0k"], ["Released now", 64.8, "bg-sage", "$64.8k"]].map(([label, val, bg, money]) => (
                   <div className="flex min-w-0 flex-col items-center justify-end text-center" key={label as string}>
                     <span className="mb-2 whitespace-nowrap font-hand text-lg font-bold">{money}</span>
                     <span className={cn("w-full max-w-16 rounded-t-md border border-b-0 border-ink", bg as string)} style={{ height: `${Math.max(5, (val as number) * 1.55)}px` }} />
@@ -269,7 +269,7 @@ export default function StabilityOSTeardown() {
                   <div className="flex h-40 items-end justify-center gap-2 border-b border-ink">
                     <div className="flex w-14 flex-col items-center">
                       <span className="mb-1 text-sm text-note">100%</span>
-                      <span className="h-28 w-full rounded-t-md border border-b-0 border-ink bg-blue-strong/60" />
+                      <span className="h-28 w-full rounded-t-md border border-b-0 border-ink bg-blue" />
                     </div>
                     <div className="flex w-14 flex-col items-center">
                       <span className="mb-1 text-sm text-note">{target}%</span>
