@@ -5,6 +5,7 @@ import Home from "./routes/Home";
 import Work from "./routes/Work";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
+import Resume from "./routes/Resume";
 import CaseStudy from "./routes/CaseStudy";
 import Teardowns from "./routes/Teardowns";
 import TeardownDetail from "./routes/TeardownDetail";
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/scrapbook" element={<Navigate to="/teardowns/stripe-stability-os" replace />} />
           <Route path="/iridescent" element={<Navigate to="/teardowns/stripe-stability-os" replace />} />
           <Route path="/about" element={<About />} />
+          <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

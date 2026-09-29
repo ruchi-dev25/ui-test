@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import Doodle from "../components/Doodle";
 import GinghamFrame from "../components/GinghamFrame";
 import { profile } from "../data/profile";
@@ -269,6 +269,17 @@ export default function Contact() {
           </div>
         </div>
 
+        {/* Phone Row */}
+        <div className="flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4">
+          <span className="font-hand w-28 shrink-0 text-xl text-sage">Phone</span>
+          <a
+            href={`tel:${profile.phone}`}
+            className="font-display text-lg text-ink/80 underline decoration-lavender decoration-2 underline-offset-4 transition-colors hover:text-deepink"
+          >
+            {profile.phone}
+          </a>
+        </div>
+
         {/* LinkedIn Row */}
         <div className="flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4">
           <span className="font-hand w-28 shrink-0 text-xl text-sage">LinkedIn</span>
@@ -283,15 +294,24 @@ export default function Contact() {
         </div>
 
         {/* Resume Row */}
-        <div className="flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4">
-          <span className="font-hand w-28 shrink-0 text-xl text-sage">Resume</span>
+        <div className="flex flex-col gap-2 border-b border-dashed border-deepink/15 pb-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <div className="flex items-baseline gap-4">
+            <span className="font-hand w-28 shrink-0 text-xl text-sage">Resume</span>
+            <a
+              href="/resume"
+              className="font-display text-lg text-ink/90 underline decoration-lavender decoration-2 underline-offset-4 transition-colors hover:text-deepink"
+            >
+              View interactive resume →
+            </a>
+          </div>
           <a
             href="/resume.pdf"
+            download="Ruchi_Madankar_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-display text-lg text-ink/80 underline decoration-lavender decoration-2 underline-offset-4 transition-colors hover:text-deepink"
+            className="rounded border border-deepink/20 bg-white/70 px-2.5 py-1 text-xs text-ink/80 transition hover:bg-white hover:text-ink sm:self-center"
           >
-            download as PDF ↗
+            Download PDF ↗
           </a>
         </div>
       </div>

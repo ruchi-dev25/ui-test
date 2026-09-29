@@ -632,3 +632,19 @@ button:focus-visible,
 .stripe-ui *::-webkit-scrollbar { display: none; }
 .stripe-ui * { -ms-overflow-style: none; scrollbar-width: none; }
 
+@media print {
+  header, footer, .no-print, .stitch-divider {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #1a1a1a !important;
+  }
+  .resume-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+}
+

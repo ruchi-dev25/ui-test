@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Doodle from "../components/Doodle";
 import GinghamFrame from "../components/GinghamFrame";
 import RibbonTag from "../components/RibbonTag";
@@ -93,8 +94,47 @@ export default function About() {
           <div className="widget-card widget-cream p-6 text-sm">
             <p className="text-ink/50">Standing</p>
             <p className="font-display mt-1 text-ink">{profile.standing}</p>
+            
+            <p className="mt-4 text-ink/50">Location</p>
+            <p className="font-display mt-1 text-ink">{profile.location}</p>
+
             <p className="mt-4 text-ink/50">Available for</p>
             <p className="font-display mt-1 text-ink">{profile.availability}</p>
+          </div>
+
+          <div className="widget-card widget-periwinkle p-6 text-sm">
+            <p className="font-hand text-lg text-sage">Education</p>
+            <p className="font-display mt-1 text-base font-bold text-ink">{profile.education.degree}</p>
+            <p className="text-xs text-ink/75">{profile.education.institution}</p>
+            <p className="mt-1 text-xs text-sage font-medium">{profile.education.minor}</p>
+            <div className="mt-3 flex justify-between border-t border-deepink/10 pt-2 text-xs text-ink/70">
+              <span>{profile.education.graduation}</span>
+              <span className="font-bold text-ink">CGPA: {profile.education.cgpa}</span>
+            </div>
+          </div>
+
+          <div className="widget-card widget-mint p-6 text-sm">
+            <div className="flex items-center justify-between">
+              <p className="font-hand text-lg text-sage">Resume</p>
+              <a
+                href="/resume.pdf"
+                download="Ruchi_Madankar_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold underline decoration-sage underline-offset-2 hover:text-deepink"
+              >
+                Download PDF ↗
+              </a>
+            </div>
+            <p className="mt-2 text-xs text-ink/75">
+              Explore my full education, shipped projects, leadership, and technical stack.
+            </p>
+            <Link
+              to="/resume"
+              className="font-display mt-4 inline-flex w-full items-center justify-center rounded-md bg-ink py-2 text-xs font-medium text-parchment transition hover:bg-deepink"
+            >
+              View Interactive Resume →
+            </Link>
           </div>
         </div>
       </div>
