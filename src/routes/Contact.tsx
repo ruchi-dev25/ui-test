@@ -269,17 +269,6 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Phone Row */}
-        <div className="flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4">
-          <span className="font-hand w-28 shrink-0 text-xl text-sage">Phone</span>
-          <a
-            href={`tel:${profile.phone}`}
-            className="font-display text-lg text-ink/80 underline decoration-lavender decoration-2 underline-offset-4 transition-colors hover:text-deepink"
-          >
-            {profile.phone}
-          </a>
-        </div>
-
         {/* LinkedIn Row */}
         <div className="flex items-baseline gap-4 border-b border-dashed border-deepink/15 pb-4">
           <span className="font-hand w-28 shrink-0 text-xl text-sage">LinkedIn</span>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Download, ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowLeft, Download, ExternalLink, Mail, MapPin } from "lucide-react";
 import Doodle from "../components/Doodle";
 import { profile, resumeExperiences, skillGroups } from "../data/profile";
 
@@ -58,10 +58,6 @@ export default function Resume() {
             >
               <Mail className="h-3.5 w-3.5 text-sage" /> {profile.email}
             </a>
-            <span className="text-ink/30">•</span>
-            <span className="inline-flex items-center gap-1">
-              <Phone className="h-3.5 w-3.5 text-sage" /> {profile.phone}
-            </span>
             <span className="text-ink/30">•</span>
             <a
               href={profile.linkedin}

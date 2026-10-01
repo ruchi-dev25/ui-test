@@ -3,7 +3,6 @@ export const profile = {
   title: "Aspiring Product & Program Manager",
   standing: "Final-year Computer Engineering · 2027 Grad",
   location: "Navi Mumbai, India",
-  phone: "+91-9321297184",
   email: "madankar.ruchi@gmail.com",
   linkedin: "https://www.linkedin.com/in/ruchi-madankar-42aabb28a",
   portfolio: "https://ruchi-portfolio.nekostack.com",
