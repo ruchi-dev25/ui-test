@@ -15,6 +15,7 @@ import MetricsChart from "../components/MetricsChart";
 import TalkTrack from "../components/TalkTrack";
 import ChapterNav from "../components/ChapterNav";
 import DemoVideo from "../components/DemoVideo";
+import CardDeckGallery from "../components/CardDeckGallery";
 import { getProject, projects } from "../data/projects";
 
 const chapterTint = ["mint", "periwinkle", "amber", "rose"] as const;
@@ -76,6 +77,16 @@ export default function CaseStudy() {
                 </span>
                 {project.status}
               </span>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-1 text-xs font-semibold text-parchment shadow-sm transition hover:-translate-y-0.5 hover:bg-deepink"
+              >
+                <span>🌐</span> Visit live product ↗ ({project.liveUrl.replace("https://", "").replace("/", "")})
+              </a>
             )}
           </div>
         </div>
@@ -198,6 +209,12 @@ export default function CaseStudy() {
                 {section.kind === "talktrack" && (
                   <div className="mt-6">
                     <TalkTrack items={section.items} />
+                  </div>
+                )}
+
+                {section.kind === "deck" && (
+                  <div className="mt-6">
+                    <CardDeckGallery cards={section.cards} liveUrl={project.liveUrl} />
                   </div>
                 )}
               </section>

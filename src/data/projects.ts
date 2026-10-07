@@ -74,6 +74,22 @@ export type TalkTrackSection = {
   items: { label: string; text: string }[];
 };
 
+export type DeckSection = {
+  kind: "deck";
+  heading: string;
+  intro?: string;
+  cards: {
+    id: string;
+    title: string;
+    subtitle: string;
+    tag: string;
+    badge?: string;
+    image: string;
+    annotation: string;
+    details: string;
+  }[];
+};
+
 export type Section =
   | TextSection
   | TableSection
@@ -83,7 +99,8 @@ export type Section =
   | MoscowSection
   | ValueEffortSection
   | ChartSection
-  | TalkTrackSection;
+  | TalkTrackSection
+  | DeckSection;
 
 export type Project = {
   slug: string;
@@ -92,6 +109,7 @@ export type Project = {
   role: string;
   timeframe: string;
   status?: string;
+  liveUrl?: string;
   tags: string[];
   teaser: string;
   marginTease: string;
@@ -339,6 +357,7 @@ USING (true);`,
     role: "Student · Aspiring Associate PM, with 2 technical co-founders",
     timeframe: "0→1 build · staging",
     status: "Active in-development · staging only, zero paid customers or live revenue",
+    liveUrl: "https://pixnlabs.com/",
     tags: ["0→1 build", "AI product", "scope control"],
     teaser:
       "The engineers had the systems knowledge to build anything, which was the problem. My job was helping them decide what not to build yet.",
@@ -358,6 +377,44 @@ USING (true);`,
           "My job wasn't to manage the team or act like an experienced exec. I joined as a student PM to learn by doing: organizing tasks, testing staging builds, running user conversations, and keeping our weekly focus on one functional workflow.",
         ],
         marginNote: "the risk wasn't bad engineering, it was too much of it, too early",
+      },
+      {
+        kind: "deck",
+        heading: "Live product artifacts & visual architecture",
+        intro:
+          "Live product screenshots from pixnlabs.com: from a single prompt down to global edge deployment with pre-configured lead capture inboxes.",
+        cards: [
+          {
+            id: "prompt-engine",
+            title: "0→1 Prompt-to-System Engine",
+            subtitle: "One prompt generates the full system: website, services, booking form, and leads inbox.",
+            tag: "Hero Generator",
+            badge: "Live on pixnlabs.com",
+            image: "/images/pixn/pixn-hero-prompt.png",
+            annotation: "Prompt in → structured JSON engine → live bloom-salon.pixn.site preview in ~41 seconds.",
+            details: "Instead of letting the model stream fragile HTML line-by-line, Pixn prompts hydrate a strict JSON schema that populates pre-styled, responsive service modules and contact channels.",
+          },
+          {
+            id: "vertical-split",
+            title: "Dual Core Verticals: Business & Event Sites",
+            subtitle: "Targeting high-intent use cases: local business service sites and wedding/event RSVP trackers.",
+            tag: "Product Positioning",
+            badge: "Discovery Insight",
+            image: "/images/pixn/pixn-business-event.png",
+            annotation: "Local businesses get lead alerts; couples get instant guest RSVP lists with zero setup friction.",
+            details: "User discovery showed local businesses care about customer inquiries hitting their inbox without setup friction, while wedding hosts need reliable, shareable RSVP guest list capture.",
+          },
+          {
+            id: "edge-infrastructure",
+            title: "Instant Edge Hosting & Direct Form Delivery",
+            subtitle: "Global edge network with 1.8s mobile LCP, 99.99% uptime, and verified lead delivery.",
+            tag: "Technical Delivery",
+            badge: "Lighthouse 100",
+            image: "/images/pixn/pixn-instant-launch.png",
+            annotation: "Lighthouse font optimizations reduced mobile LCP to 1.8s with reliable form delivery.",
+            details: "Testing on real staging links identified font-blocking delays and verified that contact forms route inquiries directly into the database before signing off preview URLs.",
+          },
+        ],
       },
       {
         kind: "talktrack",
