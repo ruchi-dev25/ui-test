@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Layers, Grid, ChevronLeft, ChevronRight, Maximize2, X, Sparkles } from "lucide-react";
+import { ExternalLink, Layers, Grid, ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import RibbonTag from "./RibbonTag";
 
 export type DeckCard = {
@@ -46,16 +46,16 @@ export default function CardDeckGallery({
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           {liveUrl && (
             <a
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-parchment shadow-sm transition hover:-translate-y-0.5 hover:bg-deepink"
+              className="group font-display inline-flex items-center gap-1.5 text-sm text-ink/90 underline decoration-sage decoration-2 underline-offset-4 transition hover:text-deepink sm:text-base"
             >
-              <Sparkles className="h-3 w-3 text-butter" />
-              Visit pixnlabs.com <ExternalLink className="h-3 w-3" />
+              <span>Visit pixnlabs.com</span>
+              <span className="font-hand text-lg text-sage transition-transform group-hover:translate-x-0.5">↗</span>
             </a>
           )}
 

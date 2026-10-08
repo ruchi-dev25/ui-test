@@ -78,17 +78,28 @@ export default function CaseStudy() {
                 {project.status}
               </span>
             )}
-            {project.liveUrl && (
+          </div>
+
+          {project.liveUrl && (
+            <div className="mt-5">
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-1 text-xs font-semibold text-parchment shadow-sm transition hover:-translate-y-0.5 hover:bg-deepink"
+                className="group font-display inline-flex items-center gap-2 text-lg text-ink underline decoration-sage decoration-2 underline-offset-6 transition-colors hover:text-deepink sm:text-xl"
               >
-                <span>🌐</span> Visit live product ↗ ({project.liveUrl.replace("https://", "").replace("/", "")})
+                <span>
+                  Visit live product: <strong className="font-bold">{project.liveUrl.replace("https://", "").replace("/", "")}</strong>
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="font-hand text-2xl text-sage transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5"
+                >
+                  ↗
+                </span>
               </a>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
