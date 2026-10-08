@@ -17,12 +17,18 @@ export type DeckCard = {
 export default function CardDeckGallery({
   cards,
   liveUrl = "https://pixnlabs.com/",
+  productLabel = "pixnlabs.com",
+  galleryLabel = "Live Product Artifacts",
+  initialView = "deck",
 }: {
   cards: DeckCard[];
   liveUrl?: string;
+  productLabel?: string;
+  galleryLabel?: string;
+  initialView?: "deck" | "grid";
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [viewMode, setViewMode] = useState<"deck" | "grid">("deck");
+  const [viewMode, setViewMode] = useState<"deck" | "grid">(initialView);
   const [lightboxCard, setLightboxCard] = useState<DeckCard | null>(null);
 
   const nextCard = () => {
@@ -39,10 +45,10 @@ export default function CardDeckGallery({
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-deepink/15 pb-4">
         <div className="flex items-center gap-2">
           <RibbonTag color="var(--color-sage)" rotate={-1}>
-            Live Product Artifacts
+            {galleryLabel}
           </RibbonTag>
           <span className="font-hand text-lg text-ink/70">
-            from <strong className="text-ink">pixnlabs.com</strong>
+            from <strong className="text-ink">{productLabel}</strong>
           </span>
         </div>
 
@@ -54,7 +60,7 @@ export default function CardDeckGallery({
               rel="noopener noreferrer"
               className="group font-display inline-flex items-center gap-1.5 text-sm text-ink/90 underline decoration-sage decoration-2 underline-offset-4 transition hover:text-deepink sm:text-base"
             >
-              <span>Visit pixnlabs.com</span>
+              <span>Visit {productLabel}</span>
               <span className="font-hand text-lg text-sage transition-transform group-hover:translate-x-0.5">↗</span>
             </a>
           )}
@@ -231,7 +237,7 @@ export default function CardDeckGallery({
         </div>
       ) : (
         /* View Mode: Gallery Grid */
-        <div className="mt-8 grid gap-8 sm:grid-cols-1 md:grid-cols-3">
+        <div className={`mt-8 grid gap-8 ${initialView === "grid" ? "sm:grid-cols-2" : "sm:grid-cols-1 md:grid-cols-3"}`}>
           {cards.map((card, i) => (
             <div
               key={card.id}
@@ -246,7 +252,7 @@ export default function CardDeckGallery({
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className={`w-full transition-transform duration-300 group-hover:scale-105 ${initialView === "grid" ? "aspect-video object-contain" : "h-44 object-cover"}`}
                   loading="lazy"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
@@ -284,6 +290,9 @@ export default function CardDeckGallery({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightboxCard(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={lightboxCard.title}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs"
           >
             <motion.div
@@ -296,6 +305,7 @@ export default function CardDeckGallery({
               <button
                 type="button"
                 onClick={() => setLightboxCard(null)}
+                aria-label="Close screenshot"
                 className="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-ink/80 text-parchment transition hover:bg-deepink"
               >
                 <X className="h-5 w-5" />
@@ -326,7 +336,7 @@ export default function CardDeckGallery({
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 rounded-md bg-ink px-4 py-2 text-xs font-semibold text-parchment hover:bg-deepink"
                     >
-                      Open pixnlabs.com <ExternalLink className="h-3.5 w-3.5" />
+                      Open {productLabel} <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   )}
                 </div>
