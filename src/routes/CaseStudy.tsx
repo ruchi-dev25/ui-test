@@ -225,7 +225,13 @@ export default function CaseStudy() {
 
                 {section.kind === "deck" && (
                   <div className="mt-6">
-                    <CardDeckGallery cards={section.cards} liveUrl={project.liveUrl} />
+                    <CardDeckGallery
+                      cards={section.cards}
+                      liveUrl={project.liveUrl ?? (section.productLabel ? "" : undefined)}
+                      productLabel={section.productLabel}
+                      galleryLabel={section.galleryLabel}
+                      initialView={section.initialView}
+                    />
                   </div>
                 )}
               </section>

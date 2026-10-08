@@ -1,5 +1,10 @@
 import type { Topic } from "../components/TopicArt";
 import type { MetricRow } from "../components/MetricsChart";
+import studentDirectory from "../assets/acadflow/student-directory.png.asset.json";
+import studentProfile from "../assets/acadflow/student-profile.png.asset.json";
+import studentAchievements from "../assets/acadflow/student-achievements.png.asset.json";
+import talentDirectory from "../assets/acadflow/talent-directory.png.asset.json";
+import talentShowcase from "../assets/acadflow/talent-showcase.png.asset.json";
 
 type Tint = "mint" | "periwinkle" | "amber" | "rose" | "cream";
 
@@ -88,6 +93,9 @@ export type DeckSection = {
     annotation: string;
     details: string;
   }[];
+  productLabel?: string;
+  galleryLabel?: string;
+  initialView?: "deck" | "grid";
 };
 
 export type Section =
@@ -140,6 +148,60 @@ export const projects: Project[] = [
       { value: "2–4 hrs → <15 min", label: "faculty admin time, per week" },
     ],
     sections: [
+      {
+        kind: "deck",
+        heading: "Inside AcadFlow",
+        productLabel: "AcadFlow",
+        galleryLabel: "Product screenshots",
+        initialView: "grid",
+        cards: [
+          {
+            id: "acadflow-student-directory",
+            title: "Student directory",
+            subtitle: "A shared view of student records.",
+            tag: "Student records",
+            image: studentDirectory.url,
+            annotation: "one directory, instead of scattered spreadsheets",
+            details: "The student directory brings search, division and batch filters, verification status, and Excel / CSV import into the faculty view.",
+          },
+          {
+            id: "acadflow-student-profile",
+            title: "Student profile",
+            subtitle: "Personal details and document verification.",
+            tag: "Profile",
+            image: studentProfile.url,
+            annotation: "the context a counsellor needs, in one place",
+            details: "A student profile combines personal and family information with marksheet availability, NPTEL certification status, and profile completeness.",
+          },
+          {
+            id: "acadflow-student-achievements",
+            title: "Certifications & achievements",
+            subtitle: "A student's achievements alongside their academic record.",
+            tag: "Achievements",
+            image: studentAchievements.url,
+            annotation: "more than marks: a record of what students create",
+            details: "The achievements tab records hackathon results, research publications, and internships with links to supporting certificates.",
+          },
+          {
+            id: "acadflow-talent-showcase",
+            title: "Talent showcase",
+            subtitle: "A department-wide view of student accomplishments.",
+            tag: "Talent discovery",
+            image: talentShowcase.url,
+            annotation: "bringing achievements out of private mentor notes",
+            details: "The showcase groups student achievements into hackathons and coding, industrial internships, and research papers and patents.",
+          },
+          {
+            id: "acadflow-talent-directory",
+            title: "Talent directory",
+            subtitle: "Find students by achievement, year, and division.",
+            tag: "Faculty scouting",
+            image: talentDirectory.url,
+            annotation: "a searchable path from accomplishment to opportunity",
+            details: "Faculty can filter achievements by category, year, and division, search student records, and open a student's information from the results.",
+          },
+        ],
+      },
       {
         heading: "Problem context: the NEP compliance breakdown",
         body: [
