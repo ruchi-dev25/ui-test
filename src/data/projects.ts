@@ -138,7 +138,6 @@ export const projects: Project[] = [
     role: "Solo Technical PM & Engineer",
     timeframe: "4 Weeks · Next.js, Supabase, Postgres RLS, Tailwind",
     status: "V1 shipped · active pilot with 10 faculty members",
-    liveUrl: "https://ruchi-portfolio.nekostack.com/",
     tags: ["0→1 build", "EdTech", "Postgres RLS"],
     teaser:
       "10 faculty, 25–30 students each, zero shared records, and a national policy that could quietly block a student's degree over a missed registration window.",
