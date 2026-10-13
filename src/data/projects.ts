@@ -91,6 +91,8 @@ export type DeckSection = {
   productLabel?: string;
   galleryLabel?: string;
   initialView?: "deck" | "grid";
+  hideViewToggle?: boolean;
+  showLiveLink?: boolean;
 };
 
 export type Section =
@@ -431,6 +433,8 @@ USING (true);`,
         productLabel: "Pixn",
         galleryLabel: "Product screenshots",
         initialView: "deck",
+        hideViewToggle: true,
+        showLiveLink: false,
         cards: [
           {
             id: "pixn-prompt-generator",

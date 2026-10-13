@@ -16,16 +16,18 @@ export type DeckCard = {
 
 export default function CardDeckGallery({
   cards,
-  liveUrl = "https://pixnlabs.com/",
+  liveUrl,
   productLabel = "pixnlabs.com",
   galleryLabel = "Live Product Artifacts",
   initialView = "deck",
+  hideViewToggle = false,
 }: {
   cards: DeckCard[];
   liveUrl?: string;
   productLabel?: string;
   galleryLabel?: string;
   initialView?: "deck" | "grid";
+  hideViewToggle?: boolean;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [viewMode, setViewMode] = useState<"deck" | "grid">(initialView);
@@ -52,46 +54,50 @@ export default function CardDeckGallery({
           </span>
         </div>
 
-        <div className="flex items-center gap-4">
-          {liveUrl && (
-            <a
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group font-display inline-flex items-center gap-1.5 text-sm text-ink/90 underline decoration-sage decoration-2 underline-offset-4 transition hover:text-deepink sm:text-base"
-            >
-              <span>Visit {productLabel}</span>
-              <span className="font-hand text-lg text-sage transition-transform group-hover:translate-x-0.5">↗</span>
-            </a>
-          )}
+        {(!hideViewToggle || liveUrl) && (
+          <div className="flex items-center gap-4">
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group font-display inline-flex items-center gap-1.5 text-sm text-ink/90 underline decoration-sage decoration-2 underline-offset-4 transition hover:text-deepink sm:text-base"
+              >
+                <span>Visit {productLabel}</span>
+                <span className="font-hand text-lg text-sage transition-transform group-hover:translate-x-0.5">↗</span>
+              </a>
+            )}
 
-          <div className="inline-flex rounded-lg border border-deepink/20 bg-white/70 p-0.5">
-            <button
-              type="button"
-              onClick={() => setViewMode("deck")}
-              className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition ${
-                viewMode === "deck"
-                  ? "bg-ink text-parchment shadow-xs"
-                  : "text-ink/60 hover:text-ink"
-              }`}
-              title="Deck Stack View"
-            >
-              <Layers className="h-3.5 w-3.5" /> Deck
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode("grid")}
-              className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition ${
-                viewMode === "grid"
-                  ? "bg-ink text-parchment shadow-xs"
-                  : "text-ink/60 hover:text-ink"
-              }`}
-              title="Grid Gallery View"
-            >
-              <Grid className="h-3.5 w-3.5" /> Grid
-            </button>
+            {!hideViewToggle && (
+              <div className="inline-flex rounded-lg border border-deepink/20 bg-white/70 p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setViewMode("deck")}
+                  className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition ${
+                    viewMode === "deck"
+                      ? "bg-ink text-parchment shadow-xs"
+                      : "text-ink/60 hover:text-ink"
+                  }`}
+                  title="Deck Stack View"
+                >
+                  <Layers className="h-3.5 w-3.5" /> Deck
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("grid")}
+                  className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition ${
+                    viewMode === "grid"
+                      ? "bg-ink text-parchment shadow-xs"
+                      : "text-ink/60 hover:text-ink"
+                  }`}
+                  title="Grid Gallery View"
+                >
+                  <Grid className="h-3.5 w-3.5" /> Grid
+                </button>
+              </div>
+            )}
           </div>
-        </div>
+        )}
       </div>
 
       {/* View Mode: Interactive Stacked Card Deck */}

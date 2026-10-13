@@ -81,19 +81,21 @@ export default function CaseStudy() {
           </div>
 
           {project.liveUrl && (
-            <div className="mt-5">
+            <div className="mt-3.5">
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group font-display inline-flex items-center gap-2 text-lg text-ink underline decoration-sage decoration-2 underline-offset-6 transition-colors hover:text-deepink sm:text-xl"
+                className="group inline-flex items-center gap-1.5 text-sm text-ink/75 transition-colors hover:text-ink"
               >
-                <span>
-                  Visit live product: <strong className="font-bold">{project.liveUrl.replace("https://", "").replace("/", "")}</strong>
+                <span className="font-hand text-lg text-sage">visit live product</span>
+                <span className="text-ink/30 font-hand text-lg">→</span>
+                <span className="font-medium text-ink underline decoration-sage/60 decoration-1 underline-offset-3 transition-colors group-hover:text-deepink group-hover:decoration-deepink">
+                  {project.liveUrl.replace("https://", "").replace(/\/$/, "")}
                 </span>
                 <span
                   aria-hidden="true"
-                  className="font-hand text-2xl text-sage transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5"
+                  className="font-hand text-lg text-sage transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 >
                   ↗
                 </span>
@@ -227,10 +229,11 @@ export default function CaseStudy() {
                   <div className="mt-6">
                     <CardDeckGallery
                       cards={section.cards}
-                      liveUrl={project.liveUrl ?? (section.productLabel ? "" : undefined)}
+                      liveUrl={section.showLiveLink ? (project.liveUrl ?? (section.productLabel ? "" : undefined)) : undefined}
                       productLabel={section.productLabel}
                       galleryLabel={section.galleryLabel}
                       initialView={section.initialView}
+                      hideViewToggle={section.hideViewToggle}
                     />
                   </div>
                 )}
