@@ -83,10 +83,6 @@ export default function Contact() {
     profile.email
   )}&su=${encodeURIComponent(getSubject())}&body=${encodeURIComponent(getBody())}`;
 
-  const directGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-    profile.email
-  )}`;
-
   const mailtoUrl = `mailto:${profile.email}?subject=${encodeURIComponent(
     getSubject()
   )}&body=${encodeURIComponent(getBody())}`;
@@ -258,14 +254,6 @@ export default function Contact() {
             >
               {copiedEmail ? "Copied! ✨" : "Copy email"}
             </button>
-            <a
-              href={directGmailUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded border border-deepink/20 bg-white/70 px-2.5 py-1 text-xs text-ink/80 transition hover:bg-white hover:text-ink"
-            >
-              Open Gmail ↗
-            </a>
           </div>
         </div>
 
