@@ -387,7 +387,7 @@ USING (true);`,
       },
       {
         kind: "talktrack",
-        heading: "Interview talk track (90-second walkthrough)",
+        heading: "90-second walkthrough",
         items: [
           {
             label: "1. Problem",
@@ -661,10 +661,10 @@ USING (true);`,
       },
       {
         kind: "talktrack",
-        heading: "2-minute interview walkthrough",
+        heading: "90-second walkthrough",
         items: [
           {
-            label: "Interview walkthrough",
+            label: "90-second walkthrough",
             text: "I worked as a student product manager on Pixn, collaborating with two engineering co-founders building an AI website builder for small service businesses. The project is currently in staging as we refine the core experience. When I joined, the team had strong engineering momentum but was spreading effort across too many platform features, describing the product as a complex 'business operating system.' Through informal conversations with local service owners, I realized users weren't confused by the builder, they were confused by that language; they just wanted a clean webpage where customer messages reliably reached their inbox. I helped bring structure to the build: introduced simple MoSCoW prioritization to keep our work focused on the core generator, organized the backlog so we tackled one task at a time, and managed testing across mobile devices. When mobile previews felt sluggish, I ran Lighthouse audits that pinpointed slow font downloads, helping the founders drop mobile LCP from 3.4s to 1.8s. This gave me a hands-on foundation in 0→1 product management: managing scope creep in a fast-paced technical team, evaluating AI output with structured rules and smoke tests, and why testing on live staging URLs matters more than theoretical documentation.",
           },
         ],
