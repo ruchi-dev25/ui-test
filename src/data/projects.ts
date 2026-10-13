@@ -1,10 +1,5 @@
 import type { Topic } from "../components/TopicArt";
 import type { MetricRow } from "../components/MetricsChart";
-import studentDirectory from "../assets/acadflow/student-directory.png.asset.json";
-import studentProfile from "../assets/acadflow/student-profile.png.asset.json";
-import studentAchievements from "../assets/acadflow/student-achievements.png.asset.json";
-import talentDirectory from "../assets/acadflow/talent-directory.png.asset.json";
-import talentShowcase from "../assets/acadflow/talent-showcase.png.asset.json";
 
 type Tint = "mint" | "periwinkle" | "amber" | "rose" | "cream";
 
@@ -160,7 +155,7 @@ export const projects: Project[] = [
             title: "Student directory",
             subtitle: "A shared view of student records.",
             tag: "Student records",
-            image: studentDirectory.url,
+            image: "/images/acadflow/student-directory.png",
             annotation: "one directory, instead of scattered spreadsheets",
             details: "The student directory brings search, division and batch filters, verification status, and Excel / CSV import into the faculty view.",
           },
@@ -169,7 +164,7 @@ export const projects: Project[] = [
             title: "Student profile",
             subtitle: "Personal details and document verification.",
             tag: "Profile",
-            image: studentProfile.url,
+            image: "/images/acadflow/student-profile.png",
             annotation: "the context a counsellor needs, in one place",
             details: "A student profile combines personal and family information with marksheet availability, NPTEL certification status, and profile completeness.",
           },
@@ -178,7 +173,7 @@ export const projects: Project[] = [
             title: "Certifications & achievements",
             subtitle: "A student's achievements alongside their academic record.",
             tag: "Achievements",
-            image: studentAchievements.url,
+            image: "/images/acadflow/student-achievements.png",
             annotation: "more than marks: a record of what students create",
             details: "The achievements tab records hackathon results, research publications, and internships with links to supporting certificates.",
           },
@@ -187,7 +182,7 @@ export const projects: Project[] = [
             title: "Talent showcase",
             subtitle: "A department-wide view of student accomplishments.",
             tag: "Talent discovery",
-            image: talentShowcase.url,
+            image: "/images/acadflow/talent-showcase.png",
             annotation: "bringing achievements out of private mentor notes",
             details: "The showcase groups student achievements into hackathons and coding, industrial internships, and research papers and patents.",
           },
@@ -196,7 +191,7 @@ export const projects: Project[] = [
             title: "Talent directory",
             subtitle: "Find students by achievement, year, and division.",
             tag: "Faculty scouting",
-            image: talentDirectory.url,
+            image: "/images/acadflow/talent-directory.png",
             annotation: "a searchable path from accomplishment to opportunity",
             details: "Faculty can filter achievements by category, year, and division, search student records, and open a student's information from the results.",
           },
@@ -431,6 +426,45 @@ USING (true);`,
     ],
     sections: [
       {
+        kind: "deck",
+        heading: "Inside Pixn",
+        productLabel: "Pixn",
+        galleryLabel: "Product screenshots",
+        initialView: "deck",
+        cards: [
+          {
+            id: "pixn-prompt-generator",
+            title: "Prompt-to-system engine",
+            subtitle: "One prompt generates the full system: website, services, booking form, and leads inbox.",
+            tag: "Hero generator",
+            image: "/images/pixn/pixn-hero-prompt.png",
+            annotation: "prompt in → structured JSON engine → live preview in ~41 seconds",
+            details:
+              "Instead of streaming fragile raw HTML line-by-line, Pixn prompts hydrate a strict JSON schema that populates pre-styled, responsive service modules and contact channels.",
+          },
+          {
+            id: "pixn-vertical-templates",
+            title: "Dual core verticals: business & event sites",
+            subtitle: "Targeting high-intent use cases: local business service sites and wedding/event RSVP trackers.",
+            tag: "Vertical templates",
+            image: "/images/pixn/pixn-business-event.png",
+            annotation: "local businesses get lead alerts; couples get instant guest RSVPs",
+            details:
+              "User discovery showed local businesses care about customer inquiries hitting their inbox without setup friction, while wedding hosts need reliable, shareable RSVP guest list capture.",
+          },
+          {
+            id: "pixn-instant-launch",
+            title: "Instant edge hosting & form delivery",
+            subtitle: "Global edge network with 1.8s mobile LCP, 99.99% uptime, and verified lead delivery.",
+            tag: "Edge infrastructure",
+            image: "/images/pixn/pixn-instant-launch.png",
+            annotation: "1.8s mobile LCP and reliable form delivery on custom edge domains",
+            details:
+              "Testing on real staging links identified font-blocking delays and verified that contact forms route inquiries directly into the database before signing off preview URLs.",
+          },
+        ],
+      },
+      {
         heading: "Project context & current status",
         body: [
           "Pixn is an early-stage tool built by two software engineering co-founders. The goal: let someone type a description of their business and get a working webpage with a pre-configured, functioning contact form.",
@@ -439,44 +473,6 @@ USING (true);`,
           "My job wasn't to manage the team or act like an experienced exec. I joined as a student PM to learn by doing: organizing tasks, testing staging builds, running user conversations, and keeping our weekly focus on one functional workflow.",
         ],
         marginNote: "the risk wasn't bad engineering, it was too much of it, too early",
-      },
-      {
-        kind: "deck",
-        heading: "Live product artifacts & visual architecture",
-        intro:
-          "Live product screenshots from pixnlabs.com: from a single prompt down to global edge deployment with pre-configured lead capture inboxes.",
-        cards: [
-          {
-            id: "prompt-engine",
-            title: "0→1 Prompt-to-System Engine",
-            subtitle: "One prompt generates the full system: website, services, booking form, and leads inbox.",
-            tag: "Hero Generator",
-            badge: "Live on pixnlabs.com",
-            image: "/images/pixn/pixn-hero-prompt.png",
-            annotation: "Prompt in → structured JSON engine → live bloom-salon.pixn.site preview in ~41 seconds.",
-            details: "Instead of letting the model stream fragile HTML line-by-line, Pixn prompts hydrate a strict JSON schema that populates pre-styled, responsive service modules and contact channels.",
-          },
-          {
-            id: "vertical-split",
-            title: "Dual Core Verticals: Business & Event Sites",
-            subtitle: "Targeting high-intent use cases: local business service sites and wedding/event RSVP trackers.",
-            tag: "Product Positioning",
-            badge: "Discovery Insight",
-            image: "/images/pixn/pixn-business-event.png",
-            annotation: "Local businesses get lead alerts; couples get instant guest RSVP lists with zero setup friction.",
-            details: "User discovery showed local businesses care about customer inquiries hitting their inbox without setup friction, while wedding hosts need reliable, shareable RSVP guest list capture.",
-          },
-          {
-            id: "edge-infrastructure",
-            title: "Instant Edge Hosting & Direct Form Delivery",
-            subtitle: "Global edge network with 1.8s mobile LCP, 99.99% uptime, and verified lead delivery.",
-            tag: "Technical Delivery",
-            badge: "Lighthouse 100",
-            image: "/images/pixn/pixn-instant-launch.png",
-            annotation: "Lighthouse font optimizations reduced mobile LCP to 1.8s with reliable form delivery.",
-            details: "Testing on real staging links identified font-blocking delays and verified that contact forms route inquiries directly into the database before signing off preview URLs.",
-          },
-        ],
       },
       {
         kind: "talktrack",
